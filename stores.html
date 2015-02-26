@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>RCS Reports</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+  <![endif]-->
+
+  <!-- Fav and touch icons -->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/scripts.js"></script>
+    <!-- AmCharts-->
+    <script type="text/javascript" src="js/amcharts.js"></script>
+    <script type="text/javascript" src="js/serial.js"></script>
+    <script src="js/amcharts_data.js"></script>
+
+</head>
+
+<body >
+<div class="container">
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+            <p class="text-center title">Metas vs Ventas</p>
+		</div>
+	</div>
+    <div class="row lines">
+        <div class="select-style">
+            <ul class="select-date">
+                <li class="init"><p>Hoy</p></li>
+                <li data-value="value 1" class="item"><p>Hoy</p></li>
+                <li data-value="value 2" class="item"><p>Ayer a la fecha</p></li>
+                <li data-value="value 3" class="item"><p>Semana a la fecha</p></li>
+                <li data-value="value 4" class="item"><p>Mes a la fecha</p></li>
+                <li data-value="value 5" class="item"><p>Año a la fecha</p></li>
+            </ul>                
+        </div>            
+        <a href="#"><button id="refresh"><img src="img/refresh.png" ></button></a>
+	</div>
+    <div class="row region">
+        <div class="col-xs-12">
+            <ul class="select-region">
+                <li class="init"><p>Seleccione Región</p></li>
+                <li data-value="value 6" class="item"><p>Nombre de Región uno</p></li>
+                <li data-value="value 7" class="item"><p>Nombre de Región dos</p></li>
+                <li data-value="value 8" class="item"><p>Nombre de Región tres</p></li>
+                <li data-value="value 9" class="item"><p>Nombre de Región cuatro</p></li>
+                <li data-value="value 10" class="item"><p>Nombre de Región cinco</p></li>
+            </ul>
+            
+		</div>
+	</div>
+<!--    <script type="text/javascript" src="js/scripts.js"></script>-->
+    
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel-group" id="items">
+				<div class="panel" id="panel-1">
+					<div class="row front-item" onclick="prueba('-1')">
+						<span class="panel-title">
+                            <div class="col-xs-12">
+                                <p class="store-name">Nombre de la tienda 1</p>
+                            </div>
+                            <div class="actual">
+                                <div class="col-xs-1"><p class="type">A:</p></div>
+                                <div class="col-xs-3"><p class="gol-number">155,000.25</p></div>
+                                <div class="col-xs-4"><p class="sale-number">10,000.25</p></div>
+                                <div class="col-xs-4"><p class="percentage" id="red">10.0%</p></div>
+                            </div>
+                            <div class="global">
+                                <div class="col-xs-1"><p class="type">G:</p></div>
+                                <div class="col-xs-3"><p class="gol-number">15,000.25</p></div>
+                                <div class="col-xs-4"><p class="sale-number">10,000.25</p></div>
+                                <div class="col-xs-4"><p class="percentage" id="green">120.0%</p></div>
+                            </div>
+                        </span>
+                        
+					</div>
+                    <div class="row back-item " id="detail-1" >
+                        <div class="col-xs-7">
+                            <div id="chartdiv"></div>
+                        </div>
+                        <div class="col-xs-5">
+                            <div class="row ">
+                                <div class="col-md-12 ">
+                                    <table class="table data">
+                                        <thead>
+                                            <tr><th>Año</th><th>Cantidad</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td>2013</td><td>3,150</td></tr>
+                                            <tr><td>2014</td><td>7,550</td></tr>
+                                            <tr><td>2015</td><td>8,550</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+                <div class="panel" id="panel-2">
+					<div class="row front-item" onclick="prueba('-2')">
+						<span class="panel-title">
+                            <div class="col-xs-12">
+                                <p class="store-name">Nombre de la tienda 2</p>
+                            </div>
+                            <div class="actual">
+                                <div class="col-xs-1"><p class="type">A:</p></div>
+                                <div class="col-xs-3"><p class="gol-number">915,000.25</p></div>
+                                <div class="col-xs-4"><p class="sale-number">110,000.25</p></div>
+                                <div class="col-xs-4"><p class="percentage" id="red">10.0%</p></div>
+                            </div>
+                            <div class="global">
+                                <div class="col-xs-1"><p class="type">G:</p></div>
+                                <div class="col-xs-3"><p class="gol-number">15,000.25</p></div>
+                                <div class="col-xs-4"><p class="sale-number">10,000.25</p></div>
+                                <div class="col-xs-4"><p class="percentage" id="green">110.0%</p></div>
+                            </div>
+                        </span>
+                        
+					</div>
+                    <div class="row back-item" id="detail-2">
+                        <div class="col-xs-7">
+                            <div id="chartdiv2"></div>
+                        </div>
+                        <div class="col-xs-5">
+                            <div class="row ">
+                                <div class="col-md-12 ">
+                                    <table class="table data">
+                                        <thead>
+                                            <tr><th>Año</th><th>Cantidad</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td>2013</td><td>3,150</td></tr>
+                                            <tr><td>2014</td><td>7,550</td></tr>
+                                            <tr><td>2015</td><td>8,550</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+                <div class="panel" id="panel-3">
+					<div class="row front-item" onclick="prueba('-3')">
+						<span class="panel-title">
+                            <div class="col-xs-12">
+                                <p class="store-name">Nombre de la tienda 3</p>
+                            </div>
+                            <div class="actual">
+                                <div class="col-xs-1"><p class="type">A:</p></div>
+                                <div class="col-xs-3"><p class="gol-number">915,000.25</p></div>
+                                <div class="col-xs-4"><p class="sale-number">910,000.25</p></div>
+                                <div class="col-xs-4"><p class="percentage" id="red">10.0%</p></div>
+                            </div>
+                            <div class="global">
+                                <div class="col-xs-1"><p class="type">G:</p></div>
+                                <div class="col-xs-3"><p class="gol-number">15,000.25</p></div>
+                                <div class="col-xs-4"><p class="sale-number">10,000.25</p></div>
+                                <div class="col-xs-4"><p class="percentage" id="ambar">80.0%</p></div>
+                            </div>
+                        </span>                        
+					</div>
+                    <div class="row back-item" id="detail-3">
+                        <div class="col-xs-7">
+                            <div id="chartdiv3"></div>
+                        </div>
+                        <div class="col-xs-5">
+                            <div class="row ">
+                                <div class="col-md-12 ">
+                                    <table class="table data">
+                                        <thead>
+                                            <tr><th>Año</th><th>Cantidad</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td>2013</td><td>3,150</td></tr>
+                                            <tr><td>2014</td><td>7,550</td></tr>
+                                            <tr><td>2015</td><td>8,550</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>            
+		</div>
+	</div>
+    
+    <div id="wrap" class="text-center">
+      <!-- Button trigger modal -->
+      <br>
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      Opciones
+    </button>
+    </div>
+
+</div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Select your Alias
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-control select-alias">
+                        <div class="alias-item" id="alias-item">Cambiar de Alias 1</div>
+                        <div class="alias-item" id="alias-item">Cambiar de Alias 2</div>
+                        <div class="alias-item" id="alias-item">Cambiar de Alias 3</div>
+                        <div class="alias-item" id="alias-item">Cambiar de Alias 4</div>
+                        <div class="alias-item" id="alias-item">Cambiar de Alias 5</div>
+                        <div class="alias-item" id="alias-item">Cambiar de Alias 6</div>
+                        <div class="alias-item" id="alias-item">Cambiar de Alias 7</div>
+                        <div class="alias-item" id="alias-item">Cambiar de Alias 8</div>
+                        <div class="alias-item" id="alias-item">Cambiar de Alias 9</div>
+                    </div>
+                </div>
+                <div class="modal-footer add">
+                    <button type="button" class="btn btn-rcs" data-dismiss="modal">Add Alias</button>
+                </div>
+                <div class="modal-footer info">
+                    <p class="text-center">Dunkenvolk</p>
+                    <p class="text-center">IP: 192.168.1.20</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="js/scripts.js"></script>
+    
+</body>
+
+</html>
