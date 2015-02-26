@@ -126,19 +126,28 @@ label{
 }
 
 form {
+    position: relative;
     border: 1px solid #fff;
     padding: 5%;
     margin: 5%;
     border-radius: 5px;
 }
 
-.logo-company img{
-    width: 87%; 
+.logo-company{
+    height: 25px;
+    margin-bottom: 10px;
 }
 
+
+.logo-company img{
+    width: 60%; 
+    max-height: 50px;
+    max-width: 356px;
+}
 .logo-name img{
+    padding: 0px;
     width: 55%;
-    margin: 30px auto 0px;
+    margin: 20px auto 0px;
 }
 
 .login {
@@ -218,26 +227,45 @@ label.label-style {
     position: absolute;
     margin: auto auto;
     left: 0;
-    right: 0;
-    width: 73%;
+    right: 0;    
+    width: 100%;
 }
 
 .form-group {
     margin-bottom:25px;
 }
-
-.form-float {
-    width: 100%;
+.form-control:focus{
+    border-color: #fff;    
 }
 
-.vcenter {
+
+.form-float {
+    width: 89%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.vcenter{
     position: absolute;
     top:0;right: 0;bottom: 0;left: 0;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: auto;
-    margin-right: auto; 
+    margin: auto auto; 
     height: 90%;
+}
+.vcenter-login2 {
+    position: absolute;
+    top:0;right: 0;bottom: 0;left: 0;
+    margin: auto auto; 
+    height: 371px;
+}
+.vcenter-login1 {
+    position: absolute;
+    top:0;right: 0;bottom: 0;left: 0;
+    margin: auto auto; 
+    height: 506px;
 }
 .checkbox-style {
     position: relative;
@@ -524,13 +552,13 @@ ul.select-date li.init {
     font-size: 24px;    
     border-radius: 6px;
 }
-.percentage#green{
+.percentage.green{
     background-color: rgba(104, 163, 87,.9);
 }
-.percentage#red{
+.percentage.red{
     background-color: rgba(255, 28, 23, .9);
 }
-.percentage#ambar{
+.percentage.ambar{
     background-color: rgba(201, 148, 18, .9);
 }
 .row.back-item{
