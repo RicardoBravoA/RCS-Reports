@@ -462,3 +462,330 @@ ul.select-date li.init {
     background-repeat: no-repeat;
     background-position: 81% 15px;
 }
+
+.panel{
+    height: 150px;
+    background: #333;
+    transition: all 0.2s;
+    transition-timing-function: cubic-bezier(.96,.47,.45,1.05);
+}
+.panel.open{
+    height: 330px;
+}
+
+div[class^="chartdiv-"]
+{
+    position: relative;
+    width: 100%;
+    height: 150px;
+}
+
+.amcharts-graph-g3 {
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-dasharray: 500%;
+  stroke-dasharray: 0 \0/;    /* fixes IE prob */
+  stroke-dashoffset: 0 \0/;   /* fixes IE prob */
+  -webkit-animation: am-draw 2s;
+  -moz-animation: am-draw 2s;
+  animation: am-draw 2s;
+  -webkit-animation-timing-function: cubic-bezier(0,0,1,1);
+  -moz-animation-timing-function: cubic-bezier(0,0,1,1);
+  animation-timing-function: cubic-bezier(0,0,1,1);
+}
+@-webkit-keyframes am-draw {
+    0% {
+        stroke-dashoffset: 500%;
+    }
+    100% {
+        stroke-dashoffset: 0px;
+    }
+}
+@-moz-keyframes am-draw {
+    0% {
+        stroke-dashoffset: 500%;
+    }
+    100% {
+        stroke-dashoffset: 0px;
+    }
+}
+@keyframes am-draw {
+    0% {
+        stroke-dashoffset: 500%;
+    }
+    100% {
+        stroke-dashoffset: 0px;
+    }
+}
+
+.panel-group .panel+.panel{
+    margin-top: 0;
+}
+.panel-group .panel{
+    background: transparent;
+    border-radius: 0px;
+}
+.panel-group .panel.open{
+    background: rgba(62, 62, 62, 0.3);
+    border-radius: 0px;
+}
+
+.actual, .global{
+    position: relative;
+    height: 45px;
+}
+
+.global{
+    background: rgba(62, 62, 62, 0.3);
+}
+
+.row.front-item{
+    cursor: pointer;
+    position: relative;
+    height: 150px;
+}
+.front-item p.store-name{
+    margin-bottom: 0px;
+    padding: 3% 3% 0% 3%;
+    font-size: 26px;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #a8a8a8;
+    text-transform: uppercase;
+}
+.front-item p.type,.front-item p.gol-number{
+    position: absolute;
+    bottom: -46px;
+}
+.front-item p.sale-number,.front-item .percentage{
+    position: absolute;
+    bottom: -48px;
+}
+.front-item p.type{
+    margin-left: 33%;
+    font-size: 21px;
+    color: #3c81ea;
+}
+.front-item p.gol-number{
+    padding-left: 0%;
+    font-size: 20px;
+    text-align: center;
+}
+.front-item p.sale-number{
+    font-size: 24px;
+    text-align: left;
+}
+.front-item .percentage{
+    margin-right: 10%;
+    width: 75%;
+    text-align: center;
+    font-size: 24px;    
+    border-radius: 6px;
+}
+.percentage.green{
+    background-color: rgba(104, 163, 87,.9);
+}
+.percentage.red{
+    background-color: rgba(255, 28, 23, .9);
+}
+.percentage.ambar{
+    background-color: rgba(201, 148, 18, .9);
+}
+.row.back-item{
+    position: relative;
+    height: 0px;
+    opacity: 0;
+    transform-origin: top;
+    transform: rotateX(90deg);
+    transition: all 0.3s;
+    transition-timing-function: cubic-bezier(.7,.3,.32,.87);
+    -webkit-transform-origin: top;
+    -webkit-transform: rotateX(90deg);
+    -webkit-transition: all 0.3s;
+    -webkit-transition-timing-function: cubic-bezier(.7,.3,.32,.87);
+}
+.row.back-item.ocultar{
+    height: 0px;
+}
+.row.back-item.mostrar{
+    padding-top: 15px;
+    opacity: 1;
+    height: 180px;
+    border-top-color: #a8a8a8;
+    border-top-style: solid;
+    border-top-width: 1px;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+}
+
+.details-number{
+    margin-top: 40px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.table.data{
+    width: 95%;
+}
+.table>thead>tr>th {
+    font-weight: 300;
+    font-size: 18px;
+    text-align: center;
+}
+.table tbody tr td {
+    font-weight: 300;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+
+/* Landscape phones and down */
+@media (max-width: 420px) {
+    .front-item p.store-name{
+        font-size: 22px;
+    }
+    .front-item p.type{
+        font-size: 17px;
+    }
+    .front-item p.gol-number{
+        font-size: 17px;
+    }
+    .front-item p.sale-number{
+        font-size: 20px;
+    }
+    .front-item .percentage{
+        width: 75%;
+        font-size: 18px;    
+    }
+
+}
+
+/* Landscape phone to portrait tablet */
+@media (min-width: 768px) {
+    .container{
+        width: 100%;
+    }
+    
+    ul.select-date li.init { 
+        background-position: 90% 18px;
+    }
+    ul.select-date,
+    .select-style {
+        height: 50px;
+    }
+    ul.select-date li.init {
+        padding: 10px 10% 4px;
+    }
+    #refresh {
+        width: 65px;
+        height: 50px;
+    }
+    ul.select-region,
+    ul.select-region li{
+        height: 50px;        
+    }
+    ul.select-region li.init{
+        line-height: 48px !important;
+        font-size: 18px;
+    }
+    ul.select-region li.init {
+        background-position: 97% 20px;
+    }
+    
+    .front-item p.store-name{
+        font-size: 28px;
+        padding-top: 10px;
+    }   
+    .front-item p.type{
+        font-size: 20px;
+    }
+    .front-item p.gol-number{
+        font-size: 20px;
+    }
+    .front-item p.sale-number{
+        font-size: 25px;
+    }
+    .front-item .percentage{
+        width: 79%;
+        font-size: 25px;    
+    }
+    .panel{
+        height: 160px;
+        background: #333;
+        transition: all 0.2s;
+        transition-timing-function: cubic-bezier(.96,.47,.45,1.05);
+    }
+    .panel.open{
+        height: 370px;
+    }
+    .row.front-item{
+        height: 160px;
+    }
+    .row.back-item.mostrar{
+        padding-top: 15px;
+        height: 200px;
+    }
+    .modal .modal-dialog,.modal.in .modal-dialog{
+        width: 50%;
+    }
+    div[class^="chartdiv-"]
+    {
+        position: relative;
+        width: 100%;
+        height: 160px;
+    }
+
+}
+
+.animation{
+    -webkit-animation: cargar; /* Chrome, Safari, Opera */ 
+    animation: cargar;
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+.animation-delay1{
+    -webkit-animation: cargar ; /* Chrome, Safari, Opera */ 
+    animation: cargar ;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    
+    -webkit-animation-delay: 0.25s;
+    animation-delay: 0.25s;
+    
+    opacity: 0;
+}
+.animation-delay2{
+    -webkit-animation: cargar ; /* Chrome, Safari, Opera */ 
+    animation: cargar ;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    
+    -webkit-animation-delay: 0.50s;
+    animation-delay: 0.50s;
+    
+    opacity: 0;
+}
+/* Chrome, Safari, Opera */ 
+@-webkit-keyframes cargar {
+    0%   { opacity: 0; transform: translateY(-15px);}
+    100% { opacity: 1; transform: translateY(0px);}
+} 
+
+/* Standard syntax */ 
+@keyframes cargar {
+    0%   { opacity: 0; transform: translateY(-15px);}
+    100% { opacity: 1; transform: translateY(0px);}
+}
