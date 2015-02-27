@@ -591,6 +591,36 @@ div[class^="chartdiv-"]
 .percentage.ambar{
     background-color: rgba(201, 148, 18, .9);
 }
+/* El problema esta por aqui*/
+.row.back-item{
+    position: relative;
+    height: 0px;
+    opacity: 0;
+    transform-origin: top;
+    transform: rotateX(90deg);
+    transition: all 0.3s;
+    transition-timing-function: cubic-bezier(.7,.3,.32,.87);
+    -webkit-transform-origin: top;
+    -webkit-transform: rotateX(90deg);
+    -webkit-transition: all 0.3s;
+    -webkit-transition-timing-function: cubic-bezier(.7,.3,.32,.87);
+}
+.row.back-item.ocultar{
+    height: 0px;
+}
+.row.back-item.mostrar{
+    padding-top: 15px;
+    opacity: 1;
+    height: 180px;
+    border-top-color: #a8a8a8;
+    border-top-style: solid;
+    border-top-width: 1px;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+}
+
+
+/* ah buscar el problema */
 
 body.modal-open .container{
     -webkit-filter: blur(7px);
