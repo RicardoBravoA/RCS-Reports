@@ -1,14 +1,15 @@
 $("ul.select-date").click(function(e) {
     $(this).closest("ul.select-date").children('li:not(.init)').toggle("slide");
-     e.stopPropagation();
+    e.stopPropagation();
 });
 $("ul.select-region").click(function(e) {
     $('ul.select-region').toggleClass("open");
     $(this).closest("ul.select-region").children('li:not(.init)').toggle("slide");
-     e.stopPropagation();
+    e.stopPropagation();
 });
 
 $(document).click(function(e){
+    $("ul.select-region").removeClass('open');
     $('ul.select-date li:not(.init)').hide();
     $('ul.select-region li:not(.init)').hide();
 });

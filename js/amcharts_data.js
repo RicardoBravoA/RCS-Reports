@@ -25,7 +25,7 @@ var chartData = [
         "duration": Math.round(Math.random() * 10000 - 50)
     }
 ];
-var chart = AmCharts.makeChart("chartdiv", {
+var chart = AmCharts.makeChart("chartdiv-1", {
  theme: "none",
   type: "serial",
   dataDateFormat: "YYYY",
@@ -86,7 +86,7 @@ var chartData2 = [
         "duration": Math.round(Math.random() * 10000 - 50)
     }
 ];
-var chart = AmCharts.makeChart("chartdiv2", {
+var chart = AmCharts.makeChart("chartdiv-2", {
  theme: "none",
   type: "serial",
   dataDateFormat: "YYYY",
@@ -147,7 +147,7 @@ var chartData3 = [
         "duration": Math.round(Math.random() * 10000 - 50)
     }
 ];
-var chart = AmCharts.makeChart("chartdiv3", {
+var chart = AmCharts.makeChart("chartdiv-3", {
  theme: "none",
   type: "serial",
   dataDateFormat: "YYYY",
