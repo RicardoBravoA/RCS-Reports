@@ -591,54 +591,103 @@ div[class^="chartdiv-"]
 .percentage.ambar{
     background-color: rgba(201, 148, 18, .9);
 }
-.row.back-item{
-    position: relative;
-    height: 0px;
-    opacity: 0;
-    transform-origin: top;
-    transform: rotateX(90deg);
-    transition: all 0.3s;
-    transition-timing-function: cubic-bezier(.7,.3,.32,.87);
-    -webkit-transform-origin: top;
-    -webkit-transform: rotateX(90deg);
-    -webkit-transition: all 0.3s;
-    -webkit-transition-timing-function: cubic-bezier(.7,.3,.32,.87);
+
+body.modal-open .container{
+    -webkit-filter: blur(7px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(15px);
 }
-.row.back-item.ocultar{
-    height: 0px;
+  
+.modal {
+  text-align: center;
 }
-.row.back-item.mostrar{
-    padding-top: 15px;
-    opacity: 1;
-    height: 180px;
-    border-top-color: #a8a8a8;
-    border-top-style: solid;
-    border-top-width: 1px;
-    transform: rotateX(0deg);
-    -webkit-transform: rotateX(0deg);
+.modal:before {
+  display: inline-block;
+  vertical-align: middle;
+  content: " ";
+  height: 100%;
+}
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+.modal .modal-dialog,.modal.in .modal-dialog{
+    width: 80%;
+}
+.modal-content{
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.99);
+    color: #000;
 }
 
-.details-number{
-    margin-top: 40px;
+.modal-header{
+    background-color: #f6f6f6;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: #226cf3;    
+}
+.modal-header h4{
     text-align: center;
-    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+.modal-header button,
+.close:hover, .close:focus{
+    width: 25px;
+    height: 25px;
+    opacity: 0.8;
+    border: 1px solid #226cf3;
+    border-radius: 50%;
+    color: #226cf3;
 }
 
-.table.data{
-    width: 95%;
+.modal-footer{
+    margin-top: 0;
+    text-align: center;
+    background-color: #f6f6f6;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
-.table>thead>tr>th {
-    font-weight: 300;
+.modal-footer.add{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.modal-footer.info{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 10px;
+    padding-bottom: 0px;
     font-size: 18px;
-    text-align: center;
 }
-.table tbody tr td {
-    font-weight: 300;
-    font-size: 14px;
-    text-align: center;
+.modal-body{
+    padding: 0px;
 }
-
-
+.modal-body .select-alias{
+    width: 100%;
+    height: 200px;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    font-size: 18px;
+    overflow-y: auto;
+}
+.modal-body .select-alias .alias-item{
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.modal-body .select-alias .alias-item:hover,
+.modal-body .select-alias .alias-item:active{
+    cursor: pointer;
+    background-color: #f6f6f6;
+}
+.modal-backdrop.in {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
 
 /* Landscape phones and down */
 @media (max-width: 420px) {
