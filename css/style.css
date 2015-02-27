@@ -349,3 +349,59 @@ option.option-style:focus{
     border-right-width: 0px;
 }
 
+.lines {
+    position: relative;
+    border: 1px solid #fff;
+    border-left-width: 0px;
+    border-right-width: 0px;
+}
+
+ul.select-date { 
+    height: 45px;
+    width: 100%;
+    list-style-type: none;
+    font-size: 19px;
+    font-weight: 600;
+    color: #3c81ea;
+    padding: 0;
+}
+.region{
+    margin-top: 10px;
+}
+ul.select-region {
+    position: relative;
+    z-index: 1;
+    height: 40px;
+    width: 100%;
+    list-style-type: none;
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #fff;
+    padding: 0;
+}
+ul.select-date li.init{    
+    padding: 10px 10% 0px;
+    transition: all 0.1s;
+}
+ul.select-region li{
+    cursor: pointer;
+    height: 40px;
+    padding-left: 15px;
+}
+
+ul.select-date li.init:active{
+    background-color: rgba(255,255,255,0.15);
+}
+ul.select-date li:not(.init) { 
+    position: relative;
+    width: 100%;
+    padding: 0; 
+    z-index: 2; 
+    float: left; 
+    display: none; 
+    text-align: center;
+    font-weight: 300;
+    background: #5d6a71; 
+    color: #fff;
+}
