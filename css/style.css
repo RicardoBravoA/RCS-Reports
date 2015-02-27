@@ -286,3 +286,54 @@ button:focus, button:active {
     border: 1px solid transparent;
 }
 
+/* Static Method */
+.row.vs{
+/*    position: fixed;*/
+/*    width: 100%;*/
+/*    height: 32px;  */
+}
+.row.lines{
+/*    position: fixed;*/
+/*    width: 100%;*/
+/*    height: 47px;  */
+}
+.row.region{
+/*    position: fixed;*/
+/*    width: 100%;*/
+/*    height: 50px;  */
+}
+/* Fin Static Method */
+
+.title {
+    margin: 5px auto;
+    font-size: 16px;
+    font-weight: 500;
+}
+.select-style{
+    width:100%;
+    height: 45px;
+    float: left;
+}
+select.selectpicker {
+    width: 100%;
+    height: 45px;
+    font-size: 19px;
+    color: #3c81ea;
+    font-weight: 600;
+    background-color: transparent;
+    background-image: url('../img/select-icon.png');
+    background-position: 95% center;
+    background-repeat: no-repeat;
+    padding-left: 55px;
+}
+option.option-style{
+    color: #fff;
+    background: #5d6a71;
+}
+option.option-style:hover,
+option.option-style:active
+option.option-style:focus{
+    color: #fff;
+    background: #000;
+}
+
