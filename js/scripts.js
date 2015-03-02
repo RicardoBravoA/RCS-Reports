@@ -1,10 +1,10 @@
 $("ul.select-date").click(function(e) {
-    $(this).closest("ul.select-date").children('li:not(.init)').toggle("slide");
+    $(this).closest("ul.select-date").children('li:not(.init)').slideToggle(100);
     e.stopPropagation();
 });
 $("ul.select-region").click(function(e) {
     $('ul.select-region').toggleClass("open");
-    $(this).closest("ul.select-region").children('li:not(.init)').toggle("slide");
+    $(this).closest("ul.select-region").children('li:not(.init)').slideToggle(100);
     e.stopPropagation();
 });
 
