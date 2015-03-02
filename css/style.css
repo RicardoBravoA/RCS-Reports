@@ -591,7 +591,7 @@ div[class^="chartdiv-"]
 .percentage.ambar{
     background-color: rgba(201, 148, 18, .9);
 }
-
+/* El problema esta por aqui
 .row.back-item{
     position: relative;
     height: 0px;
@@ -609,7 +609,7 @@ div[class^="chartdiv-"]
     -moz-transition: all 0.3s;
     -moz-transition-timing-function: cubic-bezier(.7,.3,.32,.87);
 }
-/* El problema esta por aqui
+
 .row.back-item.ocultar{
     height: 0px;
 }
