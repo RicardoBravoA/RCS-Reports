@@ -21,7 +21,7 @@ $("ul.select-date").on("click", "li:not(.init)", function() {
     
     var value = $(this).attr("data-value");
     
-    alert(value);
+//    alert(value);
     
     allOptions.removeClass('selected');
     $(this).addClass('selected');
@@ -32,9 +32,9 @@ $("ul.select-region").on("click", "li:not(.init)", function() {
     
     var value = $(this).attr("data-value");
     
-    alert(value);
+//    alert(value);
     
-    allOptions.removeClass('selected');
+    allOptions2.removeClass('selected');
     $(this).addClass('selected');
     $("ul.select-region").children('.init').html($(this).html());
 });
