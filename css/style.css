@@ -327,6 +327,8 @@ button:focus, button:active {
 }
 
 .row.stores{
+    position: relative;
+    z-index: 3;
     margin-top: 136px;
 }
 /* Fin Static Method */
