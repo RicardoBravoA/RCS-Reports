@@ -516,44 +516,6 @@ div[class^="chartdiv-"]
     height: 150px;
 }
 
-.amcharts-graph-g3 {
-  stroke-linejoin: round;
-  stroke-linecap: round;
-  stroke-dasharray: 500%;
-  stroke-dasharray: 0 \0/;    /* fixes IE prob */
-  stroke-dashoffset: 0 \0/;   /* fixes IE prob */
-  -webkit-animation: am-draw 2s;
-  -moz-animation: am-draw 2s;
-  animation: am-draw 2s;
-  -webkit-animation-timing-function: cubic-bezier(0,0,1,1);
-  -moz-animation-timing-function: cubic-bezier(0,0,1,1);
-  animation-timing-function: cubic-bezier(0,0,1,1);
-}
-@-webkit-keyframes am-draw {
-    0% {
-        stroke-dashoffset: 500%;
-    }
-    100% {
-        stroke-dashoffset: 0px;
-    }
-}
-@-moz-keyframes am-draw {
-    0% {
-        stroke-dashoffset: 500%;
-    }
-    100% {
-        stroke-dashoffset: 0px;
-    }
-}
-@keyframes am-draw {
-    0% {
-        stroke-dashoffset: 500%;
-    }
-    100% {
-        stroke-dashoffset: 0px;
-    }
-}
-
 .panel-group .panel+.panel{
     margin-top: 0;
 }
