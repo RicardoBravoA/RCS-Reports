@@ -4,7 +4,7 @@ $("ul.select-date").click(function(e) {
 });
 $("ul.select-region").click(function(e) {
     $('ul.select-region').toggleClass("open");
-    $(this).closest("ul.select-region").children('li:not(.init)').slideToggle(100);
+    $(this).closest("ul.select-region").children('li:not(.init)').slideToggle(50);
     e.stopPropagation();
 });
 
