@@ -291,9 +291,18 @@ button:focus, button:active {
 
 
 /* Static Method */
-.row.fixedbg{
+body{
+    padding-top: 137px;
+}
+.fixedbg{
     position: fixed;
+    top: 0;
     z-index: 9;
+    width: 100%;
+    height: 137px;
+    background: #000;
+}
+.fixedbgblack{
     width: 100%;
     height: 137px;
     background-image: url('../img/shine.png');
@@ -302,31 +311,28 @@ button:focus, button:active {
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
-.row.fixedbgblack{
+.fixedbgblack:before{
+    content: '';
     position: fixed;
-    z-index: 8;
-    width: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 20%;
     height: 137px;
-    background: #000;
+    background-color: #000;
 }
-.row.vs{
-    position: fixed;
+.row.vs{    
     z-index: 10;
     width: 100%;
     height: 32px; 
 }
-.row.lines{
-    position: fixed;
+.row.lines{    
     z-index: 10;
-    margin-top: 32px;
     width: 100%;
     height: 47px;  
 }
-.row.region{
-    position: fixed;
+.row.region{    
     z-index: 9;
-    margin-top: 0px;
-    padding-top: 88px;
     width: 100%;
     height: 50px;  
 }
@@ -334,7 +340,6 @@ button:focus, button:active {
 .row.stores{
     position: relative;
     z-index: 3;
-    margin-top: 136px;
 }
 /* Fin Static Method */
 
@@ -771,34 +776,12 @@ body.modal-open .container{
 /* Landscape phone to portrait tablet */
 @media (min-width: 768px) {
     /* Static Method */
-    .row.fixedbg{
-        height: 157px;
-    }
-    .row.fixedbgblack{
-        height: 157px;
-    }
-    .row.vs{
-        height: 39px; 
-    }
     .row.lines{
-        margin-top: 38px;
-        height: 51px;  
+        height: 52px;
     }
-    .row.region{
-        padding-top: 98px;
-        height: 50px;  
-    }
-    .row.region .init:before{
-        top: 0;
-        left: 0;
-        height: 55px;
-    }
-    .row.region .init:after{
-        top: 0;
-        height: 55px;
-    }
-    .row.stores{
-        margin-top: 156px;
+
+    body{
+        padding-top: 152px;
     }
     /* Fin Static Method */
     
