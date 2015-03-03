@@ -774,6 +774,9 @@ body.modal-open .container{
     .row.fixedbg{
         height: 157px;
     }
+    .row.fixedbgblack{
+        height: 157px;
+    }
     .row.vs{
         height: 39px; 
     }
