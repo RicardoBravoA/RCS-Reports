@@ -11,7 +11,7 @@
     padding-right: 12px;
 }
 
-.container{
+.container,.modal{
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
@@ -661,7 +661,10 @@ div[class^="chartdiv-"]
 }
 
 
-
+.modal-open{
+    position: fixed;
+    overflow-y: hidden;
+}
 body.modal-open .container{
     -webkit-filter: blur(7px);
     -moz-filter: blur(15px);
