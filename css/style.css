@@ -776,6 +776,12 @@ body.modal-open .container{
 /* Landscape phone to portrait tablet */
 @media (min-width: 768px) {
     /* Static Method */
+    .fixedbg{
+        height: 147px;
+    }
+    .fixedbgblack{
+        height: 147px;
+    }
     .row.lines{
         height: 52px;
     }
