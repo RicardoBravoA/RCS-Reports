@@ -665,6 +665,22 @@ div[class^="chartdiv-"]
     position: fixed;
     overflow-y: hidden;
 }
+.modal.fade .modal-dialog,
+.modal.fade.in .modal-dialog
+{
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    -o-transform: none !important;
+    -webkit-transform: none !important;
+    transform: none !important;
+    
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+/*
 body.modal-open .container{
     -webkit-filter: blur(7px);
     -moz-filter: blur(15px);
@@ -672,6 +688,7 @@ body.modal-open .container{
     -ms-filter: blur(15px);
     filter: blur(15px);
 }
+*/
   
 .modal {
   text-align: center;
@@ -707,10 +724,17 @@ body.modal-open .container{
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
 }
+.modal-header .close{
+    margin: 0px;
+    top: 10px;
+    right: 7px;
+}
 .modal-header button,
 .close:hover, .close:focus{
-    width: 25px;
-    height: 25px;
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    margin: 0px;
     opacity: 0.8;
     border: 1px solid #226cf3;
     border-radius: 50%;
@@ -756,10 +780,6 @@ body.modal-open .container{
 .modal-body .select-alias .alias-item:active{
     cursor: pointer;
     background-color: #f6f6f6;
-}
-.modal-backdrop.in {
-    opacity: 0.4;
-    filter: alpha(opacity=40);
 }
 
 /* Landscape phones and down */
@@ -851,8 +871,10 @@ body.modal-open .container{
     .panel{
         height: 160px;
         background: #333;
+        -webkit-transition: all 0.2s;
+        -webkit-transition-timing-function: linear;
         transition: all 0.2s;
-        transition-timing-function: cubic-bezier(.96,.47,.45,1.05);
+        transition-timing-function: linear;
     }
     .panel.open{
         height: 370px;
