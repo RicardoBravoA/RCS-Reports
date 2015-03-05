@@ -30,26 +30,7 @@ body {
     right: 0;  
     font-family: 'Open Sans', sans-serif;
     background-color: #000;
-    background: #000;
     color: #fff;
-}
-body:before{
-    content: '';
-    position: fixed;
-    z-index: -100;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    background-image: url('../img/shine.png');
-    background-position: right top;
-    background-size: 52%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
 }
 
 input[type="number"],
@@ -301,52 +282,67 @@ button:focus, button:active {
 /* Static Method */
 body{
     padding-top: 137px;
-}
-.fixedbg{
-    position: fixed;
-    top: 0;
-    z-index: 9;
-    width: 100%;
-    background: #000;
-}
-.fixedbgblack{
-    width: 100%;
-    height: 138px;
     background-image: url('../img/shine.png');
     background-position: right top;
     background-size: 52%;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
-.fixedbgblack:before{
-    content: '';
+.shinebg{
     position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    width: 20%;
-    height: 137px;
-    background-color: #000;
+    z-index: 2;
+    top: 0;right: 0; left: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
+.fixedbg{
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    width: 100%;
+}
+.fixedbgblack{
+    width: 100%;
+    height: 138px;
+}
+    .fixedbgblack:before{
+        content: '';
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 20%;
+        height: 137px;
+        background-color: #000;
+    }
 .row.vs{    
+    position: relative;
     z-index: 10;
     width: 100%;
     height: 32px; 
 }
 .row.lines{    
+    position: relative;
     z-index: 10;
     width: 100%;
     height: 47px;  
 }
-.row.region{    
+.row.region{   
+    position: relative;
     z-index: 9;
     width: 100%;
     height: 50px;  
 }
 
 .row.stores{
-    position: relative;
-    z-index: 3;
+    position: fixed;
+    z-index: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    overflow-y: scroll;
 }
 /* Fin Static Method */
 

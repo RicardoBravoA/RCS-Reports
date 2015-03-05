@@ -28,17 +28,20 @@ $("ul.select-date").on("click", "li:not(.init)", function() {
     $("ul.select-date").children('.init').html($(this).html());
 });
 
+var values = $("ul.select-region li:first-child()").attr("data-value");
+
+//alert(values);
+
 $("ul.select-region").on("click", "li:not(.init)", function() {
     
     var value = $(this).attr("data-value");
-    
-//    alert(value);
-    
+    //alert($(this));
+
     allOptions2.removeClass('selected');
     $(this).addClass('selected');
     $("ul.select-region").children('.init').html($(this).html());
+    $("ul.select-region").children('.init').attr("data-value",value);
 });
-
 
 function prueba(detalle){
     var altura = $('#detail'+detalle).height();
