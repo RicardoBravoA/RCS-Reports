@@ -56,6 +56,7 @@ function prueba(detalle){
 }
 
 $("#show_opt").click(function(e) {
-        
+        $().html();        
+        alert('probando');
     }
 );

@@ -281,7 +281,7 @@ button:focus, button:active {
 
 /* Static Method */
 body{
-    padding-top: 137px;
+    padding-top: 151px;
     background-image: url('../img/shine.png');
     background-position: right top;
     background-size: 52%;
@@ -301,27 +301,23 @@ body{
     position: fixed;
     z-index: 5;
     top: 0;
+    right: 0;
+    left: 0;
     width: 100%;
 }
 .fixedbgblack{
     width: 100%;
     height: 138px;
 }
-    .fixedbgblack:before{
-        content: '';
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        width: 20%;
-        height: 137px;
-        background-color: #000;
-    }
+.row.vs, .row.lines, .row.region{
+    margin-left: 0;
+    margin-right: 0;
+}
 .row.vs{    
     position: relative;
     z-index: 10;
     width: 100%;
-    height: 32px; 
+    height: 45px; 
 }
 .row.lines{    
     position: relative;
@@ -346,9 +342,8 @@ body{
 }
 /* Fin Static Method */
 
-
 .title {
-    margin: 5px auto;
+    margin: 11px auto;
     font-size: 16px;
     font-weight: 500;
 }
@@ -390,6 +385,41 @@ option.option-style:focus{
     border-top-width: 0px;
     border-bottom-width: 0px;
     border-right-width: 0px;
+}
+
+.row.vs .col-xs-2{
+    padding: 0;
+}
+.row.vs .col-xs-8{
+    height: 45px;
+}
+#exit {
+    position: relative;
+    width: 50px;
+    height: 45px;
+    background-color: transparent;
+    border: 0px solid #fff;
+}
+#exit span{
+    position: absolute;
+    left: 45px;
+    margin-top: 5px;
+    font-weight: 700;
+    font-size: 15px;
+    color: #3c81ea;
+}
+
+#options {
+    float: right;
+    width: 50px;
+    height: 45px;
+    background-color: transparent;
+    border: 0px solid #fff;
+}
+#options span{
+    font-weight: 700;
+    font-size: 15px;
+    color: #3c81ea;
 }
 
 .lines {
@@ -945,3 +975,162 @@ body.modal-open .container{
     0%   { opacity: 0; transform: translateY(-15px);}
     100% { opacity: 1; transform: translateY(0px);}
 }
+
+#wrap {
+    position: absolute;
+    z-index: 10;
+    width: 20%;
+    height: 5%;
+    bottom: 0px;
+    left: 0px;    
+}
+#wrap button{
+    position: absolute;
+    z-index: 10;
+    bottom: 0px;
+    left: 0px;    
+}
+
+.load {
+  width: 50px;
+  height: 50px;
+  margin: 2% auto;
+  background: url('../img/loading.png') top center;
+  -webkit-animation: play 1.9s steps(19) infinite;
+}
+
+@-webkit-keyframes play {
+/*    100% { background-position: 0px -97px; }*/
+    0% { background-position: 0px 0px; }
+    100% { background-position: 0px -1824px; }
+}
+
+
+/* Estilo Loading*/
+[class^="shaft-load"] {
+  margin: 30px auto;
+  width: 60px;
+  height: 30px;
+}
+[class^="shaft-load"] > div {
+  float: left;
+  background: rgba(255, 28, 23, .9);
+  height: 100%;
+  width: 5px;
+  margin-right: 1px;
+  display: inline-block;
+}
+[class^="shaft-load"] .shaft1 {
+  -webkit-animation-delay: 0.05s;
+  -moz-animation-delay: 0.05s;
+  -o-animation-delay: 0.05s;
+  animation-delay: 0.05s;
+}
+[class^="shaft-load"] .shaft2 {
+  -webkit-animation-delay: 0.1s;
+  -moz-animation-delay: 0.1s;
+  -o-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+[class^="shaft-load"] .shaft3 {
+  -webkit-animation-delay: 0.15s;
+  -moz-animation-delay: 0.15s;
+  -o-animation-delay: 0.15s;
+  animation-delay: 0.15s;
+}
+[class^="shaft-load"] .shaft4 {
+  -webkit-animation-delay: 0.2s;
+  -moz-animation-delay: 0.2s;
+  -o-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+[class^="shaft-load"] .shaft5 {
+  -webkit-animation-delay: 0.25s;
+  -moz-animation-delay: 0.25s;
+  -o-animation-delay: 0.25s;
+  animation-delay: 0.25s;
+}
+[class^="shaft-load"] .shaft6 {
+  -webkit-animation-delay: 0.3s;
+  -moz-animation-delay: 0.3s;
+  -o-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+[class^="shaft-load"] .shaft7 {
+  -webkit-animation-delay: 0.35s;
+  -moz-animation-delay: 0.35s;
+  -o-animation-delay: 0.35s;
+  animation-delay: 0.35s;
+}
+[class^="shaft-load"] .shaft8 {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  -o-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+[class^="shaft-load"] .shaft9 {
+  -webkit-animation-delay: 0.45s;
+  -moz-animation-delay: 0.45s;
+  -o-animation-delay: 0.45s;
+  animation-delay: 0.45s;
+}
+[class^="shaft-load"] .shaft10 {
+  -webkit-animation-delay: 0.5s;
+  -moz-animation-delay: 0.5s;
+  -o-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+/* Shaft 1 */
+.shaft-load > div {
+  -webkit-animation: loading 1.5s infinite ease-in-out;
+  -moz-animation: loading 1.5s infinite ease-in-out;
+  -o-animation: loading 1.5s infinite ease-in-out;
+  animation: loading 1.5s infinite ease-in-out;
+  -webkit-transform: scaleY(0.05) translateX(-10px);
+  -moz-transform: scaleY(0.05) translateX(-10px);
+  -ms-transform: scaleY(0.05) translateX(-10px);
+  -o-transform: scaleY(0.05) translateX(-10px);
+  transform: scaleY(0.05) translateX(-10px);
+}
+
+@-webkit-keyframes loading {
+  50% {
+    -webkit-transform: scaleY(1.2) translateX(10px);
+    -moz-transform: scaleY(1.2) translateX(10px);
+    -ms-transform: scaleY(1.2) translateX(10px);
+    -o-transform: scaleY(1.2) translateX(10px);
+    transform: scaleY(1.2) translateX(10px);
+    background: rgba(104, 163, 87,.9);
+  }
+}
+@-moz-keyframes loading {
+  50% {
+    -webkit-transform: scaleY(1.2) translateX(10px);
+    -moz-transform: scaleY(1.2) translateX(10px);
+    -ms-transform: scaleY(1.2) translateX(10px);
+    -o-transform: scaleY(1.2) translateX(10px);
+    transform: scaleY(1.2) translateX(10px);
+    background: rgba(104, 163, 87,.9);
+  }
+}
+@-o-keyframes loading {
+  50% {
+    -webkit-transform: scaleY(1.2) translateX(10px);
+    -moz-transform: scaleY(1.2) translateX(10px);
+    -ms-transform: scaleY(1.2) translateX(10px);
+    -o-transform: scaleY(1.2) translateX(10px);
+    transform: scaleY(1.2) translateX(10px);
+    background: rgba(104, 163, 87,.9);
+  }
+}
+@keyframes loading {
+  50% {
+    -webkit-transform: scaleY(1.2) translateX(10px);
+    -moz-transform: scaleY(1.2) translateX(10px);
+    -ms-transform: scaleY(1.2) translateX(10px);
+    -o-transform: scaleY(1.2) translateX(10px);
+    transform: scaleY(1.2) translateX(10px);
+    background: rgba(104, 163, 87,.9);
+  }
+}
+
