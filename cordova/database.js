@@ -295,9 +295,9 @@ function downloadGoalSuccess(tx, results){
                                             mostrar += "</div>";
                                         mostrar += "</div>";
                                     mostrar += "</div>";                                    
-
-                                mostrar += "</div>";  
                                 */
+                                mostrar += "</div>";  
+                                
 
                                 $("#items").append(mostrar); 
                                 /*
