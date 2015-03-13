@@ -246,6 +246,7 @@ function downloadGoalSuccess(tx, results){
                                                         
                                         mostrar += "</div>";
 
+                                /*
                                 var j = 0;
                                 var array_description = [];
                                 var array_total = [];
@@ -295,10 +296,14 @@ function downloadGoalSuccess(tx, results){
                                         mostrar += "</div>";
                                     mostrar += "</div>";                                    
 
-                                mostrar += "</div>";                                       
+                                mostrar += "</div>";  
+                                */
+
                                 $("#items").append(mostrar); 
+                                /*
                                 drawGraphic(array_description[0], array_description[1], array_description[2], 
                                     array_total[0], array_total[1], array_total[2], indice);
+                                */
                                 mostrar="";
                                 indice++; 
                               });
