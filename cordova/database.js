@@ -217,7 +217,7 @@ function downloadGoalSuccess(tx, results){
 
                                 mostrar += "<div class=\"panel\" id=\"panel-"+indice+"\">";
 
-                                        mostrar += "<div class=\"row front-item\" onclick=\"prueba('-"+indice+"')\">";
+                                        //mostrar += "<div class=\"row front-item\" onclick=\"prueba('-"+indice+"')\">";
                                             mostrar += "<span class=\"panel-title\">";
                                                 mostrar += "<div class=\"col-xs-12\">";
                                                     mostrar += "<p class=\"store-name\">"+storeName+"</p>";
@@ -244,7 +244,7 @@ function downloadGoalSuccess(tx, results){
 
                                             mostrar += "</span>";
                                                         
-                                        mostrar += "</div>";
+                                        //mostrar += "</div>";
 
                                 /*
                                 var j = 0;
