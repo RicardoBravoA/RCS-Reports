@@ -92,6 +92,36 @@ function mostrarModal(){
     
 }
 
+function mostrarModalGeneral(contenido){    
+    $("#show_fail").on("show", function() {   
+        $("#show_fail a.btn").on("click", function(e) {
+            $("#show_fail").modal('hide');  
+        });
+    });
+    $("#show_fail").on("show", function() {   
+        $("#show_fail a.btn").on("click", function(e) {
+            $("#show_fail").modal('hide');  
+        });
+    });
+
+    $("#show_fail").on("hide", function() {    
+        $("#show_fail a.btn").off("click");
+    });
+
+    $("#show_fail").on("hidden", function() {  // eliminar los elementos reales de la DOM cuando está completamente oculto
+        $("#show_fail").remove();
+    });
+
+    $("#show_fail").modal({                    // cablear la funcionalidad real modal y mostrar el cuadro de diálogo
+      "backdrop"  : "static",
+      "keyboard"  : true,
+      "show"      : true                     // garantizar el modal se muestra inmediatamente
+    });
+
+    $("#changeValue").html(contenido);
+    $("#try_again").html(MSG_OK());
+}
+
 function showLoading(){    
     $("#show_loading").on("show", function() {   
         $("#show_loading a.btn").on("click", function(e) {
@@ -117,7 +147,8 @@ function showLoading(){
       "keyboard"  : true,
       "show"      : true                     // garantizar el modal se muestra inmediatamente
     });
-    
+
+    $("#txtloading").html(MSG_LOADING());
 }
 
 function hideLoading(){    

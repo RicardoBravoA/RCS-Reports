@@ -19,6 +19,7 @@
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+  <script type="text/javascript" src="js/constant.js"></script>
   <script type="text/javascript" src="cordova/database.js" ></script>
   <script type="text/javascript" src="cordova/functions.js" ></script>  
 
@@ -26,11 +27,12 @@
 
         $(window).load(function(){
           onInit();  
+          loadMsgs();
         });    
 
         $(document).ready(function(){
 
-         $("#btn").click(function(){
+         $("#btnlogin").click(function(){
             
             var pin = $("#pin").val();
             var check = "";
@@ -46,11 +48,17 @@
             if(pin.length>0){
               validData(pin, check);
             }else{
-              alert("Ingrese Pin");
+              mostrarModalGeneral(MSG_INSERT_PIN());
             }
 
          });
         });
+
+        function loadMsgs(){
+          MSG_NUMBER_PIN();
+          MSG_PIN();
+          BTN_ENTER_LOGIN();
+        }
 
   </script>
 
@@ -64,11 +72,11 @@
             <div class="logo-name text-center animation-delay1"><img src="img/titulo.png"/></div>
 			<form action="stores.html" class="animation-delay2">
                 <div class="form-group ip-address text-center">
-					 <label>Ingrese su número Pin de Empleado</label>
+					 <label name="lbllmsg1" id="lbllmsg1"></label>
                 </div>
                 <div class="form-group">
                      <div class="input">
-                         <label class="col-md-6 label-style">Pin:</label>
+                         <label class="col-md-6 label-style" name="lbllmsg2" id="lbllmsg2"></label>
                          <input type="password" class="col-md-6 form-control input-style" id="pin" name="pin" value="123">
                      </div>                     
 				</div>
@@ -79,7 +87,7 @@
 				</div>
                 <div class="form-group form-float">
                     <div class="button-float">
-                        <input type="button" name="btn" id="btn" value="INGRESAR" class="btn btn-block btn-rcs"/>
+                        <input type="button" name="btnlogin" id="btnlogin" value="" class="btn btn-block btn-rcs"/>
                     </div>		
                 </div>
 			</form>
@@ -103,8 +111,27 @@
                           <div class="shaft9"></div>
                           <div class="shaft10"></div>
                         </div>                    
-                    <div class="text-center"><p>Cargando</p></div>
+                    <div class="text-center"><p name="txtloading" id="txtloading"></p></div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="show_fail">
+        <div class="modal-dialog">
+            <div class="modal-content">  
+                <div class="modal-header">
+                    <div class="modal-title text-center">
+                        <img src="img/info.png" class="text-center">
+                    </div>
+                </div>              
+                <div class="modal-body text-center">                
+                    <p id="changeValue" name="changeValue" class="text-center"></p>
+                </div>
+                <div class="modal-footer info">
+                    <button type="button" class="btn btn-rcs" id="try_again" name="try_again"  data-dismiss="modal" aria-hidden="true">Aceptar</button>
+                </div>
+                <br>
             </div>
         </div>
     </div>

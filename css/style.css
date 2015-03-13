@@ -281,12 +281,18 @@ button:focus, button:active {
 
 /* Static Method */
 body{
-    padding-top: 151px;
+    /*padding-top: 151px;*/
     background-image: url('../img/shine.png');
     background-position: right top;
     background-size: 52%;
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
+.ocultarRegion{
+    padding-top: 102px;
+}
+.ocultarRegion.mostrarRegion{
+    padding-top: 151px;
 }
 .shinebg{
     position: fixed;
@@ -808,6 +814,7 @@ body.modal-open .container{
     background-color: #f6f6f6;
 }
 
+
 /* Landscape phones and down */
 @media (max-width: 420px) {
     .front-item p.store-name{
@@ -842,8 +849,11 @@ body.modal-open .container{
         height: 52px;
     }
 
-    body{
-        padding-top: 152px;
+    .ocultarRegion{
+        padding-top: 105px;
+    }
+    .ocultarRegion.mostrarRegion{
+        padding-top: 165px;
     }
     /* Fin Static Method */
     

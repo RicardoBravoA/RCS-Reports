@@ -19,6 +19,7 @@
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+  <script type="text/javascript" src="js/constant.js"></script>
   <script type="text/javascript" src="cordova/database.js" ></script>
   <script type="text/javascript" src="cordova/functions.js" ></script>  
 
@@ -26,22 +27,16 @@
 
     $(window).load(function(){
       onInit();
+      loadText();
       var variable = obtenerVariables("variable");
       console.log("variable "+variable);
-      /*
-      if (window.XMLHttpRequest) {
-        console.log("support xmlhttprequest");
-        cor = new XMLHttpRequest();
-      }else {
-          console.log("Your browser does not support Cross-Origin request!");
-      }
-      */
-      if(checkNetConnection()==true){
+
+      if(checkNetConnection()==true){       
         if(variable==-1){
           existsData();
         }
       }else{
-        alert("Conéctese a Internet");
+        mostrarModalGeneral(MSG_CONNECTION_FAILURE());
       }
       
     });
@@ -51,7 +46,7 @@
 
       if(checkNetConnection()==true){
 
-        $("#btn").click(function(){
+        $("#btnenter").click(function(){
           var ip_1 = $("#ip_1").val();
           var ip_2 = $("#ip_2").val();
           var ip_3 = $("#ip_3").val();
@@ -64,32 +59,40 @@
             if(port.length>0){
               if(alias.length>0){
                 if(site.length>0){
-
                   var ip = ip_1+"."+ip_2+"."+ip_3+"."+ip_4;
                   var urlBase = "http://"+ip+":"+port+"/"+site;
                   console.log(urlBase);
                   validIP(ip, port, urlBase, alias, "1", site);
 
                 }else{
-                  alert("Ingrese Site");
+                  mostrarModalGeneral(MSG_INSERT_SITE());
                 }
               }else{
-                alert("Ingrese Alias");
+                mostrarModalGeneral(MSG_INSERT_ALIAS());
               }
             }else{
-              alert("Ingrese Puerto");
+              mostrarModalGeneral(MSG_INSERT_PORT());
             }
           }else{
-            alert("Ingrese IP");
+            mostrarModalGeneral(MSG_INSERT_IP());
           }
 
          });
 
       }else{
-        alert("Conéctese a Internet");
+        mostrarModalGeneral(MSG_CONNECTION_FAILURE());        
       }
 
     });  
+
+  function loadText(){
+    MSG_INSERT_ADDRESS_SERVER();
+    MSG_PORT();
+    MSG_ALIAS();
+    MSG_SITE();
+    MSG_SIGN_IN();
+    BTN_ENTER_IP();
+  } 
 
   </script>
 
@@ -108,7 +111,7 @@
             <div class="logo-name text-center animation-delay1"><img src="img/titulo.png"/></div>
 			<form action="login.html" class="animation-delay2">
                 <div class="form-group ip-address text-center">
-					 <label>Ingrese la dirección IP del Servidor</label>
+					 <label name="lblmsg1" id="lblmsg1"></label>
                 </div>
 				<div class="form-group ip-address text-center">
                      <input type="number" class="form-control" id="ip_1" name="ip_1" value="98">
@@ -121,25 +124,25 @@
 				</div>
 				<div class="form-group">
                      <div class="input">
-                         <label class="col-md-6 label-style">Puerto:</label>
+                         <label class="col-md-6 label-style" name="lblmsg2" id="lblmsg2"></label>
                          <input type="number" class="col-md-6 form-control input-style" id="port" name="port" value="8081">
                      </div>                     
 				</div>
                 <div class="form-group">
                      <div class="input">
-                         <label class="col-md-6 label-style">Alias:</label>
+                         <label class="col-md-6 label-style" name="lblmsg2" id="lblmsg3"></label>
                          <input type="text" class="col-md-6 form-control input-style" id="aliastext" name="aliastext" value="SERVER GINO">
                      </div>                     
 				</div>
                 <div class="form-group">
                      <div class="input">
-                         <label class="col-md-6 label-style">Sitio:</label>
+                         <label class="col-md-6 label-style" name="lblmsg2" id="lblmsg4"></label>
                          <input type="text" class="col-md-6 form-control input-style" id="site" name="site" value="RMSWCFSERVICE">
                      </div>                     
 				</div>
                 <div class="form-group form-float">
                     <div class="button-float">
-                        <input type="button" name="btn" id="btn" value="INGRESAR" class="btn btn-block btn-rcs"/>
+                        <input type="button" name="btnenter" id="btnenter" value="" class="btn btn-block btn-rcs"/>
                     </div>		
                 </div>
 			</form>
@@ -163,8 +166,27 @@
                           <div class="shaft9"></div>
                           <div class="shaft10"></div>
                         </div>                    
-                    <div class="text-center"><p>Cargando</p></div>
+                    <div class="text-center"><p name="txtloading" id="txtloading"></p></div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="show_fail">
+        <div class="modal-dialog">
+            <div class="modal-content">  
+                <div class="modal-header">
+                    <div class="modal-title text-center">
+                        <img src="img/info.png" class="text-center">
+                    </div>
+                </div>              
+                <div class="modal-body text-center">                
+                    <p id="changeValue" name="changeValue" class="text-center"></p>
+                </div>
+                <div class="modal-footer info">
+                    <button type="button" class="btn btn-rcs" id="try_again" name="try_again"  data-dismiss="modal" aria-hidden="true">Aceptar</button>
+                </div>
+                <br>
             </div>
         </div>
     </div>
