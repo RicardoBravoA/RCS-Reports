@@ -148,7 +148,10 @@ function showLoading(){
       "show"      : true                     // garantizar el modal se muestra inmediatamente
     });
 
-    $("#txtloading").html(MSG_LOADING());
+    //var texto = MSG_LOADING2();
+    //console.log("texto "+texto);
+
+    //$("#txtloading").html(MSG_LOADING());
 }
 
 function hideLoading(){    

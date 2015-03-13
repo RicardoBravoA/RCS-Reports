@@ -77,7 +77,7 @@ function hideCombo(){
 /*
      var elElemento=document.getElementById("divRegion");
        //if(elElemento.style.display == 'block') {
-          elElemento.style.display = 'none';
+          elElemento.style.display = 'none';2
        //} else {
          // elElemento.style.display = 'block';
        //}

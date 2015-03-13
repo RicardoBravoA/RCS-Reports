@@ -221,7 +221,7 @@ function MSG_OK(){
 	return msg;
 };
 
-function MSG_LOADING(){
+function MSG_LOADING2(){
 	var msg = "";
 	var idioma = "";
 
@@ -288,3 +288,40 @@ function BTN_ENTER_IP(){
 	$("#btnenter").val(MSG_OK());
 }
 
+function MSG_EXIT(){
+	var msg = "";
+	var idioma = "";
+
+	if (navigator.appName == 'Netscape' || 'Microsoft Internet Explorer' || 'Opera'){
+		idioma = navigator.language;
+	}else{
+		idioma = navigator.browserLanguage;
+	}	
+
+	if (idioma.indexOf('es') > -1){
+	  	msg = "Salir";
+	}else{
+		msg = "Exit";
+	}
+	
+	return msg;
+};
+
+function BTN_EXIT){
+	$("#exit").val(MSG_EXIT());
+}
+
+
+/*
+public final String MSG_TODAY = "Hoy";
+	public final String MSG_YESTERDAY = "Ayer";
+	public final String MSG_WEEK = "Semana a la Fecha";
+	public final String MSG_MONTH= "Mes a la Fecha";
+	public final String MSG_YEAR = "Año a la Fecha";
+
+	public final String MSG_TODAY = "Today";
+	public final String MSG_YESTERDAY = "Yesterday";
+	public final String MSG_WEEK = "Week to Date";
+	public final String MSG_MONTH= "Month to Date";
+	public final String MSG_YEAR = "Year to Date";
+*/

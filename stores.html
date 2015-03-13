@@ -73,9 +73,7 @@
         }
 
         function closeAPP(){
-            console.log("1");
             javascript:history.go(-2);
-            console.log("2");
         }
 
     </script>
@@ -89,7 +87,7 @@
         <div class=" fixedbgblack">        
             <div class="row vs">
                 <div class="col-xs-2">
-                    <button id="exit" onclick="closeAPP();">
+                    <button id="exit" name="exit" onclick="closeAPP();">
                         <img src="img/exit.png" >
                         <span>Salir</span>
                     </button>
