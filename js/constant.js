@@ -14,6 +14,7 @@ function MSG_CONNECTION_FAILURE(){
 	}else{
 		msg = "Connection Failure";
 	}
+	
 	return msg;
 };
 

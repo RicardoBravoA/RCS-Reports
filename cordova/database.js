@@ -230,6 +230,8 @@ function downloadGoalSuccess(tx, results){
                                                             +parseFloat(payTotal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p></div>";
                                                     mostrar += "<div class=\"col-xs-4\"><p class='"+color+"'>"+percent+" %</p></div>";
                                                 mostrar +=  "</div>";
+                                                /*
+
                                                 mostrar += "<div class=\"global\">";
                                                     mostrar += "<div class=\"col-xs-1\"><p class=\"type\">G:</p></div>";
                                                     mostrar += "<div class=\"col-xs-3\"><p class=\"gol-number\">"
@@ -238,6 +240,8 @@ function downloadGoalSuccess(tx, results){
                                                             +parseFloat(payTotalGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p></div>";
                                                     mostrar += "<div class=\"col-xs-4\"><p class='"+colorGlobal+"'>"+percentGlobal+" %</p></div>";
                                                 mostrar += "</div>";
+                                                */
+
                                             mostrar += "</span>";
                                                         
                                         mostrar += "</div>";
