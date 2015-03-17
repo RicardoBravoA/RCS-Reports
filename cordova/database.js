@@ -274,8 +274,8 @@ function downloadGoalSuccess(tx, results){
 
                                 $("#items").append(mostrar); 
                                 
-                                //drawGraphic(array_description[0], array_description[1], array_description[2], 
-                                    //array_total[0], array_total[1], array_total[2], indice);
+                                drawGraphic(array_description[0], array_description[1], array_description[2], 
+                                    array_total[0], array_total[1], array_total[2], indice);
                                 
                                 mostrar="";
                                 indice++; 
@@ -376,33 +376,33 @@ function downloadGoalLoad(regionCode){
                                     colorGlobal = "percentage green";
                                 }
 
-                                mostrar += "<div class=\"panel\" id=\"panel-"+indice+"\">";
+                                percent = parseFloat(percent).toFixed();
+                                percentGlobal = parseFloat(percentGlobal).toFixed();
 
-                                        mostrar += "<div class=\"row front-item\" onclick=\"prueba('-"+indice+"')\">";
-                                            mostrar += "<span class=\"panel-title\">";
-                                                mostrar += "<div class=\"col-xs-12\">";
-                                                    mostrar += "<p class=\"store-name\">"+storeName+"</p>";
-                                                mostrar += "</div>";
-                                                mostrar += "<div class=\"actual\">";
-                                                    mostrar += "<div class=\"col-xs-1\"><p class=\"type\">A:</p></div>";
-                                                    mostrar += "<div class=\"col-xs-3\"><p class=\"gol-number\">"
-                                                            +parseFloat(goalAmount).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p></div>";
-                                                    mostrar += "<div class=\"col-xs-4\"><p class=\"sale-number\">"
-                                                            +parseFloat(payTotal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p></div>";
-                                                    mostrar += "<div class=\"col-xs-4\"><p class='"+color+"'>"+percent+" %</p></div>";
-                                                mostrar +=  "</div>";
-                                                mostrar += "<div class=\"global\">";
-                                                    mostrar += "<div class=\"col-xs-1\"><p class=\"type\">G:</p></div>";
-                                                    mostrar += "<div class=\"col-xs-3\"><p class=\"gol-number\">"
-                                                            +parseFloat(goalAmountGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p></div>";
-                                                    mostrar += "<div class=\"col-xs-4\"><p class=\"sale-number\">"
-                                                            +parseFloat(payTotalGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p></div>";
-                                                    mostrar += "<div class=\"col-xs-4\"><p class='"+colorGlobal+"'>"+percentGlobal+" %</p></div>";
-                                                mostrar += "</div>";
-                                            mostrar += "</span>";
-                                                        
+                                mostrar += "<ul class='col-xs-12' onclick=\"prueba('-"+indice+"')\">";
+
+                                    mostrar += "<li>";
+
+                                        mostrar += "<h1 class='store-name'>"+storeName+"</h1>";
+
+                                        mostrar += "<div class='actual'>";
+
+                                            mostrar += "<p class='type'>A:</p>";
+                                            mostrar += "<p class='gol-number'>"+parseFloat(goalAmount).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
+                                            mostrar += "<p class='sale-number'>"+parseFloat(payTotal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
+                                            mostrar += "<p class='"+color+"'>"+percent+" %</p>";
+
                                         mostrar += "</div>";
 
+                                        mostrar += "<div class='global'>";
+
+                                            mostrar += "<p class='type'>G:</p>";
+                                            mostrar += "<p class='gol-number'>"+parseFloat(goalAmountGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
+                                            mostrar += "<p class='sale-number'>"+parseFloat(payTotalGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
+                                            mostrar += "<p class='"+colorGlobal+"'>"+percentGlobal+" %</p>";
+
+                                        mostrar += "</div>";
+                                
                                 var j = 0;
                                 var array_description = [];
                                 var array_total = [];
@@ -416,46 +416,28 @@ function downloadGoalLoad(regionCode){
                                     j++;   
                                   });  
 
+                                    
+                                    mostrar += "<div id='chartdiv-"+indice+"' class='chartdiv-"+indice+"'></div>";
 
-                                    mostrar += "<div class=\"row back-item\" id=\"detail-"+indice+"\">";
-                                        mostrar += "<div class=\"col-xs-7\">";
-                                            mostrar += "<div id=\"chartdiv"+indice+"\" class=\"chartdiv-"+indice+"\"></div>";
+                                        mostrar += "<div class='detalle-"+indice+"'>";
+
+                                            mostrar += "<div class='year'>Año</div><div class='quantity'>Cantidad</div>";
+                                            mostrar += "<span>"+array_description[0]+"</span><span>"+parseFloat(array_total[0]).toFixed()+"</span>";
+                                            mostrar += "<span>"+array_description[1]+"</span><span>"+parseFloat(array_total[1]).toFixed()+"</span>";
+                                            mostrar += "<span>"+array_description[2]+"</span><span>"+parseFloat(array_total[2]).toFixed()+"</span>";
+
                                         mostrar += "</div>";
+                                    
+                                    mostrar += "</li>";
 
-                                        mostrar += "<div class=\"col-xs-5\">";
-                                            mostrar += "<div class=\"row\">";
-                                                mostrar += "<div class=\"col-md-12\">";
-                                                    mostrar += "<table class=\"table data\">";
-                                                        mostrar += "<thead>";
-                                                            mostrar += "<tr>";
-                                                                mostrar += "<th>Año</th>";
-                                                                mostrar += "<th>Cantidad</th>";
-                                                            mostrar += "</tr>";
-                                                        mostrar += "</thead>";
-                                                        mostrar += "<tbody>";
-                                                            mostrar += "<tr>";
-                                                                mostrar += "<td>"+array_description[0]+"</td>";
-                                                                mostrar += "<td>"+array_total[0]+"</td>";
-                                                            mostrar += "</tr>";
-                                                            mostrar += "<tr>";
-                                                                mostrar += "<td>"+array_description[1]+"</td>";
-                                                                mostrar += "<td>"+array_total[1]+"</td>";
-                                                            mostrar += "</tr>";
-                                                            mostrar += "<tr>";
-                                                                mostrar += "<td>"+array_description[2]+"</td>";
-                                                                mostrar += "<td>"+array_total[2]+"</td>";
-                                                            mostrar += "</tr>";
-                                                        mostrar += "</tbody>";
-                                                    mostrar += "</table>";
-                                                mostrar += "</div>";
-                                            mostrar += "</div>";
-                                        mostrar += "</div>";
-                                    mostrar += "</div>";                                    
+                                mostrar += "</ul>"; 
+                                
 
-                                mostrar += "</div>";                                       
                                 $("#items").append(mostrar); 
+                                
                                 drawGraphic(array_description[0], array_description[1], array_description[2], 
                                     array_total[0], array_total[1], array_total[2], indice);
+                                
                                 mostrar="";
                                 indice++; 
                               });

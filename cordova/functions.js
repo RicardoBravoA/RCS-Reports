@@ -214,12 +214,10 @@ function drawGraphic(year1, year2, year3, sales1, sales2, sales3, option){
       type: "serial",
       dataDateFormat: "YYYY",
       dataProvider: chartData,
-
       addClassNames: true,
-      startDuration: 0,
+      //startDuration: 0,
       color: "#f1f1f1",
       marginLeft: 0,
-
       categoryField: "year",
 
       valueAxes: [{
@@ -242,9 +240,10 @@ function drawGraphic(year1, year2, year3, sales1, sales2, sales3, option){
         bulletBorderThickness: 2,
         bulletBorderAlpha: 1,
         dashLengthField: "dashLength",
-        animationPlayed: true
+        animationPlayed: false
       }],
 
+      /*
       chartCursor: {
         zoomable: false,
         categoryBalloonDateFormat: "YYYY",
@@ -254,6 +253,7 @@ function drawGraphic(year1, year2, year3, sales1, sales2, sales3, option){
         valueLineEnabled:true,
         valueLineBalloonEnabled:true
       }
+      */
     });
 
 }
