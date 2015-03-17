@@ -76,7 +76,7 @@
         function ocultaMiModalDelete(){
             var id = $("#txtvaluedelete").val();
             console.log("id presionado: "+id);
-            //updateStateURL(id);
+            deleteServer(id);
             //$('#btnclose').click();
             //location.reload();
         }
@@ -86,7 +86,7 @@
         }
 
         function closeAPP(){
-            javascript:history.go(-2);
+            javascript:history.go(-3);
         }
 
     </script>
@@ -233,6 +233,22 @@
                 <div class="modal-footer add">
                     <button type="button" class="btn btn-rcs" id="btnsidelete" name="btnsi" data-dismiss="modal" aria-hidden="true" onclick="ocultaMiModalDelete()">Si</button>
                     <button type="button" class="btn btn-rcs" id="btnnodelete" name="btnno" data-dismiss="modal" aria-hidden="true">No</button>
+                </div>
+            </div>
+        </div>
+    <!-- </form>-->
+    </div>
+
+    <div class="modal fade" id="ModalMessage" >
+    <!--<form name="frmConfirm" id="frmConfirm">-->
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        No Puede eliminar un servidor activo
+                    </h4>
+                </div>
+                <div class="modal-footer add"><button type="button" class="btn btn-rcs" data-dismiss="modal" aria-hidden="true">Aceptar</button>
                 </div>
             </div>
         </div>

@@ -92,34 +92,32 @@ function mostrarModal(){
     
 }
 
-function mostrarModalGeneral(contenido){    
-    $("#show_fail").on("show", function() {   
-        $("#show_fail a.btn").on("click", function(e) {
-            $("#show_fail").modal('hide');  
+function mostrarModalMessage(){    
+    $("#ModalMessage").on("show", function() {   
+        $("#ModalMessage a.btn").on("click", function(e) {
+            $("#ModalMessage").modal('hide');  
         });
     });
-    $("#show_fail").on("show", function() {   
-        $("#show_fail a.btn").on("click", function(e) {
-            $("#show_fail").modal('hide');  
+    $("#ModalMessage").on("show", function() {   
+        $("#ModalMessage a.btn").on("click", function(e) {
+            $("#ModalMessage").modal('hide');  
         });
     });
 
-    $("#show_fail").on("hide", function() {    
-        $("#show_fail a.btn").off("click");
+    $("#ModalMessage").on("hide", function() {    
+        $("#ModalMessage a.btn").off("click");
     });
 
-    $("#show_fail").on("hidden", function() {  // eliminar los elementos reales de la DOM cuando está completamente oculto
-        $("#show_fail").remove();
+    $("#ModalMessage").on("hidden", function() {  // eliminar los elementos reales de la DOM cuando está completamente oculto
+        $("#ModalMessage").remove();
     });
 
-    $("#show_fail").modal({                    // cablear la funcionalidad real modal y mostrar el cuadro de diálogo
+    $("#ModalMessage").modal({                    // cablear la funcionalidad real modal y mostrar el cuadro de diálogo
       "backdrop"  : "static",
       "keyboard"  : true,
       "show"      : true                     // garantizar el modal se muestra inmediatamente
     });
-
-    $("#changeValue").html(contenido);
-    $("#try_again").html(MSG_OK());
+    
 }
 
 function showLoading(){    

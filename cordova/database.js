@@ -107,7 +107,6 @@ function addData(ip, port, url, alias, use, site){
     }
 }
 
-
 function downloadGoal(){
     localDB.transaction(downloadGoalConsulta, errorDB);
 }
@@ -284,11 +283,8 @@ function downloadGoalSuccess(tx, results){
                     }                    
                 });
 
-    //}
-    
+    //}   
 }
-
-
 
 function downloadGoalLoad(regionCode){    
     
@@ -453,7 +449,6 @@ function downloadGoalLoad(regionCode){
         console.log("Error getUrlBase " + e + ".");
     }  
 }
-
 
 function existsData(){
     
@@ -703,6 +698,68 @@ function updateStateURL(id){
     }
 }
 
+function deleteServer(id){
+
+    var query1 = "SELECT "+KEY_USE+ " FROM "+ TABLE_URL+" WHERE "+KEY_ID+" = ?";
+    
+    try {
+            localDB.transaction(function(transaction){
+                transaction.executeSql(query1, [id], function(transaction, results){
+                    var total = results.rows.item(0).use; 
+                    console.log("total "+total);   
+
+                    if(total==1){
+                        mostrarModalMessage();
+                    }else{
+                        var query2 = "DELETE FROM " + TABLE_URL+" WHERE "+KEY_ID+" = ? ";
+                        console.log("query2 "+query2);
+                        
+                        try {
+                                localDB.transaction(function(transaction){
+                                    transaction.executeSql(query2, [id], function(transaction, results){
+                                        if (!results.rowsAffected) {
+                                            console.log("Error eliminar servidor");
+                                        }
+                                        else {
+                                            console.log("deleteServer realizado:" + results.rowsAffected);
+                                            getDataInUse();  
+                                            getAllData();
+                                        }
+                                    }, errorHandler);
+                                });
+                        }catch (e) {
+                            console.log("Error updateState " + e + ".");
+                        }
+                    }
+
+                }, errorHandler);
+            });
+    }catch (e) {
+        console.log("Error deleteServer " + e + ".");
+    }
+
+    /*
+    var query2 = "UPDATE " + TABLE_URL+" SET "+KEY_USE+" = '1' WHERE "+KEY_ID+" = ? ";
+    console.log("query2 "+query2);
+    
+    try {
+            localDB.transaction(function(transaction){
+                transaction.executeSql(query2, [id], function(transaction, results){
+                    if (!results.rowsAffected) {
+                        console.log("Error updateState");
+                    }
+                    else {
+                        console.log("Update realizado:" + results.rowsAffected);
+                        location.reload();
+                    }
+                }, errorHandler);
+            });
+    }catch (e) {
+        console.log("Error updateState " + e + ".");
+    }
+    */
+}
+
 function getRegionCode(){
     
     var query1 = "select count(*) as total from region";
@@ -758,8 +815,6 @@ function getRegionCode(){
         catch (e) {
             console.log("Error total " + e + ".");
         }
-        
-
 }
 
 function loadRegionCode(){
@@ -786,11 +841,7 @@ function loadRegionCodeSuccess(tx, results){
         }else{
             downloadGoal();
         }
-
-    //}
-    
 }
-
 
 
 function loadRegionCode2(){
@@ -828,8 +879,6 @@ function errorDB(err){
     console.log("Error procesando SQL " + err.code);
 }
 
-
-
 function AddRegion(regionCode){
 
     var query1 = "SELECT "+KEY_ID+" FROM "+TABLE_URL+" WHERE "+KEY_USE+" = 1";
@@ -861,8 +910,7 @@ function AddRegion(regionCode){
     } 
     catch (e) {
         console.log("Error AddRegion " + e + ".");
-    }  
-    
+    }    
 }
 
 errorHandler = function(transaction, error){
