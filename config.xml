@@ -32,7 +32,7 @@
     <preference name="android-installLocation"    value="auto" />
     <preference name="phonegap-version"       value="3.7.0" />
 
-
+    <!--
     <icon src="img/logoapp/icon.png" />
     <icon src="res/icon/android/drawable-ldpi/logoapp.png"   gap:platform="android"    gap:qualifier="ldpi" />
     <icon src="res/icon/android/drawable-mdpi/logoapp.png"   gap:platform="android"    gap:qualifier="mdpi" />
