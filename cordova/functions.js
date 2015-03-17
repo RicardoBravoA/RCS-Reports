@@ -209,7 +209,7 @@ function drawGraphic(year1, year2, year3, sales1, sales2, sales3, option){
         "duration": sales3
     }
     ];
-    var chart = AmCharts.makeChart("chartdiv"+option, {
+    var chart = AmCharts.makeChart("chartdiv-"+option, {
      theme: "none",
       type: "serial",
       dataDateFormat: "YYYY",

@@ -215,38 +215,31 @@ function downloadGoalSuccess(tx, results){
                                     colorGlobal = "percentage green";
                                 }
 
-                                mostrar += "<div class=\"panel\" id=\"panel-"+indice+"\">";
 
-                                        //mostrar += "<div class=\"row front-item\" onclick=\"prueba('-"+indice+"')\">";
-                                            mostrar += "<span class=\"panel-title\">";
-                                                mostrar += "<div class=\"col-xs-12\">";
-                                                    mostrar += "<p class=\"store-name\">"+storeName+"</p>";
-                                                mostrar += "</div>";
-                                                mostrar += "<div class=\"actual\">";
-                                                    mostrar += "<div class=\"col-xs-1\"><p class=\"type\">A:</p></div>";
-                                                    mostrar += "<div class=\"col-xs-3\"><p class=\"gol-number\">"
-                                                            +parseFloat(goalAmount).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p></div>";
-                                                    mostrar += "<div class=\"col-xs-4\"><p class=\"sale-number\">"
-                                                            +parseFloat(payTotal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p></div>";
-                                                    mostrar += "<div class=\"col-xs-4\"><p class='"+color+"'>"+percent+" %</p></div>";
-                                                mostrar +=  "</div>";
-                                                /*
+                                mostrar += "<ul class='col-xs-12' onclick=\"prueba('-"+indice+"')\">";
 
-                                                mostrar += "<div class=\"global\">";
-                                                    mostrar += "<div class=\"col-xs-1\"><p class=\"type\">G:</p></div>";
-                                                    mostrar += "<div class=\"col-xs-3\"><p class=\"gol-number\">"
-                                                            +parseFloat(goalAmountGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p></div>";
-                                                    mostrar += "<div class=\"col-xs-4\"><p class=\"sale-number\">"
-                                                            +parseFloat(payTotalGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p></div>";
-                                                    mostrar += "<div class=\"col-xs-4\"><p class='"+colorGlobal+"'>"+percentGlobal+" %</p></div>";
-                                                mostrar += "</div>";
-                                                */
+                                    mostrar += "<li>";
 
-                                            mostrar += "</span>";
-                                                        
-                                        //mostrar += "</div>";
+                                        mostrar += "<h1 class='store-name'>"+storeName+"</h1>";
 
-                                /*
+                                        mostrar += "<div class='actual'>";
+
+                                            mostrar += "<p class='type'>A:</p>";
+                                            mostrar += "<p class='gol-number'>"+parseFloat(goalAmount).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
+                                            mostrar += "<p class='sale-number'>"+parseFloat(payTotal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
+                                            mostrar += "<p class='"+color+"'>"+percent+" %</p>";
+
+                                        mostrar += "</div>";
+
+                                        mostrar += "<div class='global'>";
+
+                                            mostrar += "<p class='type'>G:</p>";
+                                            mostrar += "<p class='gol-number'>"+parseFloat(goalAmountGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
+                                            mostrar += "<p class='sale-number'>"+parseFloat(payTotalGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
+                                            mostrar += "<p class='"+colorGlobal+"'>"+percentGlobal+" %</p>";
+
+                                        mostrar += "</div>";
+                                
                                 var j = 0;
                                 var array_description = [];
                                 var array_total = [];
@@ -260,50 +253,28 @@ function downloadGoalSuccess(tx, results){
                                     j++;   
                                   });  
 
+                                    
+                                    mostrar += "<div id='chartdiv-"+indice+"' class='chartdiv-"+indice+"'></div>";
 
-                                    mostrar += "<div class=\"row back-item\" id=\"detail-"+indice+"\">";
-                                        mostrar += "<div class=\"col-xs-7\">";
-                                            mostrar += "<div id=\"chartdiv"+indice+"\" class=\"chartdiv-"+indice+"\"></div>";
-                                        mostrar += "</div>";
+                                        mostrar += "<div class='detalle-"+indice+"'>";
 
-                                        mostrar += "<div class=\"col-xs-5\">";
-                                            mostrar += "<div class=\"row\">";
-                                                mostrar += "<div class=\"col-md-12\">";
-                                                    mostrar += "<table class=\"table data\">";
-                                                        mostrar += "<thead>";
-                                                            mostrar += "<tr>";
-                                                                mostrar += "<th>Año</th>";
-                                                                mostrar += "<th>Cantidad</th>";
-                                                            mostrar += "</tr>";
-                                                        mostrar += "</thead>";
-                                                        mostrar += "<tbody>";
-                                                            mostrar += "<tr>";
-                                                                mostrar += "<td>"+array_description[0]+"</td>";
-                                                                mostrar += "<td>"+array_total[0]+"</td>";
-                                                            mostrar += "</tr>";
-                                                            mostrar += "<tr>";
-                                                                mostrar += "<td>"+array_description[1]+"</td>";
-                                                                mostrar += "<td>"+array_total[1]+"</td>";
-                                                            mostrar += "</tr>";
-                                                            mostrar += "<tr>";
-                                                                mostrar += "<td>"+array_description[2]+"</td>";
-                                                                mostrar += "<td>"+array_total[2]+"</td>";
-                                                            mostrar += "</tr>";
-                                                        mostrar += "</tbody>";
-                                                    mostrar += "</table>";
-                                                mostrar += "</div>";
-                                            mostrar += "</div>";
+                                            mostrar += "<div class='year'>Año</div><div class='quantity'>Cantidad</div>";
+                                            mostrar += "<span>"+array_description[0]+"</span><span>"+array_total[0]+"</span>";
+                                            mostrar += "<span>"+array_description[1]+"</span><span>"+array_total[1]+"</span>";
+                                            mostrar += "<span>"+array_description[2]+"</span><span>"+array_total[2]+"</span>";
+
                                         mostrar += "</div>";
-                                    mostrar += "</div>";                                    
-                                */
-                                mostrar += "</div>";  
+                                    
+                                    mostrar += "</li>";
+
+                                mostrar += "</ul>"; 
                                 
 
                                 $("#items").append(mostrar); 
-                                /*
+                                
                                 drawGraphic(array_description[0], array_description[1], array_description[2], 
                                     array_total[0], array_total[1], array_total[2], indice);
-                                */
+                                
                                 mostrar="";
                                 indice++; 
                               });
@@ -687,7 +658,12 @@ function getAllData(){
                     var _alias = row['alias'];   
                     var _url = row['urlBase'];
 
-                    mostrar += "<div class='alias-item' id='alias-item' data-toggle='modal' data-target='#ModalConfirm' onclick=\"addID("+_id+")\" >"+_alias+"</div>";
+                    //<div class="alias-item" id="alias-item">Cambiar de Alias 1 <button type="button" class="delete">×</button></div>
+
+                    mostrar += "<div class='alias-item' id='alias-item'> ";
+                    mostrar += "<span data-toggle='modal' data-target='#ModalConfirm' onclick=\"addID("+_id+")\">"+_alias+"</span> ";
+                    mostrar += "<button type='button' class='delete' data-toggle='modal' data-target='#ModalConfirmDelete' ";
+                    mostrar += "onclick=\"addIDDelete("+_id+")\">×</button></div>";
 
                 }
 

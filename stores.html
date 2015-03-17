@@ -61,10 +61,22 @@
             $("#txtvalue").val(abc);
         }
 
+        function addIDDelete(id){
+            $("#txtvaluedelete").val(id);
+        }
+
         function ocultaMiModal(){
             var id = $("#txtvalue").val();
             console.log("id presionado: "+id);
             updateStateURL(id);
+            //$('#btnclose').click();
+            //location.reload();
+        }
+
+        function ocultaMiModalDelete(){
+            var id = $("#txtvaluedelete").val();
+            console.log("id presionado: "+id);
+            //updateStateURL(id);
             //$('#btnclose').click();
             //location.reload();
         }
@@ -127,12 +139,14 @@
 
 <!--    <div class="row fixedbg"></div>-->
 <!--    <script type="text/javascript" src="js/scripts.js"></script>-->
-    <div class="row stores">
+    <div class="row stores" id="items">
+    <!--
         <div class="col-xs-12">
             <div class="panel-group" id="items">
             
 			</div>            
 		</div>
+    -->
 	</div>
 </div>
     
@@ -200,6 +214,25 @@
                 <div class="modal-footer add">
                     <button type="button" class="btn btn-rcs" id="btnsi" name="btnsi" data-dismiss="modal" aria-hidden="true" onclick="ocultaMiModal()">Si</button>
                     <button type="button" class="btn btn-rcs" id="btnno" name="btnno" data-dismiss="modal" aria-hidden="true">No</button>
+                </div>
+            </div>
+        </div>
+    <!-- </form>-->
+    </div>
+
+    <div class="modal fade" id="ModalConfirmDelete" >
+    <!--<form name="frmConfirm" id="frmConfirm">-->
+    <input type="hidden" name="txtvaluedelete" id="txtvaluedelete" value="0">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Desea eliminar Servidor?
+                    </h4>
+                </div>
+                <div class="modal-footer add">
+                    <button type="button" class="btn btn-rcs" id="btnsidelete" name="btnsi" data-dismiss="modal" aria-hidden="true" onclick="ocultaMiModalDelete()">Si</button>
+                    <button type="button" class="btn btn-rcs" id="btnnodelete" name="btnno" data-dismiss="modal" aria-hidden="true">No</button>
                 </div>
             </div>
         </div>

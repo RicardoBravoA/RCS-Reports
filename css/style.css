@@ -19,17 +19,18 @@
     user-select: none; 
 }
 
+html {
+    height: 100%;
+}
 body {
-    position: absolute;
-    z-index: 1;
+    margin: 0;
     width: 100%;
     height: 100%;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;  
     font-family: 'Open Sans', sans-serif;
-    background-color: #000;
+    background-image: url('../img/bg.jpg');
+    background-repeat: no-repeat, no-repeat;
+    background-size: cover, cover;
+    background-position: center, center; 
     color: #fff;
 }
 
@@ -76,14 +77,14 @@ input[type="email"]:focus{
 }
 .checkbox_wrapper{
     position: relative;
-	height: 35px;
+    height: 35px;
     width: 100%;
 }
 
 input[type="checkbox"] {
     cursor: pointer;
     opacity:0;
-    height: 17px;
+    height: 25px;
     width: 150px;
     position: absolute;
     top: 0px;
@@ -281,18 +282,14 @@ button:focus, button:active {
 
 /* Static Method */
 body{
-    /*padding-top: 151px;*/
+    padding-top: 171px;
+/*
     background-image: url('../img/shine.png');
     background-position: right top;
     background-size: 52%;
     background-repeat: no-repeat;
     background-attachment: fixed;
-}
-.ocultarRegion{
-    padding-top: 102px;
-}
-.ocultarRegion.mostrarRegion{
-    padding-top: 151px;
+*/
 }
 .shinebg{
     position: fixed;
@@ -306,14 +303,14 @@ body{
 .fixedbg{
     position: fixed;
     z-index: 5;
-    top: 0;
+    top: 20px;
     right: 0;
     left: 0;
     width: 100%;
 }
 .fixedbgblack{
     width: 100%;
-    height: 138px;
+    height: 152px;
 }
 .row.vs, .row.lines, .row.region{
     margin-left: 0;
@@ -323,7 +320,7 @@ body{
     position: relative;
     z-index: 10;
     width: 100%;
-    height: 45px; 
+    height: 45px;
 }
 .row.lines{    
     position: relative;
@@ -335,16 +332,33 @@ body{
     position: relative;
     z-index: 9;
     width: 100%;
-    height: 50px;  
+    height: 40px;  
 }
 
 .row.stores{
     position: fixed;
-    z-index: 0;
+    padding-bottom: 230px;
+    z-index: 2;
     height: 100%;
     width: 100%;
-    z-index: 2;
     overflow-y: scroll;
+}
+
+.row.stores:after{
+    content: '';
+    position: fixed;
+    z-index: 10000;
+    width: 100%;
+    height: 80px;
+    bottom: 0;
+background: rgba(0,0,0,0);
+background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 42%, rgba(0,0,0,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(42%, rgba(0,0,0,1)), color-stop(100%, rgba(0,0,0,1)));
+background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 42%, rgba(0,0,0,1) 100%);
+background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 42%, rgba(0,0,0,1) 100%);
+background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 42%, rgba(0,0,0,1) 100%);
+background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 42%, rgba(0,0,0,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
 }
 /* Fin Static Method */
 
@@ -387,7 +401,7 @@ option.option-style:focus{
     width: 50px;
     height: 45px;
     background-color: transparent;
-    border: 1px solid #fff;
+    border: 1px solid #bbb;
     border-top-width: 0px;
     border-bottom-width: 0px;
     border-right-width: 0px;
@@ -401,36 +415,40 @@ option.option-style:focus{
 }
 #exit {
     position: relative;
-    width: 50px;
+    width: 65px;
     height: 45px;
     background-color: transparent;
     border: 0px solid #fff;
 }
 #exit span{
     position: absolute;
-    left: 45px;
+    left: 40px;
     margin-top: 5px;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 16px;
     color: #3c81ea;
+}
+#exit img{
+    position: relative;
+    right: 12px;
 }
 
 #alias {
     float: right;
-    width: 50px;
+    width: 65px;
     height: 45px;
     background-color: transparent;
     border: 0px solid #fff;
 }
 #alias span{
     font-weight: 700;
-    font-size: 15px;
+    font-size: 16px;
     color: #3c81ea;
 }
 
 .lines {
     position: relative;
-    border: 1px solid #fff;
+    border: 1px solid #bbb;
     border-left-width: 0px;
     border-right-width: 0px;
 }
@@ -497,7 +515,7 @@ ul.select-region li:not(.init) {
 ul.select-region li.init{ 
     position: relative;
     line-height: 40px;
-    border: 1px solid #c5c5c5;
+    border: 1px solid #bbb;
     border-radius: 8px;
     background-image: url('../img/select-icon2.png');
     background-repeat: no-repeat;
@@ -553,12 +571,14 @@ ul.select-date li.init {
     height: 330px;
 }
 
+/*
 div[class^="chartdiv-"]
 {
     position: relative;
     width: 100%;
     height: 150px;
 }
+*/
 
 .panel-group .panel+.panel{
     margin-top: 0;
@@ -578,7 +598,7 @@ div[class^="chartdiv-"]
 }
 
 .global{
-    background: rgba(62, 62, 62, 0.3);
+    background: rgba(255, 255, 255, 0.07);
 }
 
 .row.front-item{
@@ -586,6 +606,7 @@ div[class^="chartdiv-"]
     position: relative;
     height: 150px;
 }
+/*
 .front-item p.store-name{
     margin-bottom: 0px;
     padding: 3% 3% 0% 3%;
@@ -595,10 +616,99 @@ div[class^="chartdiv-"]
     border-top-color: #a8a8a8;
     text-transform: uppercase;
 }
+*/
+h1.store-name{
+    margin-top: 0;
+    margin-bottom: 0px;
+    padding: 15px 0px;
+    font-size: 26px;
+    font-weight: normal;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #bbb;
+    text-transform: uppercase;
+}
+/*
 .front-item p.type,.front-item p.gol-number{
     position: absolute;
     bottom: -46px;
 }
+*/
+.actual, .global{
+    width: 100%;
+    height: 35px;
+}
+ul.col-xs-12 {
+  list-style-type: none;
+    height: 286px;
+}
+.actual .type, .global .type{
+    float: left;
+    width: 8%;
+    display: inline-block;
+    font-size: 21px;
+    line-height: 30px;
+    color: #3c81ea;
+}
+.actual .gol-number, .global .gol-number{
+    float: left;
+    width: 32%;
+    display: inline-block;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+}
+.actual .sale-number, .global .sale-number{
+    float: left;
+    width: 38%;
+    display: inline-block;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+}
+.actual .percentage, .global .percentage{
+    float: left;
+    width: 22%;
+    display: inline-block;
+    text-align: center;
+    font-size: 24px;   
+    border-radius: 6px;
+    transform: translate3d(0,-8px,0);
+}
+div[class^="chartdiv-"]
+{
+    float: left;
+    width: 60%;
+    height: 150px;
+    border-bottom: 1px solid #bbb;
+}
+div[class^="detalle-"]{
+    float: left;
+    width: 40%;
+    padding-top: 4%;
+    height: 150px;
+    border-bottom: 1px solid #bbb;
+}
+div[class^="detalle-"] .year, div[class^="detalle-"] .quantity{
+    float: left;
+    width: 50%;
+    font-weight: 600;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+}
+div[class^="detalle-"] span{
+    float: left;
+    width: 50%;
+    height: 25px;
+    line-height: 25px;
+    font-weight: 400;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+.item.open{
+    display: block;
+}
+
 .front-item p.sale-number,.front-item .percentage{
     position: absolute;
     bottom: -48px;
@@ -633,7 +743,6 @@ div[class^="chartdiv-"]
 .percentage.ambar{
     background-color: rgba(201, 148, 18, .9);
 }
-
 
 .row.back-item{
     position: relative;
@@ -813,10 +922,44 @@ body.modal-open .container{
     cursor: pointer;
     background-color: #f6f6f6;
 }
-
+.modal .delete{
+    position: absolute;
+    right: 20px;
+    width: 25px;
+    height: 25px;
+    line-height: 15px;
+    font-weight: 800;
+    color: red;
+    background: none;
+    border-radius: 50%;
+    border-color: rgba(255, 0, 0, 0.50);
+    border-width: 1px;
+    border-style: solid;
+}
 
 /* Landscape phones and down */
 @media (max-width: 420px) {
+    ul.col-xs-12 {
+        height: 254px;
+    }
+    .row.stores{
+        padding-bottom: 230px;
+    }
+    .actual, .global{ height: 25px;}
+    .actual .type, .global .type, .actual .gol-number, .global .gol-number{
+        line-height: 16px;
+        font-size:  16px;
+    }
+    .actual .sale-number, .global .sale-number{
+        line-height: 18px;
+        font-size: 18px;
+    }
+    .percentage{
+        line-height: 18px;
+        font-size: 18px !important;
+        transform: translate3d(0,0px,0) !important;
+    }
+/*
     .front-item p.store-name{
         font-size: 22px;
     }
@@ -833,6 +976,7 @@ body.modal-open .container{
         width: 75%;
         font-size: 18px;    
     }
+*/
 
 }
 
@@ -849,11 +993,8 @@ body.modal-open .container{
         height: 52px;
     }
 
-    .ocultarRegion{
-        padding-top: 105px;
-    }
-    .ocultarRegion.mostrarRegion{
-        padding-top: 165px;
+    body{
+        padding-top: 187px;
     }
     /* Fin Static Method */
     
@@ -925,12 +1066,14 @@ body.modal-open .container{
     .modal .modal-dialog,.modal.in .modal-dialog{
         width: 50%;
     }
+/*
     div[class^="chartdiv-"]
     {
         position: relative;
         width: 100%;
         height: 160px;
     }
+*/
 
 }
 
@@ -969,21 +1112,21 @@ body.modal-open .container{
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
     
-    -webkit-animation-delay: 0.50s;
-    animation-delay: 0.50s;
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
     
     opacity: 0;
 }
 /* Chrome, Safari, Opera */ 
 @-webkit-keyframes cargar {
-    0%   { opacity: 0; transform: translateY(-15px);}
-    100% { opacity: 1; transform: translateY(0px);}
+    0%   { opacity: 0; -webkit-transform: translate3d(0,-15px,0);}
+    100% { opacity: 1; -webkit-transform: translate3d(0, 0px,0);}
 } 
 
 /* Standard syntax */ 
 @keyframes cargar {
-    0%   { opacity: 0; transform: translateY(-15px);}
-    100% { opacity: 1; transform: translateY(0px);}
+    0%   { opacity: 0; transform: translate3d(0,-15px,0);}
+    100% { opacity: 1; transform: translate3d(0, 0px,0);}
 }
 
 #wrap {

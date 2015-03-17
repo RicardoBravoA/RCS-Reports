@@ -308,7 +308,7 @@ function MSG_EXIT(){
 	return msg;
 };
 
-function BTN_EXIT){
+function BTN_EXIT(){
 	$("#exit").val(MSG_EXIT());
 }
 
