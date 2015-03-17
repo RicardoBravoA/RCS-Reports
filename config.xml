@@ -5,7 +5,7 @@
         id        = "com.retailcs.reports"
         version   = "1.0.0">
 
-    <name>RCS Reports/name>
+    <name>RCS Reports</name>
 
     <description>
         RCS Reports.
@@ -15,7 +15,7 @@
         Retail Custom Solutions
     </author>
 
-    <!--
+    
     <preference name="permissions"                value="none"/>
     <preference name="orientation"                value="portrait" />
     <preference name="target-device"              value="universal" />
@@ -33,7 +33,7 @@
     <preference name="android-installLocation"    value="auto" />
     <preference name="phonegap-version"       value="3.7.0" />
 
-    <!--
+    
     <icon src="img/logoapp/icon.png" />
     <icon src="res/icon/android/drawable-ldpi/logoapp.png"   gap:platform="android"    gap:qualifier="ldpi" />
     <icon src="res/icon/android/drawable-mdpi/logoapp.png"   gap:platform="android"    gap:qualifier="mdpi" />
@@ -46,7 +46,7 @@
     <icon src="res/icon/ios/icon4/logoapp.png"         gap:platform="ios"        width="144" height="144" />
 
     <!-- Define app splash screen for each platform. -->
-    <!--
+    
     <gap:splash src="res/screen/android/screen.png"       gap:platform="android" gap:qualifier="port-ldpi" />
     <gap:splash src="res/screen/android/screen.png"       gap:platform="android" gap:qualifier="port-mdpi" />
     <gap:splash src="res/screen/android/screen.png"       gap:platform="android" gap:qualifier="port-hdpi" />
@@ -58,11 +58,11 @@
     <gap:splash src="res/screen/ios/screen.png"           gap:platform="ios"     width="768" height="1024" />
     <gap:splash src="res/screen/ios/screen.png"          gap:platform="ios"     width="1024" height="768" />
 
-    <!--
+    
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
     <string>100</string>
     </gap:config-file>
     
     <access origin="*"/>
-    -->
+    
 </widget>
