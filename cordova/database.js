@@ -215,6 +215,8 @@ function downloadGoalSuccess(tx, results){
                                     colorGlobal = "percentage green";
                                 }
 
+                                //percent = percent.toFixed();
+                                //percentGlobal = percentGlobal.toFixed();
 
                                 mostrar += "<ul class='col-xs-12' onclick=\"prueba('-"+indice+"')\">";
 
@@ -272,8 +274,8 @@ function downloadGoalSuccess(tx, results){
 
                                 $("#items").append(mostrar); 
                                 
-                                drawGraphic(array_description[0], array_description[1], array_description[2], 
-                                    array_total[0], array_total[1], array_total[2], indice);
+                                //drawGraphic(array_description[0], array_description[1], array_description[2], 
+                                    //array_total[0], array_total[1], array_total[2], indice);
                                 
                                 mostrar="";
                                 indice++; 

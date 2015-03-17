@@ -67,13 +67,13 @@ function selectOption(){
 
 function showCombo(){
     $("#divRegion").show("slow");
-    $('body').css('padding-top','150px');
+    $('body').addClass('mostrarRegion'); /* varia si existe regiones*/
     loadRegionCode();
 }
 
 function hideCombo(){
     $("#divRegion").hide();
-    $('body').css('padding-top','90px');
+    $('body').addClass('ocultarRegion'); /* Siempre carga*/
 /*
      var elElemento=document.getElementById("divRegion");
        //if(elElemento.style.display == 'block') {
