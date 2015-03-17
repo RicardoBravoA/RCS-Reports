@@ -32,6 +32,7 @@
     <preference name="android-installLocation"    value="auto" />
     <preference name="phonegap-version"       value="3.7.0" />
 
+
     <icon src="img/logoapp/icon.png" />
     <icon src="res/icon/android/drawable-ldpi/logoapp.png"   gap:platform="android"    gap:qualifier="ldpi" />
     <icon src="res/icon/android/drawable-mdpi/logoapp.png"   gap:platform="android"    gap:qualifier="mdpi" />
@@ -44,6 +45,7 @@
     <icon src="res/icon/ios/icon4/logoapp.png"         gap:platform="ios"        width="144" height="144" />
 
     <!-- Define app splash screen for each platform. -->
+    <!--
     <gap:splash src="res/screen/android/screen.png"       gap:platform="android" gap:qualifier="port-ldpi" />
     <gap:splash src="res/screen/android/screen.png"       gap:platform="android" gap:qualifier="port-mdpi" />
     <gap:splash src="res/screen/android/screen.png"       gap:platform="android" gap:qualifier="port-hdpi" />
