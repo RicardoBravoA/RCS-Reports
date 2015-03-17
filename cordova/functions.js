@@ -233,14 +233,14 @@ function drawGraphic(year1, year2, year3, sales1, sales2, sales3, option){
         valueField: "duration",
         type: "line",
         lineColor: "#fff",
-        balloonText: "[[category]]<br><b>[[value]]</b>",
+        //balloonText: "[[category]]<br><b>[[value]]</b>",
         lineThickness: 2,
         bullet: "round",
         bulletBorderColor: "#f1f1f1",
         bulletBorderThickness: 2,
-        bulletBorderAlpha: 1,
-        dashLengthField: "dashLength",
-        animationPlayed: false
+        bulletBorderAlpha: 1
+        //dashLengthField: "dashLength",
+        //animationPlayed: false
       }],
 
       /*
