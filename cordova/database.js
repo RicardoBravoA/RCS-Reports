@@ -215,8 +215,8 @@ function downloadGoalSuccess(tx, results){
                                     colorGlobal = "percentage green";
                                 }
 
-                                //percent = percent.toFixed();
-                                //percentGlobal = percentGlobal.toFixed();
+                                percent = parseFloat(percent).toFixed();
+                                percentGlobal = parseFloat(percentGlobal).toFixed();
 
                                 mostrar += "<ul class='col-xs-12' onclick=\"prueba('-"+indice+"')\">";
 
@@ -261,9 +261,9 @@ function downloadGoalSuccess(tx, results){
                                         mostrar += "<div class='detalle-"+indice+"'>";
 
                                             mostrar += "<div class='year'>Año</div><div class='quantity'>Cantidad</div>";
-                                            mostrar += "<span>"+array_description[0]+"</span><span>"+array_total[0]+"</span>";
-                                            mostrar += "<span>"+array_description[1]+"</span><span>"+array_total[1]+"</span>";
-                                            mostrar += "<span>"+array_description[2]+"</span><span>"+array_total[2]+"</span>";
+                                            mostrar += "<span>"+array_description[0]+"</span><span>"+parseFloat(array_total[0]).toFixed()+"</span>";
+                                            mostrar += "<span>"+array_description[1]+"</span><span>"+parseFloat(array_total[1]).toFixed()+"</span>";
+                                            mostrar += "<span>"+array_description[2]+"</span><span>"+parseFloat(array_total[2]).toFixed()+"</span>";
 
                                         mostrar += "</div>";
                                     
