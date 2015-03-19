@@ -7,8 +7,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
 	
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
@@ -16,12 +16,11 @@
   <![endif]-->
 
   <!-- Fav and touch icons -->
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/scripts.js"></script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/scripts.js"></script>
   <script type="text/javascript" src="js/constant.js"></script>
-  <script type="text/javascript" src="cordova/database.js" ></script>
-  <script type="text/javascript" src="cordova/functions.js" ></script>  
+  <script type="text/javascript" src="js/database.js" ></script>
 
   <script  type="text/javascript">
 
@@ -43,6 +42,78 @@
 
 
     $(document).ready(function(){
+
+      $("#ip_1").keyup(function(event) {
+        var variable = $("#ip_1").val();
+        if(variable>255){
+          $("#ip_1").val("");
+          $("#ip_1").focus();
+        }else{
+          if(variable.length==3){
+            $("#ip_2").focus();
+          }
+        }        
+
+      }).keypress(function(event){
+        if (event.keyCode < 48 || event.keyCode > 57) {
+        return false;
+        }
+      });
+
+
+      $("#ip_2").keyup(function(event) {
+        var variable = $("#ip_2").val();
+        if(variable>255){
+          $("#ip_2").val("");
+          $("#ip_2").focus();
+        }else{
+          if(variable.length==3){
+            $("#ip_3").focus();
+          }
+        }  
+      }).keypress(function(event){
+        if (event.keyCode < 48 || event.keyCode > 57) {
+        return false;
+        }
+      });
+
+      $("#ip_3").keyup(function(event) {
+        var variable = $("#ip_3").val();
+        if(variable>255){
+          $("#ip_3").val("");
+          $("#ip_3").focus();
+        }else{
+          if(variable.length==3){
+            $("#ip_4").focus();
+          }
+        } 
+      }).keypress(function(event){
+        if (event.keyCode < 48 || event.keyCode > 57) {
+        return false;
+        }
+      });
+
+      $("#ip_4").keyup(function(event) {
+        var variable = $("#ip_4").val();
+        if(variable>255){
+          $("#ip_4").val("");
+          $("#ip_4").focus();
+        }else{
+          if(variable.length==3){
+            $("#port").focus();
+          }
+        } 
+      }).keypress(function(event){
+        if (event.keyCode < 48 || event.keyCode > 57) {
+        return false;
+        }
+      });
+
+      $("#port").keypress(function(event){
+        if (event.keyCode < 48 || event.keyCode > 57) {
+        return false;
+        }
+      });
 
       if(checkNetConnection()==true){
 
@@ -114,13 +185,13 @@
 					 <label name="lblmsg1" id="lblmsg1"></label>
                 </div>
 				<div class="form-group ip-address text-center">
-                     <input type="number" class="form-control" id="ip_1" name="ip_1" value="98">
+                     <input type="number" class="form-control" id="ip_1" name="ip_1" value="98" maxlength="3" >
                      <label class="point">.</label>
-                     <input type="number" class="form-control" id="ip_2" name="ip_2" value ="224">
+                     <input type="number" class="form-control" id="ip_2" name="ip_2" value ="224" maxlength="3">
                      <label class="point">.</label>
-                     <input type="number" class="form-control" id="ip_3" name="ip_3" value="19">
+                     <input type="number" class="form-control" id="ip_3" name="ip_3" value="19" maxlength="3">
                      <label class="point">.</label>
-                     <input type="number" class="form-control" id="ip_4" name="ip_4" value="148">
+                     <input type="number" class="form-control" id="ip_4" name="ip_4" value="148" maxlength="3">
 				</div>
 				<div class="form-group">
                      <div class="input">
@@ -166,13 +237,14 @@
                           <div class="shaft9"></div>
                           <div class="shaft10"></div>
                         </div>                    
-                    <div class="text-center"><p name="txtloading" id="txtloading">Loading...</p></div>
+                    <div class="text-center"><p name="txtloading" id="txtloading"></p></div>
+                    <input type="hidden" id="txtocultaloading" name="txtocultaloading" data-dismiss="modal" aria-hidden="true" />
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="show_fail">
+    <div class="modal fade" id="modalgeneral">
         <div class="modal-dialog">
             <div class="modal-content">  
                 <div class="modal-header">
@@ -181,10 +253,10 @@
                     </div>
                 </div>              
                 <div class="modal-body text-center">                
-                    <p id="changeValue" name="changeValue" class="text-center"></p>
+                    <p id="textgeneral" name="textgeneral" class="text-center"></p>
                 </div>
                 <div class="modal-footer info">
-                    <button type="button" class="btn btn-rcs" id="try_again" name="try_again"  data-dismiss="modal" aria-hidden="true">Aceptar</button>
+                    <button type="button" class="btn btn-rcs" id="btngeneral" name="btngeneral"  data-dismiss="modal" aria-hidden="true"></button>
                 </div>
                 <br>
             </div>

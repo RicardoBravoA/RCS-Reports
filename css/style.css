@@ -31,6 +31,7 @@ body {
     background-repeat: no-repeat, no-repeat;
     background-size: cover, cover;
     background-position: center, center; 
+    text-rendering: optimizeLegibility;
     color: #fff;
 }
 
@@ -113,7 +114,11 @@ input[type="checkbox"]:checked + label{
     padding: 0 0 0 35px;
 }
 label.text-checkbox div{
-    transform: translateY(-1px);
+    transform: translate(0px, -1px);
+    -webkit-transform: translate(0px, -1px);
+    -moz-transform: translate(0px, -1px);
+    -o-transform: translate(0px, -1px);
+    -ms-transform: translate(0px, -1px);
 }
 label{
     font-size: 18px;
@@ -282,15 +287,15 @@ button:focus, button:active {
 
 /* Static Method */
 body{
-    padding-top: 171px;
-/*
-    background-image: url('../img/shine.png');
-    background-position: right top;
-    background-size: 52%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-*/
+    padding-top: 151px;
 }
+body.ocultarRegion{
+    padding-top: 100px;
+}
+body.ocultarRegion.mostrarRegion{
+    padding-top: 151px;
+}
+
 .shinebg{
     position: fixed;
     z-index: 2;
@@ -303,7 +308,7 @@ body{
 .fixedbg{
     position: fixed;
     z-index: 5;
-    top: 20px;
+    top: 0px;
     right: 0;
     left: 0;
     width: 100%;
@@ -673,7 +678,11 @@ ul.col-xs-12 {
     text-align: center;
     font-size: 24px;   
     border-radius: 6px;
-    transform: translate3d(0,-8px,0);
+    transform: translate(0px, -8px);
+    -webkit-transform: translate(0px, -8px);
+    -moz-transform: translate(0px, -8px);
+    -o-transform: translate(0px, -8px);
+    -ms-transform: translate(0px, -8px);
 }
 div[class^="chartdiv-"]
 {
@@ -742,6 +751,10 @@ div[class^="detalle-"] span{
 }
 .percentage.ambar{
     background-color: rgba(201, 148, 18, .9);
+}
+
+.loading{
+    margin: 10px 0;
 }
 
 .row.back-item{
@@ -910,6 +923,7 @@ body.modal-open .container{
     padding: 0px;
     text-align: center;
     font-size: 18px;
+    border-radius: 0px;
     overflow-y: auto;
 }
 .modal-body .select-alias .alias-item{
@@ -924,6 +938,8 @@ body.modal-open .container{
 }
 .modal .delete{
     position: absolute;
+    padding: 0;
+    margin: 0;
     right: 20px;
     width: 25px;
     height: 25px;
@@ -957,7 +973,11 @@ body.modal-open .container{
     .percentage{
         line-height: 18px;
         font-size: 18px !important;
-        transform: translate3d(0,0px,0) !important;
+        transform: translate(0px, 0px) !important;
+        -webkit-transform: translate(0px, 0px) !important;
+        -moz-transform: translate(0px, 0px) !important;
+        -o-transform: translate(0px, 0px) !important;
+        -ms-transform: translate(0px, 0px) !important;
     }
 /*
     .front-item p.store-name{
@@ -992,10 +1012,13 @@ body.modal-open .container{
     .row.lines{
         height: 52px;
     }
-
-    body{
-        padding-top: 187px;
+    body.ocultarRegion{
+        padding-top: 107px;
     }
+    body.ocultarRegion.mostrarRegion{
+        padding-top: 167px;
+    }
+    
     /* Fin Static Method */
     
     .container{

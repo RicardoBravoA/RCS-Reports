@@ -146,13 +146,79 @@ function showLoading(){
       "show"      : true                     // garantizar el modal se muestra inmediatamente
     });
 
-    //var texto = MSG_LOADING2();
-    //console.log("texto "+texto);
+    $("#txtloading").html(MSG_LOADING());
+}
 
-    //$("#txtloading").html(MSG_LOADING());
+function showLoading2(){    
+    $("#show_loading2").on("show", function() {   
+        $("#show_loading2 a.btn").on("click", function(e) {
+            $("#show_loading2").modal('hide');  
+        });
+    });
+    $("#show_loading2").on("show", function() {   
+        $("#show_loading2 a.btn").on("click", function(e) {
+            $("#show_loading2").modal('hide');  
+        });
+    });
+
+    $("#show_loading2").on("hide", function() {    
+        $("#show_loading2 a.btn").off("click");
+    });
+
+    $("#show_loading2").on("hidden", function() {  // eliminar los elementos reales de la DOM cuando está completamente oculto
+        $("#show_loading2").remove();
+    });
+
+    $("#show_loading2").modal({                    // cablear la funcionalidad real modal y mostrar el cuadro de diálogo
+      "backdrop"  : "static",
+      "keyboard"  : true,
+      "show"      : true                     // garantizar el modal se muestra inmediatamente
+    });
+
+    $("#txtloading2").html(MSG_LOADING());
 }
 
 function hideLoading(){    
-    $("#txtvariable").click();
-    $('.modal-backdrop').remove();    
+    $("#txtocultaloading").click();
+    //$('.modal-backdrop').remove();    
+}
+
+function hideLoading2(){    
+    $("#txtocultaloading2").click();
+    //$('.modal-backdrop').remove();    
+}
+
+function hideCombo(){
+    $("#divRegion").hide();
+    $('body').addClass('ocultarRegion');
+}
+
+function mostrarModalGeneral(contenido){    
+    $("#modalgeneral").on("show", function() {   
+        $("#modalgeneral a.btn").on("click", function(e) {
+            $("#modalgeneral").modal('hide');  
+        });
+    });
+    $("#modalgeneral").on("show", function() {   
+        $("#modalgeneral a.btn").on("click", function(e) {
+            $("#modalgeneral").modal('hide');  
+        });
+    });
+
+    $("#modalgeneral").on("hide", function() {    
+        $("#modalgeneral a.btn").off("click");
+    });
+
+    $("#modalgeneral").on("hidden", function() {  // eliminar los elementos reales de la DOM cuando está completamente oculto
+        $("#modalgeneral").remove();
+    });
+
+    $("#modalgeneral").modal({                    // cablear la funcionalidad real modal y mostrar el cuadro de diálogo
+      "backdrop"  : "static",
+      "keyboard"  : true,
+      "show"      : true                     // garantizar el modal se muestra inmediatamente
+    });
+
+    $("#textgeneral").html(contenido);
+    $("#btngeneral").html(MSG_OK());
 }

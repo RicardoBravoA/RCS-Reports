@@ -19,9 +19,9 @@
 
     <script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/constant.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
-    <script type="text/javascript" src="cordova/database.js"></script>
-    <script type="text/javascript" src="cordova/functions.js"></script>  
+    <script type="text/javascript" src="js/database.js"></script>
     <!-- AmCharts-->
     <script type="text/javascript" src="js/amcharts.js"></script>
     <script type="text/javascript" src="js/serial.js"></script>
@@ -34,13 +34,10 @@
           loadRegions();         
         });
 
-        $(document).ready(function() {
-        });
-
         $(document).ready(function(){
         
              $("#refresh").click(function(){
-                downloadGoal();
+                getRegionCode();
              });
 
         });		
@@ -155,21 +152,24 @@
     <div class="modal fade" id="show_loading" >
         <div class="modal-dialog">
             <div class="modal-content">                
+                <div class="modal-body">               
+                    <div class="text-center loading"><img src="img/load.gif"></div>             
+                    <div class="text-center"><p name="txtloading" id="txtloading"></p></div>
+                    <input type="hidden" id="txtocultaloading" name="txtocultaloading" data-dismiss="modal" aria-hidden="true" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="show_loading2" >
+        <div class="modal-dialog">
+            <div class="modal-content">                
                 <div class="modal-body">                    
-                        <div class="shaft-load">
-                          <div class="shaft1"></div>
-                          <div class="shaft2"></div>
-                          <div class="shaft3"></div>
-                          <div class="shaft4"></div>
-                          <div class="shaft5"></div>
-                          <div class="shaft6"></div>
-                          <div class="shaft7"></div>
-                          <div class="shaft8"></div>
-                          <div class="shaft9"></div>
-                          <div class="shaft10"></div>
-                        </div>                    
-                    <div class="text-center"><p>Cargando</p></div>
-                    <input type="hidden" id="txtvariable" name="txtvariable" data-dismiss="modal" aria-hidden="true" />
+                    <div class="shaft-load">
+                        <div class="text-center loading"><img src="img/load.gif"></div>
+                    </div>                    
+                    <div class="text-center"><p name="txtloading2" id="txtloading2"></p></div>
+                    <input type="hidden" id="txtocultaloading2" name="txtocultaloading2" data-dismiss="modal" aria-hidden="true" />
                 </div>
             </div>
         </div>

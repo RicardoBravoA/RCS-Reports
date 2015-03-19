@@ -20,8 +20,7 @@
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/constant.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>  
-  <script type="text/javascript" src="cordova/database.js" ></script>
-  <script type="text/javascript" src="cordova/functions.js" ></script>  
+  <script type="text/javascript" src="js/database.js" ></script>
 
   <script  type="text/javascript">
 
@@ -37,13 +36,13 @@
             var pin = $("#pin").val();
             var check = "";
 
-            if($('#chk').is(':checked')){
+            if($('#chkremember').is(':checked')){
               check = "1";
             }else{
               check = "0";
             }
 
-            console.log("check "+check);
+            console.log("chkremember "+check);
 
             if(pin.length>0){
               validData(pin, check);
@@ -56,8 +55,9 @@
 
         function loadMsgs(){
           MSG_NUMBER_PIN();
-          MSG_PIN();
+          MSG_PIN();          
           BTN_ENTER_LOGIN();
+          MSG_REMEMBER_PIN();
         }
 
   </script>
@@ -82,7 +82,7 @@
 				</div>
                 <div class="form-group">
                      <div class="checkbox_wrapper">
-                         <input type="checkbox" name="chk" id="chk"><label class="text-checkbox"><div>Recordar Pin</div></label>                        
+                         <input type="checkbox" name="chkremember" id="chkremember"><label class="text-checkbox" name="checktext" id="checktext"></label>                        
                      </div>                     
 				</div>
                 <div class="form-group form-float">
@@ -111,13 +111,14 @@
                           <div class="shaft9"></div>
                           <div class="shaft10"></div>
                         </div>                    
-                    <div class="text-center"><p name="txtloading" id="txtloading">Loading...</p></div>
+                    <div class="text-center"><p name="txtloading" id="txtloading"></p></div>
+                    <input type="hidden" id="txtocultaloading" name="txtocultaloading" data-dismiss="modal" aria-hidden="true" />
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="show_fail">
+    <div class="modal fade" id="modalgeneral">
         <div class="modal-dialog">
             <div class="modal-content">  
                 <div class="modal-header">
@@ -126,10 +127,10 @@
                     </div>
                 </div>              
                 <div class="modal-body text-center">                
-                    <p id="changeValue" name="changeValue" class="text-center"></p>
+                    <p id="textgeneral" name="textgeneral" class="text-center"></p>
                 </div>
                 <div class="modal-footer info">
-                    <button type="button" class="btn btn-rcs" id="try_again" name="try_again"  data-dismiss="modal" aria-hidden="true">Aceptar</button>
+                    <button type="button" class="btn btn-rcs" id="btngeneral" name="btngeneral"  data-dismiss="modal" aria-hidden="true"></button>
                 </div>
                 <br>
             </div>
