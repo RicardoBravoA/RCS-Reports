@@ -159,6 +159,7 @@ function downloadGoalSuccess(tx, results){
                     },            
                     success: function(data){
                         $("#items").empty();
+                        $('.modal-backdrop').remove();  
 
                         if(data.quantity>0){                            
                             var mostrar = "";
@@ -298,6 +299,11 @@ function downloadGoalLoad(regionCode){
     
     var query = "SELECT "+KEY_URLBASE+" FROM "+TABLE_URL+" WHERE "+KEY_USE+" = 1;";
     console.log(" "+query);
+
+    if(regionCode=="R-1"){
+        regionCode="";
+    }
+
     try {
         localDB.transaction(function(transaction){        
             transaction.executeSql(query, [], function(transaction, results){            
@@ -324,7 +330,7 @@ function downloadGoalLoad(regionCode){
                     },                   
                     success: function(data){
                         $("#items").empty();
-
+                        $('.modal-backdrop').remove();  
                         if(data.quantity>0){                            
                             var mostrar = "";
                             var indice = 0;   
@@ -860,7 +866,7 @@ function loadRegionCodeSuccess(tx, results){
         console.log("loadRegionCodeSuccess: "+total);
 
         if(total>0){                        
-            //loadRegionCode2();
+            loadRegionCode2();
         }else{
             downloadGoal();
         }
@@ -890,9 +896,9 @@ function loadRegionCode2Success(tx, results){
 
         var allOptions2 = $("ul.select-region").children('li:not(.init)');
         allOptions2.removeClass('selected');
-        allOptions2.removeClass('selected');
         $("ul.select-region li#"+url).addClass('selected');
         $("ul.select-region").children('.init').html($("ul.select-region li#"+url).html());
+        $("ul.select-region").children('.init').attr("data-value",url);
         downloadGoalLoad(url);
     //}
     
@@ -1083,7 +1089,7 @@ function loadRegionsSuccess(tx, results){
                         console.log("no entra");
                         hideLoading(); 
                         hideCombo();
-                        //downloadGoal();
+                        downloadGoal();
                     }
                 },
                 error:function (xhr, ajaxOptions, thrownError){
