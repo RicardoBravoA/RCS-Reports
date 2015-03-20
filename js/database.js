@@ -140,159 +140,157 @@ function downloadGoalSuccess(tx, results){
         var array = {option: optionCode, regionCode: regionCode};
         console.log("array : optionCode"+optionCode+" - regionCode: "+regionCode);
 
+
         console.log("downloadGoalSuccess: "+url_);
-        
+
             $.ajax({
-                url: xurl,
-                type: 'POST',
-                data: JSON.stringify(array),
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json',
-                async: true,
-                crossdomain: true,
-                beforeSend: function(){
-                    showLoading(); 
-                },        
-                complete: function(){
-                    hideLoading(); 
-                },
-                success: function(data, textStatus, XMLHttpRequest){
-                    
-                    $("#items").empty();
-                    $('.modal-backdrop').remove();  
-                    if(data.quantity>0){                            
-                        var mostrar = "";
-                        var indice = 0;   
+                    url: xurl,
+                    type: 'POST',
+                    data: JSON.stringify(array),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    async: true,
+                    crossdomain: true,
+                    beforeSend: function() { //alert("before");
+                        showLoading(); 
+                    },        
+                    complete: function() { //alert("cmplete");
+                        hideLoading(); 
+                    },            
+                    success: function(data){
+                        $("#items").empty();
+
+                        if(data.quantity>0){                            
+                            var mostrar = "";
+                            var indice = 0;   
                             
-                        $(data.report).each(function(index, value){
-                            var goalAmount = value.goalAmount;
-                            var goalAmountGlobal = value.goalAmountGlobal;
-                            var payTotal = value.payTotal;
-                            var payTotalGlobal = value.payTotalGlobal;  
-                            var storeName = value.storeName;
-                            var color = "";
-                            var colorGlobal = "";
-                            var percent = (payTotal * 100)/goalAmount;
-                            var percentGlobal = (payTotalGlobal * 100)/goalAmountGlobal;
+                            $(data.report).each(function(index, value){
+                                var goalAmount = value.goalAmount;
+                                var goalAmountGlobal = value.goalAmountGlobal;
+                                var payTotal = value.payTotal;
+                                var payTotalGlobal = value.payTotalGlobal;  
+                                var storeName = value.storeName;
+                                var color = "";
+                                var colorGlobal = "";
+                                var percent = (payTotal * 100)/goalAmount;
+                                var percentGlobal = (payTotalGlobal * 100)/goalAmountGlobal;
 
-                            if(payTotal=="0.00000" || goalAmount=="0.00000"){
-                                percent = "0.00";
-                            }
+                                if(payTotal=="0.00000" || goalAmount=="0.00000"){
+                                    percent = "0.00";
+                                }
 
-                            if(payTotalGlobal=="0.00000" || goalAmountGlobal=="0.00000"){
-                                percentGlobal = "0.00";
-                            }
+                                if(payTotalGlobal=="0.00000" || goalAmountGlobal=="0.00000"){
+                                    percentGlobal = "0.00";
+                                }
 
-                            if(percent < 75){
-                                color = "percentage red";
-                            }
+                                if(percent < 75){
+                                    color = "percentage red";
+                                }
 
-                            if(percent > 74 && percent < 100){
-                                color = "percentage ambar";
-                            }
+                                if(percent > 74 && percent < 100){
+                                    color = "percentage ambar";
+                                }
 
-                            if(percent > 99){
-                                color = "percentage green";
-                            }
+                                if(percent > 99){
+                                    color = "percentage green";
+                                }
 
-                            if(goalAmount=="0.00000" && payTotal>"0.00000"){
-                                color = "percentage green";
-                            }
+                                if(goalAmount=="0.00000" && payTotal>"0.00000"){
+                                    color = "percentage green";
+                                }
 
-                            if(percentGlobal < 75){
-                                colorGlobal = "percentage red";
-                            }
+                                if(percentGlobal < 75){
+                                    colorGlobal = "percentage red";
+                                }
 
-                            if(percentGlobal > 74 && percentGlobal < 100){
-                                colorGlobal = "percentage ambar";
-                            }
+                                if(percentGlobal > 74 && percentGlobal < 100){
+                                    colorGlobal = "percentage ambar";
+                                }
 
-                            if(percentGlobal > 99){
-                                colorGlobal = "percentage green";
-                            }
+                                if(percentGlobal > 99){
+                                    colorGlobal = "percentage green";
+                                }
 
-                            if(goalAmountGlobal=="0.00000" && payTotalGlobal>"0.00000"){
-                                colorGlobal = "percentage green";
-                            }
+                                if(goalAmountGlobal=="0.00000" && payTotalGlobal>"0.00000"){
+                                    colorGlobal = "percentage green";
+                                }
 
-                            percent = parseFloat(percent).toFixed();
-                            percentGlobal = parseFloat(percentGlobal).toFixed();
+                                percent = parseFloat(percent).toFixed();
+                                percentGlobal = parseFloat(percentGlobal).toFixed();
 
-                            mostrar += "<ul class='col-xs-12' onclick=\"prueba('-"+indice+"')\">";
+                                mostrar += "<ul class='col-xs-12' onclick=\"prueba('-"+indice+"')\">";
 
-                                mostrar += "<li>";
+                                    mostrar += "<li>";
 
-                                    mostrar += "<h1 class='store-name'>"+storeName+"</h1>";
+                                        mostrar += "<h1 class='store-name'>"+storeName+"</h1>";
 
-                                    mostrar += "<div class='actual'>";
+                                        mostrar += "<div class='actual'>";
 
-                                        mostrar += "<p class='type'>A:</p>";
-                                        mostrar += "<p class='gol-number'>"+parseFloat(goalAmount).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
-                                        mostrar += "<p class='sale-number'>"+parseFloat(payTotal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
-                                        mostrar += "<p class='"+color+"'>"+percent+" %</p>";
+                                            mostrar += "<p class='type'>A:</p>";
+                                            mostrar += "<p class='gol-number'>"+parseFloat(goalAmount).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
+                                            mostrar += "<p class='sale-number'>"+parseFloat(payTotal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
+                                            mostrar += "<p class='"+color+"'>"+percent+" %</p>";
 
-                                    mostrar += "</div>";
+                                        mostrar += "</div>";
 
-                                    mostrar += "<div class='global'>";
+                                        mostrar += "<div class='global'>";
 
-                                        mostrar += "<p class='type'>G:</p>";
-                                        mostrar += "<p class='gol-number'>"+parseFloat(goalAmountGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
-                                        mostrar += "<p class='sale-number'>"+parseFloat(payTotalGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
-                                        mostrar += "<p class='"+colorGlobal+"'>"+percentGlobal+" %</p>";
+                                            mostrar += "<p class='type'>G:</p>";
+                                            mostrar += "<p class='gol-number'>"+parseFloat(goalAmountGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
+                                            mostrar += "<p class='sale-number'>"+parseFloat(payTotalGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
+                                            mostrar += "<p class='"+colorGlobal+"'>"+percentGlobal+" %</p>";
 
-                                    mostrar += "</div>";
+                                        mostrar += "</div>";
                                 
-                            var j = 0;
-                            var array_description = [];
-                            var array_total = [];
+                                var j = 0;
+                                var array_description = [];
+                                var array_total = [];
+                                $(value.info).each(function(index, value){
+                                    var info = value.info;
+                                    var total = value.total; 
 
-                            $(value.info).each(function(index, value){
-                                var info = value.info;
-                                var total = value.total; 
+                                    array_description[j] = info;
+                                    array_total[j] = total;
 
-                                array_description[j] = info;
-                                array_total[j] = total;
-
-                                j++;   
-                            });  
+                                    j++;   
+                                  });  
 
                                     
-                                    mostrar += "<div id='chartdiv-"+indice+"' class='chartdiv-"+indice+"'></div>";
+                                    mostrar += "<div id='graph-"+indice+"' class='graphic-"+indice+"'><div id='chartdiv-"+indice+"' class='chartdiv-"+indice+"'></div>";
 
-                                    mostrar += "<div class='detalle-"+indice+"'>";
+                                        mostrar += "<div class='detalle-"+indice+"'>";
 
-                                        mostrar += "<div class='year'>Año</div><div class='quantity'>Cantidad</div>";
-                                        mostrar += "<span>"+array_description[0]+"</span><span>"+parseFloat(array_total[0]).toFixed()+"</span>";
-                                        mostrar += "<span>"+array_description[1]+"</span><span>"+parseFloat(array_total[1]).toFixed()+"</span>";
-                                        mostrar += "<span>"+array_description[2]+"</span><span>"+parseFloat(array_total[2]).toFixed()+"</span>";
+                                            mostrar += "<div class='year'>Año</div><div class='quantity'>Cantidad</div>";
+                                            mostrar += "<span>"+array_description[0]+"</span><span>"+parseFloat(array_total[0]).toFixed()+"</span>";
+                                            mostrar += "<span>"+array_description[1]+"</span><span>"+parseFloat(array_total[1]).toFixed()+"</span>";
+                                            mostrar += "<span>"+array_description[2]+"</span><span>"+parseFloat(array_total[2]).toFixed()+"</span>";
 
-                                    mostrar += "</div>";
+                                        mostrar += "</div></div>";
                                     
-                                mostrar += "</li>";
+                                    mostrar += "</li>";
 
-                            mostrar += "</ul>"; 
+                                mostrar += "</ul>"; 
                                 
 
-                            $("#items").append(mostrar); 
+                                $("#items").append(mostrar); 
                                 
-                            drawGraphic(array_description[0], array_description[1], array_description[2], 
-                                array_total[0], array_total[1], array_total[2], indice);
+                                drawGraphic(array_description[0], array_description[1], array_description[2], 
+                                    array_total[0], array_total[1], array_total[2], indice);
                                 
-                            mostrar="";
-                            indice++; 
-                        });
-                    }
-                    
-                },
-                error:function (xhr, ajaxOptions, thrownError){
-                    console.log(xhr.status);
-                    console.log(xhr.statusText);
-                    console.log(xhr.responseText);
-                    hideLoading(); 
-                    mostrarModalGeneral(MSG_CONNECTION_FAILURE());
-                }                  
-            });
-            
+                                mostrar="";
+                                indice++; 
+                              });
+                        }
+                    },
+                    error:function (xhr, ajaxOptions, thrownError){
+                        console.log(xhr.status);
+                        console.log(xhr.statusText);
+                        console.log(xhr.responseText);
+                        hideLoading(); 
+                        mostrarModalGeneral(MSG_CONNECTION_FAILURE());
+                    }                   
+                });
+
     //}   
 }
 
@@ -300,11 +298,7 @@ function downloadGoalLoad(regionCode){
     
     var query = "SELECT "+KEY_URLBASE+" FROM "+TABLE_URL+" WHERE "+KEY_USE+" = 1;";
     console.log(" "+query);
-
-    if(regionCode=="R-1"){
-        regionCode="";
-    }
-    
+    try {
         localDB.transaction(function(transaction){        
             transaction.executeSql(query, [], function(transaction, results){            
                 var url_ = results.rows.item(0).urlBase;
@@ -315,345 +309,153 @@ function downloadGoalLoad(regionCode){
                 console.log("array : optionCode"+1+" - regionCode: "+regionCode);
 
                 $.ajax({
-                url: xurl,
-                type: 'POST',
-                data: JSON.stringify(array),
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json',
-                async: true,
-                crossdomain: true,
-                beforeSend: function(){
-                    showLoading(); 
-                },        
-                complete: function(){
-                    hideLoading(); 
-                },
-                success: function(data, textStatus, XMLHttpRequest){
-                    
-                    $("#items").empty();
-                    $('.modal-backdrop').remove();  
-                    if(data.quantity>0){                            
-                        var mostrar = "";
-                        var indice = 0;   
+                    url: xurl,
+                    type: 'POST',
+                    data: JSON.stringify(array),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    async: true,
+                    crossdomain: true,
+                    beforeSend: function() { //alert("before");
+                        showLoading(); 
+                    },        
+                    complete: function() { //alert("cmplete");
+                        hideLoading(); 
+                    },                   
+                    success: function(data){
+                        $("#items").empty();
+
+                        if(data.quantity>0){                            
+                            var mostrar = "";
+                            var indice = 0;   
                             
-                        $(data.report).each(function(index, value){
-                            var goalAmount = value.goalAmount;
-                            var goalAmountGlobal = value.goalAmountGlobal;
-                            var payTotal = value.payTotal;
-                            var payTotalGlobal = value.payTotalGlobal;  
-                            var storeName = value.storeName;
-                            var color = "";
-                            var colorGlobal = "";
-                            var percent = (payTotal * 100)/goalAmount;
-                            var percentGlobal = (payTotalGlobal * 100)/goalAmountGlobal;
+                            $(data.report).each(function(index, value){
+                                var goalAmount = value.goalAmount;
+                                var goalAmountGlobal = value.goalAmountGlobal;
+                                var payTotal = value.payTotal;
+                                var payTotalGlobal = value.payTotalGlobal;  
+                                var storeName = value.storeName;
+                                var color = "";
+                                var colorGlobal = "";
+                                var percent = (payTotal * 100)/goalAmount;
+                                var percentGlobal = (payTotalGlobal * 100)/goalAmountGlobal;
 
-                            if(payTotal=="0.00000" || goalAmount=="0.00000"){
-                                percent = "0.00";
-                            }
+                                if(payTotal=="0.00000" || goalAmount=="0.00000"){
+                                    percent = "0.00";
+                                }
 
-                            if(payTotalGlobal=="0.00000" || goalAmountGlobal=="0.00000"){
-                                percentGlobal = "0.00";
-                            }
+                                if(payTotalGlobal=="0.00000" || goalAmountGlobal=="0.00000"){
+                                    percentGlobal = "0.00";
+                                }
 
-                            if(percent < 75){
-                                color = "percentage red";
-                            }
+                                if(percent < 75){
+                                    color = "percentage red";
+                                }
 
-                            if(percent > 74 && percent < 100){
-                                color = "percentage ambar";
-                            }
+                                if(percent > 74 && percent < 100){
+                                    color = "percentage ambar";
+                                }
 
-                            if(percent > 99){
-                                color = "percentage green";
-                            }
+                                if(percent > 99){
+                                    color = "percentage green";
+                                }
 
-                            if(goalAmount=="0.00000" && payTotal>"0.00000"){
-                                color = "percentage green";
-                            }
+                                if(goalAmount=="0.00000" && payTotal>"0.00000"){
+                                    color = "percentage green";
+                                }
 
-                            if(percentGlobal < 75){
-                                colorGlobal = "percentage red";
-                            }
+                                if(percentGlobal < 75){
+                                    colorGlobal = "percentage red";
+                                }
 
-                            if(percentGlobal > 74 && percentGlobal < 100){
-                                colorGlobal = "percentage ambar";
-                            }
+                                if(percentGlobal > 74 && percentGlobal < 100){
+                                    colorGlobal = "percentage ambar";
+                                }
 
-                            if(percentGlobal > 99){
-                                colorGlobal = "percentage green";
-                            }
+                                if(percentGlobal > 99){
+                                    colorGlobal = "percentage green";
+                                }
 
-                            if(goalAmountGlobal=="0.00000" && payTotalGlobal>"0.00000"){
-                                colorGlobal = "percentage green";
-                            }
+                                if(goalAmountGlobal=="0.00000" && payTotalGlobal>"0.00000"){
+                                    colorGlobal = "percentage green";
+                                }
 
-                            percent = parseFloat(percent).toFixed();
-                            percentGlobal = parseFloat(percentGlobal).toFixed();
+                                percent = parseFloat(percent).toFixed();
+                                percentGlobal = parseFloat(percentGlobal).toFixed();
 
-                            mostrar += "<ul class='col-xs-12' onclick=\"prueba('-"+indice+"')\">";
+                                mostrar += "<ul class='col-xs-12' onclick=\"prueba('-"+indice+"')\">";
 
-                                mostrar += "<li>";
+                                    mostrar += "<li>";
 
-                                    mostrar += "<h1 class='store-name'>"+storeName+"</h1>";
+                                        mostrar += "<h1 class='store-name'>"+storeName+"</h1>";
 
-                                    mostrar += "<div class='actual'>";
+                                        mostrar += "<div class='actual'>";
 
-                                        mostrar += "<p class='type'>A:</p>";
-                                        mostrar += "<p class='gol-number'>"+parseFloat(goalAmount).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
-                                        mostrar += "<p class='sale-number'>"+parseFloat(payTotal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
-                                        mostrar += "<p class='"+color+"'>"+percent+" %</p>";
+                                            mostrar += "<p class='type'>A:</p>";
+                                            mostrar += "<p class='gol-number'>"+parseFloat(goalAmount).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
+                                            mostrar += "<p class='sale-number'>"+parseFloat(payTotal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
+                                            mostrar += "<p class='"+color+"'>"+percent+" %</p>";
 
-                                    mostrar += "</div>";
+                                        mostrar += "</div>";
 
-                                    mostrar += "<div class='global'>";
+                                        mostrar += "<div class='global'>";
 
-                                        mostrar += "<p class='type'>G:</p>";
-                                        mostrar += "<p class='gol-number'>"+parseFloat(goalAmountGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
-                                        mostrar += "<p class='sale-number'>"+parseFloat(payTotalGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
-                                        mostrar += "<p class='"+colorGlobal+"'>"+percentGlobal+" %</p>";
+                                            mostrar += "<p class='type'>G:</p>";
+                                            mostrar += "<p class='gol-number'>"+parseFloat(goalAmountGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
+                                            mostrar += "<p class='sale-number'>"+parseFloat(payTotalGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
+                                            mostrar += "<p class='"+colorGlobal+"'>"+percentGlobal+" %</p>";
 
-                                    mostrar += "</div>";
+                                        mostrar += "</div>";
                                 
-                            var j = 0;
-                            var array_description = [];
-                            var array_total = [];
+                                var j = 0;
+                                var array_description = [];
+                                var array_total = [];
+                                $(value.info).each(function(index, value){
+                                    var info = value.info;
+                                    var total = value.total; 
 
-                            $(value.info).each(function(index, value){
-                                var info = value.info;
-                                var total = value.total; 
+                                    array_description[j] = info;
+                                    array_total[j] = total;
 
-                                array_description[j] = info;
-                                array_total[j] = total;
-
-                                j++;   
-                            });  
+                                    j++;   
+                                  });  
 
                                     
                                     mostrar += "<div id='chartdiv-"+indice+"' class='chartdiv-"+indice+"'></div>";
 
-                                    mostrar += "<div class='detalle-"+indice+"'>";
+                                        mostrar += "<div class='detalle-"+indice+"'>";
 
-                                        mostrar += "<div class='year'>Año</div><div class='quantity'>Cantidad</div>";
-                                        mostrar += "<span>"+array_description[0]+"</span><span>"+parseFloat(array_total[0]).toFixed()+"</span>";
-                                        mostrar += "<span>"+array_description[1]+"</span><span>"+parseFloat(array_total[1]).toFixed()+"</span>";
-                                        mostrar += "<span>"+array_description[2]+"</span><span>"+parseFloat(array_total[2]).toFixed()+"</span>";
+                                            mostrar += "<div class='year'>Año</div><div class='quantity'>Cantidad</div>";
+                                            mostrar += "<span>"+array_description[0]+"</span><span>"+parseFloat(array_total[0]).toFixed()+"</span>";
+                                            mostrar += "<span>"+array_description[1]+"</span><span>"+parseFloat(array_total[1]).toFixed()+"</span>";
+                                            mostrar += "<span>"+array_description[2]+"</span><span>"+parseFloat(array_total[2]).toFixed()+"</span>";
 
-                                    mostrar += "</div>";
+                                        mostrar += "</div>";
                                     
-                                mostrar += "</li>";
+                                    mostrar += "</li>";
 
-                            mostrar += "</ul>"; 
+                                mostrar += "</ul>"; 
                                 
 
-                            $("#items").append(mostrar); 
+                                $("#items").append(mostrar); 
                                 
-                            drawGraphic(array_description[0], array_description[1], array_description[2], 
-                                array_total[0], array_total[1], array_total[2], indice);
+                                drawGraphic(array_description[0], array_description[1], array_description[2], 
+                                    array_total[0], array_total[1], array_total[2], indice);
                                 
-                            mostrar="";
-                            indice++; 
-                        });
-                    }else{
-                        console.log("No existe data");
+                                mostrar="";
+                                indice++; 
+                              });
+                        }
                     }
-                    
-                },
-                error:function (xhr, ajaxOptions, thrownError){
-                    console.log(xhr.status);
-                    console.log(xhr.statusText);
-                    console.log(xhr.responseText);
-                    hideLoading(); 
-                    mostrarModalGeneral(MSG_CONNECTION_FAILURE());
-                }                  
                 });
 
             },function(transaction, error){
                 console.log("Error: " + error.code + "<br>Mensage: " + error.message);
             });
         });
-}
-
-function downloadGoalReload(regionCode){    
-    
-    var query = "SELECT "+KEY_URLBASE+" FROM "+TABLE_URL+" WHERE "+KEY_USE+" = 1;";
-    console.log(" "+query);
-    
-    var regionCode = $("ul.select-region li:first-child()").attr("data-value");
-    console.log("region seleccionada downloadGoalReload"+regionCode);
-
-    var optionCode = $("ul.select-date li:first-child()").attr("data-value");
-    console.log("option seleccionada downloadGoalReload"+optionCode);
-
-    if(regionCode=="R-1"){
-        regionCode="";
-    }
-    
-        localDB.transaction(function(transaction){        
-            transaction.executeSql(query, [], function(transaction, results){            
-                var url_ = results.rows.item(0).urlBase;
-                
-                var xurl = url_+'/reportgoal/post';
-                console.log("url downloadGoalLoad "+xurl);
-                var array = {option: 1, regionCode: regionCode};
-                console.log("array : optionCode"+1+" - regionCode: "+regionCode);
-
-                $.ajax({
-                url: xurl,
-                type: 'POST',
-                data: JSON.stringify(array),
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json',
-                async: true,
-                crossdomain: true,
-                beforeSend: function(){
-                    showLoading(); 
-                },        
-                complete: function(){
-                    hideLoading(); 
-                },
-                success: function(data, textStatus, XMLHttpRequest){
-                    
-                    $("#items").empty();
-                    $('.modal-backdrop').remove();  
-                    if(data.quantity>0){                            
-                        var mostrar = "";
-                        var indice = 0;   
-                            
-                        $(data.report).each(function(index, value){
-                            var goalAmount = value.goalAmount;
-                            var goalAmountGlobal = value.goalAmountGlobal;
-                            var payTotal = value.payTotal;
-                            var payTotalGlobal = value.payTotalGlobal;  
-                            var storeName = value.storeName;
-                            var color = "";
-                            var colorGlobal = "";
-                            var percent = (payTotal * 100)/goalAmount;
-                            var percentGlobal = (payTotalGlobal * 100)/goalAmountGlobal;
-
-                            if(payTotal=="0.00000" || goalAmount=="0.00000"){
-                                percent = "0.00";
-                            }
-
-                            if(payTotalGlobal=="0.00000" || goalAmountGlobal=="0.00000"){
-                                percentGlobal = "0.00";
-                            }
-
-                            if(percent < 75){
-                                color = "percentage red";
-                            }
-
-                            if(percent > 74 && percent < 100){
-                                color = "percentage ambar";
-                            }
-
-                            if(percent > 99){
-                                color = "percentage green";
-                            }
-
-                            if(goalAmount=="0.00000" && payTotal>"0.00000"){
-                                color = "percentage green";
-                            }
-
-                            if(percentGlobal < 75){
-                                colorGlobal = "percentage red";
-                            }
-
-                            if(percentGlobal > 74 && percentGlobal < 100){
-                                colorGlobal = "percentage ambar";
-                            }
-
-                            if(percentGlobal > 99){
-                                colorGlobal = "percentage green";
-                            }
-
-                            if(goalAmountGlobal=="0.00000" && payTotalGlobal>"0.00000"){
-                                colorGlobal = "percentage green";
-                            }
-
-                            percent = parseFloat(percent).toFixed();
-                            percentGlobal = parseFloat(percentGlobal).toFixed();
-
-                            mostrar += "<ul class='col-xs-12' onclick=\"prueba('-"+indice+"')\">";
-
-                                mostrar += "<li>";
-
-                                    mostrar += "<h1 class='store-name'>"+storeName+"</h1>";
-
-                                    mostrar += "<div class='actual'>";
-
-                                        mostrar += "<p class='type'>A:</p>";
-                                        mostrar += "<p class='gol-number'>"+parseFloat(goalAmount).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
-                                        mostrar += "<p class='sale-number'>"+parseFloat(payTotal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
-                                        mostrar += "<p class='"+color+"'>"+percent+" %</p>";
-
-                                    mostrar += "</div>";
-
-                                    mostrar += "<div class='global'>";
-
-                                        mostrar += "<p class='type'>G:</p>";
-                                        mostrar += "<p class='gol-number'>"+parseFloat(goalAmountGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
-                                        mostrar += "<p class='sale-number'>"+parseFloat(payTotalGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
-                                        mostrar += "<p class='"+colorGlobal+"'>"+percentGlobal+" %</p>";
-
-                                    mostrar += "</div>";
-                                
-                            var j = 0;
-                            var array_description = [];
-                            var array_total = [];
-
-                            $(value.info).each(function(index, value){
-                                var info = value.info;
-                                var total = value.total; 
-
-                                array_description[j] = info;
-                                array_total[j] = total;
-
-                                j++;   
-                            });  
-
-                                    
-                                    mostrar += "<div id='chartdiv-"+indice+"' class='chartdiv-"+indice+"'></div>";
-
-                                    mostrar += "<div class='detalle-"+indice+"'>";
-
-                                        mostrar += "<div class='year'>Año</div><div class='quantity'>Cantidad</div>";
-                                        mostrar += "<span>"+array_description[0]+"</span><span>"+parseFloat(array_total[0]).toFixed()+"</span>";
-                                        mostrar += "<span>"+array_description[1]+"</span><span>"+parseFloat(array_total[1]).toFixed()+"</span>";
-                                        mostrar += "<span>"+array_description[2]+"</span><span>"+parseFloat(array_total[2]).toFixed()+"</span>";
-
-                                    mostrar += "</div>";
-                                    
-                                mostrar += "</li>";
-
-                            mostrar += "</ul>"; 
-                                
-
-                            $("#items").append(mostrar); 
-                                
-                            drawGraphic(array_description[0], array_description[1], array_description[2], 
-                                array_total[0], array_total[1], array_total[2], indice);
-                                
-                            mostrar="";
-                            indice++; 
-                        });
-                    }else{
-                        console.log("No existe data");
-                    }
-                    
-                },
-                error:function (xhr, ajaxOptions, thrownError){
-                    console.log(xhr.status);
-                    console.log(xhr.statusText);
-                    console.log(xhr.responseText);
-                    hideLoading(); 
-                    mostrarModalGeneral(MSG_CONNECTION_FAILURE());
-                }                  
-                });
-
-            },function(transaction, error){
-                console.log("Error: " + error.code + "<br>Mensage: " + error.message);
-            });
-        });
+    } catch (e) {
+        console.log("Error getUrlBase " + e + ".");
+    }  
 }
 
 function existsData(){
@@ -1010,7 +812,7 @@ function getRegionCode(){
                                     if(regionCode!=url){
                                         AddRegion(regionCode);
                                     }
-                                    downloadGoalLoad(regionCode);
+                                    downloadGoal();
                                 }, function(transaction, error){
                                     console.log("Error: " + error.code + "<br>Mensage: " + error.message);
                                 });
@@ -1058,11 +860,12 @@ function loadRegionCodeSuccess(tx, results){
         console.log("loadRegionCodeSuccess: "+total);
 
         if(total>0){                        
-            loadRegionCode2();
+            //loadRegionCode2();
         }else{
             downloadGoal();
         }
 }
+
 
 function loadRegionCode2(){
     localDB.transaction(loadRegionCode2Consulta, errorDB);
@@ -1087,10 +890,12 @@ function loadRegionCode2Success(tx, results){
 
         var allOptions2 = $("ul.select-region").children('li:not(.init)');
         allOptions2.removeClass('selected');
+        allOptions2.removeClass('selected');
         $("ul.select-region li#"+url).addClass('selected');
         $("ul.select-region").children('.init').html($("ul.select-region li#"+url).html());
         downloadGoalLoad(url);
-    //}  
+    //}
+    
 }
 
 function errorDB(err){
@@ -1211,6 +1016,7 @@ function validIP(ip, port, _url, alias, use, site){
         */
     });
 }
+
 
 function selectOption(){    
     var value = $(this).attr("data-value");    

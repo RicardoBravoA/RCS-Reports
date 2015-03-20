@@ -440,7 +440,7 @@ option.option-style:focus{
 
 #alias {
     float: right;
-    width: 65px;
+    width: 102px;
     height: 45px;
     background-color: transparent;
     border: 0px solid #fff;
@@ -645,7 +645,7 @@ h1.store-name{
 }
 ul.col-xs-12 {
   list-style-type: none;
-    height: 286px;
+/*    height: 286px;*/
 }
 .actual .type, .global .type{
     float: left;
@@ -684,19 +684,33 @@ ul.col-xs-12 {
     -o-transform: translate(0px, -8px);
     -ms-transform: translate(0px, -8px);
 }
+.global .type, .global .gol-number{
+    line-height: 21px;   
+}
+.global .sale-number{
+    line-height: 18px;
+}
+div[class^="graphic-"]
+{
+    height: 0;
+    width: 100%;
+    overflow-y: scroll;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+}
 div[class^="chartdiv-"]
 {
     float: left;
     width: 60%;
     height: 150px;
-    border-bottom: 1px solid #bbb;
+/*    border-bottom: 1px solid #bbb;*/
 }
 div[class^="detalle-"]{
     float: left;
     width: 40%;
     padding-top: 4%;
     height: 150px;
-    border-bottom: 1px solid #bbb;
+/*    border-bottom: 1px solid #bbb;*/
 }
 div[class^="detalle-"] .year, div[class^="detalle-"] .quantity{
     float: left;
@@ -714,6 +728,16 @@ div[class^="detalle-"] span{
     text-align: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
+div[class^="graphic-"].toogleChart
+{
+    height: 160px !important;
+    width: 100%;
+    overflow-y: hidden !important;
+}
+.global p{
+  margin: 0 0 4px !important;
+}
+
 .item.open{
     display: block;
 }
@@ -955,8 +979,8 @@ body.modal-open .container{
 
 /* Landscape phones and down */
 @media (max-width: 420px) {
-    ul.col-xs-12 {
-        height: 254px;
+    .global p{
+        margin: 0 0 10px;
     }
     .row.stores{
         padding-bottom: 230px;

@@ -41,18 +41,30 @@ $("ul.select-region").on("click", "li:not(.init)", function() {
 });
 
 function prueba(detalle){
-    var altura = $('#detail'+detalle).height();
+    var altura = $('#graph'+detalle).height();
     
+//    if(altura>0){
+//        $('.panel').removeClass("open");
+//        $('.back-item').removeClass("mostrar");
+//    }else{
+//        $('.panel').removeClass("open");
+//        $('.back-item').removeClass("mostrar");
+//        $('#panel'+detalle).toggleClass("open");
+//        $('#detail'+detalle).toggleClass("mostrar");  
+//    }     
     if(altura>0){
-        $('.panel').removeClass("open");
-        $('.back-item').removeClass("mostrar");
+        $('#graph'+detalle).removeClass("toogleChart");
     }else{
-        $('.panel').removeClass("open");
-        $('.back-item').removeClass("mostrar");
-        $('#panel'+detalle).toggleClass("open");
-        $('#detail'+detalle).toggleClass("mostrar");  
+        for(var i=0;i<=9999;i++){
+            if("#graph-"+i+"".length){
+                $('#graph-'+i).removeClass("toogleChart");
+            }else{
+                i = 9999;
+            }
+        }
+        
+        $('#graph'+detalle).toggleClass('toogleChart');  
     }   
-    
 }
 
 function selectAlias(){    
@@ -149,42 +161,8 @@ function showLoading(){
     $("#txtloading").html(MSG_LOADING());
 }
 
-function showLoading2(){    
-    $("#show_loading2").on("show", function() {   
-        $("#show_loading2 a.btn").on("click", function(e) {
-            $("#show_loading2").modal('hide');  
-        });
-    });
-    $("#show_loading2").on("show", function() {   
-        $("#show_loading2 a.btn").on("click", function(e) {
-            $("#show_loading2").modal('hide');  
-        });
-    });
-
-    $("#show_loading2").on("hide", function() {    
-        $("#show_loading2 a.btn").off("click");
-    });
-
-    $("#show_loading2").on("hidden", function() {  // eliminar los elementos reales de la DOM cuando está completamente oculto
-        $("#show_loading2").remove();
-    });
-
-    $("#show_loading2").modal({                    // cablear la funcionalidad real modal y mostrar el cuadro de diálogo
-      "backdrop"  : "static",
-      "keyboard"  : true,
-      "show"      : true                     // garantizar el modal se muestra inmediatamente
-    });
-
-    $("#txtloading2").html(MSG_LOADING());
-}
-
 function hideLoading(){    
     $("#txtocultaloading").click();
-    //$('.modal-backdrop').remove();    
-}
-
-function hideLoading2(){    
-    $("#txtocultaloading2").click();
     //$('.modal-backdrop').remove();    
 }
 
