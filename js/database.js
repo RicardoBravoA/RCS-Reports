@@ -331,6 +331,7 @@ function downloadGoalLoad(regionCode){
                     success: function(data){
                         $("#items").empty();
                         $('.modal-backdrop').remove();  
+
                         if(data.quantity>0){                            
                             var mostrar = "";
                             var indice = 0;   
@@ -427,7 +428,7 @@ function downloadGoalLoad(regionCode){
                                   });  
 
                                     
-                                    mostrar += "<div id='chartdiv-"+indice+"' class='chartdiv-"+indice+"'></div>";
+                                    mostrar += "<div id='graph-"+indice+"' class='graphic-"+indice+"'><div id='chartdiv-"+indice+"' class='chartdiv-"+indice+"'></div>";
 
                                         mostrar += "<div class='detalle-"+indice+"'>";
 
@@ -436,7 +437,7 @@ function downloadGoalLoad(regionCode){
                                             mostrar += "<span>"+array_description[1]+"</span><span>"+parseFloat(array_total[1]).toFixed()+"</span>";
                                             mostrar += "<span>"+array_description[2]+"</span><span>"+parseFloat(array_total[2]).toFixed()+"</span>";
 
-                                        mostrar += "</div>";
+                                        mostrar += "</div></div>";
                                     
                                     mostrar += "</li>";
 
