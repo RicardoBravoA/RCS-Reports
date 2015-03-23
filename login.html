@@ -45,7 +45,12 @@
             console.log("chkremember "+check);
 
             if(pin.length>0){
-              validData(pin, check);
+              if(checkNetConnection()==true){
+                validData(pin, check);
+              }else{
+                mostrarModalGeneral(MSG_CONNECTION_FAILURE());
+              }
+              
             }else{
               mostrarModalGeneral(MSG_INSERT_PIN());
             }

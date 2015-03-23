@@ -2,6 +2,7 @@ var localDB = 'RCS';
 
 var TABLE_URL = "URLSTORE";
 var TABLE_CONFIGURATION = "CONFIGURATION";
+var TABLE_PREFERENCES = "PREFERENCES";
 var TABLE_REGION = "REGION";
 var KEY_ID = "id";
 var KEY_IP = "ip";
@@ -11,6 +12,10 @@ var KEY_ALIAS = "alias";
 var KEY_USE="use";
 var KEY_SITE="site";
 var KEY_REMEMBER="site";
+var KEY_ACTUAL="actual";
+var KEY_GLOBAL="global";
+var KEY_TOTAL="total";
+var KEY_GOALS="sales";
 var KEY_REGIONCODE="regionCode";
 var KEY_IDURL="idUrl";
 
@@ -49,7 +54,10 @@ function createTables(){
                 + KEY_ID + " INTEGER PRIMARY KEY, " + KEY_IP + " TEXT, " + KEY_PORT + " TEXT, " +KEY_URLBASE + " TEXT, "
                 + KEY_ALIAS + " TEXT, "  + KEY_USE + " TEXT, "+KEY_SITE+" TEXT ) ";
         
-    var tableConfiguration = "CREATE TABLE "+TABLE_CONFIGURATION+"("+KEY_REMEMBER+" TEXT)";      
+    var tableConfiguration = "CREATE TABLE "+TABLE_CONFIGURATION+" ("+KEY_REMEMBER+" TEXT)"; 
+
+    var tablePreferences = "CREATE TABLE "+TABLE_PREFERENCES+" ("+KEY_ACTUAL+" TEXT, "+KEY_GLOBAL+" TEXT, "
+                +KEY_TOTAL+" TEXT, "+KEY_GOALS+" TEXT)";      
         
     var tableRegion = "CREATE TABLE "+TABLE_REGION+"("+KEY_ID+" INTEGER PRIMARY KEY, "+KEY_REGIONCODE+" TEXT, "
                 +KEY_IDURL+" TEXT)";        
@@ -86,6 +94,19 @@ function createTables(){
         console.log("Error creando Tabla REGION " + e + ".");
         return;
     }
+
+    try {
+            localDB.transaction(function(transaction){
+            transaction.executeSql(tablePreferences, [], nullDataHandler, errorHandler);
+            console.log("Tabla TABLE_PREFERENCES status: OK.");
+        });
+    } 
+    catch (e) {
+        console.log("Error creando Tabla PREFERENCES " + e + ".");
+        return;
+    }
+
+    addPreferences();
 }
 
 function addData(ip, port, url, alias, use, site){
@@ -105,6 +126,49 @@ function addData(ip, port, url, alias, use, site){
     }catch (e) {
         console.log("Error addData " + e + ".");
     }
+}
+
+function addPreferences(){
+    
+    var query1 = "select count(*) as total from "+TABLE_PREFERENCES;
+    try {
+            localDB.transaction(function(transaction){        
+                transaction.executeSql(query1, [], function(transaction, results){   
+
+                    var total = results.rows.item(0).total; 
+                    console.log("total "+total);   
+
+                    if(total==0){
+
+                        var query = "INSERT INTO "+TABLE_PREFERENCES + " ( " + KEY_ACTUAL + " , " + KEY_GLOBAL 
+                                    + " , " + KEY_TOTAL + ", " + KEY_GOALS +") VALUES (1.0, 0.0, 1.0, 0.0);";
+                        try {
+                            localDB.transaction(function(transaction){
+                                transaction.executeSql(query, [], function(transaction, results){
+                                    if (!results.rowsAffected) {
+                                        console.log("Error no se inserto addPreferences");
+                                    }else{
+                                        console.log("Insert realizado, id: " + results.insertId);
+                                    }
+                                }, errorHandler);
+                            });
+                        }catch (e) {
+                            console.log("Error addPreferences " + e + ".");
+                        }
+
+                    }else{
+                        console.log("Ya se inserto addPreferences");
+                    }
+
+
+                }, function(transaction, error){
+                    console.log("Error: " + error.code + "<br>Mensage: " + error.message);
+                });
+            });
+        } 
+        catch (e) {
+            console.log("Error total " + e + ".");
+        }
 }
 
 function downloadGoal(){
@@ -131,14 +195,43 @@ function downloadGoalSuccess(tx, results){
     if(regionCode=="R-1"){
         regionCode="";
     }
+
+    var actual = "";
+    var global = "";
+    var _sales = "";
+    var _goal = "";
+
+    if($('#check_actual').is(':checked')){
+        actual = 1;
+    }else{
+        actual = 0;
+    }
+
+    if($('#check_global').is(':checked')){
+        global = 1;
+    }else{
+        global = 0;
+    }
+
+    if($('#mostrarTotalDA').is(':checked')){
+        _sales = 1;
+    }else{
+        _sales = 0;
+    }
+
+    if($('#mostrarMetasDA').is(':checked')){
+        _goal = 1;
+    }else{
+        _goal = 0;
+    }
     
     //for(var i=0; i<results.rows.length; i++){
         var data = results.rows.item(0);
         var url_ = data.urlBase;                
         var xurl = url_+'/reportgoal/post';
         console.log("url downloadGoal "+xurl);
-        var array = {option: optionCode, regionCode: regionCode};
-        console.log("array : optionCode"+optionCode+" - regionCode: "+regionCode);
+        var array = {option: optionCode, regionCode: regionCode, goal: _goal, total: _sales};
+        console.log("array : optionCode"+optionCode+" - regionCode1: "+regionCode+" - goal: "+_goal+" - total: "+_sales);
 
 
         console.log("downloadGoalSuccess: "+url_);
@@ -225,6 +318,8 @@ function downloadGoalSuccess(tx, results){
 
                                         mostrar += "<h1 class='store-name'>"+storeName+"</h1>";
 
+                                        if(actual==1){
+
                                         mostrar += "<div class='actual'>";
 
                                             mostrar += "<p class='type'>A:</p>";
@@ -234,6 +329,10 @@ function downloadGoalSuccess(tx, results){
 
                                         mostrar += "</div>";
 
+                                        }
+
+                                        if(global==1){
+
                                         mostrar += "<div class='global'>";
 
                                             mostrar += "<p class='type'>G:</p>";
@@ -242,6 +341,8 @@ function downloadGoalSuccess(tx, results){
                                             mostrar += "<p class='"+colorGlobal+"'>"+percentGlobal+" %</p>";
 
                                         mostrar += "</div>";
+
+                                        }
                                 
                                 var j = 0;
                                 var array_description = [];
@@ -304,6 +405,35 @@ function downloadGoalLoad(regionCode){
         regionCode="";
     }
 
+    var actual = "";
+    var global = "";
+    var _sales = "";
+    var _goal = "";
+
+    if($('#check_actual').is(':checked')){
+        actual = 1;
+    }else{
+        actual = 0;
+    }
+
+    if($('#check_global').is(':checked')){
+        global = 1;
+    }else{
+        global = 0;
+    }
+
+    if($('#mostrarTotalDA').is(':checked')){
+        _sales = 1;
+    }else{
+        _sales = 0;
+    }
+
+    if($('#mostrarMetasDA').is(':checked')){
+        _goal = 1;
+    }else{
+        _goal = 0;
+    }
+
     try {
         localDB.transaction(function(transaction){        
             transaction.executeSql(query, [], function(transaction, results){            
@@ -311,8 +441,9 @@ function downloadGoalLoad(regionCode){
                 
                 var xurl = url_+'/reportgoal/post';
                 console.log("url downloadGoalLoad "+xurl);
-                var array = {option: 1, regionCode: regionCode};
-                console.log("array : optionCode"+1+" - regionCode: "+regionCode);
+
+                var array = {option: 1, regionCode: regionCode, goal: _goal, total: _sales};
+                console.log("array : optionCode"+1+" - regionCode1: "+regionCode+" - goal: "+_goal+" - total: "+_sales);
 
                 $.ajax({
                     url: xurl,
@@ -396,6 +527,8 @@ function downloadGoalLoad(regionCode){
 
                                         mostrar += "<h1 class='store-name'>"+storeName+"</h1>";
 
+                                        if(actual==1){
+
                                         mostrar += "<div class='actual'>";
 
                                             mostrar += "<p class='type'>A:</p>";
@@ -405,6 +538,10 @@ function downloadGoalLoad(regionCode){
 
                                         mostrar += "</div>";
 
+                                        }
+
+                                        if(global==1){
+
                                         mostrar += "<div class='global'>";
 
                                             mostrar += "<p class='type'>G:</p>";
@@ -413,6 +550,8 @@ function downloadGoalLoad(regionCode){
                                             mostrar += "<p class='"+colorGlobal+"'>"+percentGlobal+" %</p>";
 
                                         mostrar += "</div>";
+
+                                        }
                                 
                                 var j = 0;
                                 var array_description = [];
@@ -503,6 +642,134 @@ function updateState(){
             });
     }catch (e) {
         console.log("Error updateState " + e + ".");
+    }
+}
+
+function updateCheckActual(variable){
+
+    var query = "UPDATE " + TABLE_PREFERENCES+" SET "+KEY_ACTUAL+" = ?";
+    
+    try {
+        localDB.transaction(function(transaction){
+            transaction.executeSql(query, [variable], function(transaction, results){
+                if (!results.rowsAffected) {
+                    console.log("Error updateCheckActual");
+                }
+                else{
+                    console.log("updateCheckActual realizado:" + results.rowsAffected);
+                    //$("#actual").val(variable);
+                    downloadGoal();
+                }
+            }, errorHandler);
+        });
+    }catch (e) {
+        console.log("Error updateCheckActual " + e + ".");
+    }
+}
+
+function updateCheckGlobal(variable){
+
+    var query = "UPDATE " + TABLE_PREFERENCES+" SET "+KEY_GLOBAL+" = ?";
+    
+    try {
+        localDB.transaction(function(transaction){
+            transaction.executeSql(query, [variable], function(transaction, results){
+                if (!results.rowsAffected) {
+                    console.log("Error updateCheckGlobal");
+                }
+                else{
+                    console.log("updateCheckGlobal realizado:" + results.rowsAffected);
+                    //$("#global").val(variable);
+                    downloadGoal();
+                }
+            }, errorHandler);
+        });
+    }catch (e) {
+        console.log("Error updateCheckGlobal " + e + ".");
+    }
+}
+
+function updateActual(variable){
+
+    var query = "UPDATE " + TABLE_PREFERENCES+" SET "+KEY_ACTUAL+" = "+variable;
+    
+    try {
+        localDB.transaction(function(transaction){
+            transaction.executeSql(query, [], function(transaction, results){
+                if (!results.rowsAffected) {
+                    console.log("Error updateActual");
+                }
+                else {
+                    console.log("Update realizado:" + results.rowsAffected);
+                    //$("#actual").val(variable);
+                }
+            }, errorHandler);
+        });
+    }catch (e) {
+        console.log("Error updateActual " + e + ".");
+    }
+}
+
+function updateGlobal(variable){
+
+    var query = "UPDATE " + TABLE_PREFERENCES+" SET "+KEY_GLOBAL+" = "+variable;
+    
+    try {
+        localDB.transaction(function(transaction){
+            transaction.executeSql(query, [], function(transaction, results){
+                if (!results.rowsAffected) {
+                    console.log("Error updateGlobal");
+                }
+                else {
+                    console.log("Update realizado:" + results.rowsAffected);
+                    //$("#global").val(variable);
+                }
+            }, errorHandler);
+        });
+    }catch (e) {
+        console.log("Error updateGlobal " + e + ".");
+    }
+}
+
+function updateShowSales(variable){
+
+    var query = "UPDATE " + TABLE_PREFERENCES+" SET "+KEY_TOTAL+" = "+variable;
+    
+    try {
+        localDB.transaction(function(transaction){
+            transaction.executeSql(query, [], function(transaction, results){
+                if (!results.rowsAffected) {
+                    console.log("Error updateShowSales");
+                }
+                else {
+                    console.log("updateShowSales realizado:" + results.rowsAffected);
+                    //$("#global").val(variable);
+                }
+            }, errorHandler);
+        });
+    }catch (e) {
+        console.log("Error updateShowSales " + e + ".");
+    }
+}
+
+function updateShowGoal(variable){
+
+    var query = "UPDATE " + TABLE_PREFERENCES+" SET "+KEY_GOALS+" = "+variable;
+    
+    try {
+        localDB.transaction(function(transaction){
+            transaction.executeSql(query, [], function(transaction, results){
+                if (!results.rowsAffected) {
+                    console.log("Error updateShowGoal");
+                }
+                else {
+                    console.log("updateShowGoal realizado:" + results.rowsAffected);
+                    //$("#global").val(variable);
+                }
+            }, errorHandler);
+        });
+    }catch (e) {
+        console.log("Error updateShowGoal " + e + ".");
     }
 }
 
@@ -847,6 +1114,59 @@ function getRegionCode(){
         }
 }
 
+function getPreferences(){
+    
+    var query1 = "SELECT "+KEY_ACTUAL+", "+KEY_GLOBAL+", "+KEY_TOTAL+", "+KEY_GOALS+" FROM "+TABLE_PREFERENCES;
+
+    try {
+        localDB.transaction(function(transaction){        
+            transaction.executeSql(query1, [], function(transaction, results){   
+
+            var actual = results.rows.item(0).actual;
+            var global = results.rows.item(0).global;
+            var total = results.rows.item(0).total;
+            var sales = results.rows.item(0).sales; 
+
+            if(actual=="1.0" || actual=="1"){
+                $("#check_actual").prop("checked", "checked");
+            }else{
+                $("#check_actual").prop("checked", "");
+            }
+
+            if(global=="1.0" || global=="1"){
+                $("#check_global").prop("checked", "checked");
+            }else{
+                $("#check_global").prop("checked", "");
+            }
+
+            //alert("total: "+total);
+            if(total=="1.0" || total=="1"){
+               $("#mostrarTotalDA").attr("checked",'');
+            }
+
+            if(sales=="1.0" || sales=="1"){
+                $("#mostrarMetasDA").attr("checked", '');
+            }
+            
+            
+            //$("#actual").val(actual);
+            //$("#global").val(global);
+            //$("#total").val(total);
+            //$("#sales").val(sales);
+            
+
+            },function(transaction, error){
+                console.log("Error getActualPreferences: " + error.code + "<br>Mensage: " + error.message);
+            });
+        });
+    } 
+    catch (e) {
+        console.log("Error getActualPreferences " + e + ".");
+    }
+
+    //return actual;
+}
+
 function loadRegionCode(){
     localDB.transaction(loadRegionCodeConsulta, errorDB);
 }
@@ -872,7 +1192,6 @@ function loadRegionCodeSuccess(tx, results){
             downloadGoal();
         }
 }
-
 
 function loadRegionCode2(){
     localDB.transaction(loadRegionCode2Consulta, errorDB);
@@ -901,8 +1220,7 @@ function loadRegionCode2Success(tx, results){
         $("ul.select-region").children('.init').html($("ul.select-region li#"+url).html());
         $("ul.select-region").children('.init').attr("data-value",url);
         downloadGoalLoad(url);
-    //}
-    
+    //} 
 }
 
 function errorDB(err){
@@ -1024,7 +1342,6 @@ function validIP(ip, port, _url, alias, use, site){
     });
 }
 
-
 function selectOption(){    
     var value = $(this).attr("data-value");    
     alert(value);
@@ -1035,7 +1352,6 @@ function showCombo(){
     $('body').addClass('mostrarRegion'); /* varia si existe regiones*/
     loadRegionCode();
 }
-
 
 function loadRegions(){
     localDB.transaction(loadRegionsConsulta, errorDB);
@@ -1094,14 +1410,16 @@ function loadRegionsSuccess(tx, results){
                     }
                 },
                 error:function (xhr, ajaxOptions, thrownError){
+                    mostrarModalGeneral("asasas");
                     console.log(xhr.status);
                     console.log(xhr.statusText);
                     console.log(xhr.responseText);
-                    hideLoading(); 
                     mostrarModalGeneral(MSG_CONNECTION_FAILURE());
+                    //hideLoading(); 
+                    
+                    //alert("sasa");
                 }
             });
-
 }
 
 function validData(pin, check){
@@ -1217,5 +1535,4 @@ function drawGraphic(year1, year2, year3, sales1, sales2, sales3, option){
       }
       */
     });
-
 }

@@ -200,3 +200,47 @@ function mostrarModalGeneral(contenido){
     $("#textgeneral").html(contenido);
     $("#btngeneral").html(MSG_OK());
 }
+
+function moveToLeft(){    
+    $('body').addClass('clean');
+    $('.container').addClass('ocultar');
+    $('.preferences').addClass('move');
+}
+function retornarStores(){    
+    $('body').removeClass('clean');
+    $('.container').removeClass('ocultar');
+    $('.preferences').removeClass('move');
+    
+}
+
+function cambiarTotal(){
+    var valor = $('#mostrarTotalDA').is(':checked');   
+
+    if(valor){
+        var text = "Sales ↓";
+        $('.checkbox_total span').text(text);
+        updateShowSales(1);
+    }else{
+        var text = "Sales ↑";
+        $('.checkbox_total span').text(text);      
+        updateShowSales(0);   
+    }
+
+    downloadGoal();
+
+}
+function cambiarMetas(){
+    var valor2 = $('#mostrarMetasDA').is(':checked');
+    
+    if(valor2){
+        var text2 = "Goals ↓";
+        $('.checkbox_metas span').text(text2);
+        updateShowGoal(1);
+    }else{
+        var text2 = "Goals ↑";
+        $('.checkbox_metas span').text(text2);  
+        updateShowGoal(0);      
+    }
+
+    downloadGoal();
+}

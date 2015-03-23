@@ -67,6 +67,14 @@ function MSG_REMEMBER_PIN(){
 	$("#checktext").html("<div>Remember Pin</div>");
 };
 
+function MSG_TITLE_STORE(){
+	$("#storetitle").html("Goals vs Sales");
+};
+
+function MSG_PREFERENCES_STORE(){
+	$("#txtpreferences").html("Preferences");
+};
+
 function MSG_PIN(){
 	$("#lbllmsg2").html("Pin: ");
 };
