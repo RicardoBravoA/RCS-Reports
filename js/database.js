@@ -42,7 +42,7 @@ function onInit(){
 
 function initDB(){
     var shortName = 'RCS';
-    var version = '3.0';
+    var version = '2.0';
     var displayName = 'RCS Reports';
     var maxSize = 10240; // Em bytes
     localDB = window.openDatabase(shortName, version, displayName, maxSize);
