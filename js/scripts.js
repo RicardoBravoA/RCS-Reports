@@ -229,6 +229,19 @@ function cambiarTotal(){
     downloadGoal();
 
 }
+
+function cambiarTotalNoLoad(){
+    var valor = $('#mostrarTotalDA').is(':checked');   
+
+    if(valor){
+        var text = "Sales ↓";
+        $('.checkbox_total span').text(text);
+    }else{
+        var text = "Sales ↑";
+        $('.checkbox_total span').text(text);      
+    }
+}
+
 function cambiarMetas(){
     var valor2 = $('#mostrarMetasDA').is(':checked');
     
@@ -243,4 +256,16 @@ function cambiarMetas(){
     }
 
     downloadGoal();
+}
+
+function cambiarMetasNoLoad(){
+    var valor2 = $('#mostrarMetasDA').is(':checked');
+    
+    if(valor2){
+        var text2 = "Goals ↓";
+        $('.checkbox_metas span').text(text2);
+    }else{
+        var text2 = "Goals ↑";
+        $('.checkbox_metas span').text(text2);  
+    }
 }

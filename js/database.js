@@ -1148,6 +1148,8 @@ function getPreferences(){
                 $("#mostrarMetasDA").attr("checked", '');
             }
             
+            cambiarTotalNoLoad();
+            cambiarMetasNoLoad();
             
             //$("#actual").val(actual);
             //$("#global").val(global);

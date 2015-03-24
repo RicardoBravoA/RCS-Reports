@@ -167,6 +167,11 @@ label.text-checkbox div{
     display: block;
     float: left;
 }
+.modal-dialog .modal-body p#textgeneral {
+  margin: 0;
+  line-height: 43px;
+  font-size: 18px;
+}
 .checkbox_total{
     margin-top: 15px;
 }
@@ -1080,7 +1085,7 @@ body.modal-open .container{
     margin-top: 0px;
     margin-bottom: 0px;
     padding-top: 10px;
-    padding-bottom: 0px;
+    padding-bottom: 10px;
     font-size: 18px;
 }
 .modal-body{
