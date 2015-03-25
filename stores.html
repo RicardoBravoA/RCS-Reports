@@ -320,16 +320,14 @@
                     <input type="checkbox" name="check_global" id="check_global"><label class="text-checkbox">Show Global</label>
                 </div> 
             </div>
-            <div class="changeOrden">
+            <div class="changeView">
                 <span>Order by</span>
-                <div class="checkbox_total">
-                    <label><span>Sales ↑</span><input type="checkbox" name="optionOrden1" onclick="cambiarTotal();" id="mostrarTotalDA" class="ios-switch" /><div><div></div></div></label>
-<!--                    <label><span>Sales ↑</span><input type="checkbox" name="optionOrden1" id="mostrarTotalDA" class="ios-switch" /><div><div></div></div></label>-->
-                </div>
-                <div class="checkbox_metas">
-                    <label><span>Goals ↑</span><input type="checkbox" name="optionOrden2" onclick="cambiarMetas();" id="mostrarMetasDA" class="ios-switch"/><div><div></div></div></label>
-<!--                    <label><span>Goals ↑</span><input type="checkbox" name="optionOrden2" id="mostrarMetasDA" class="ios-switch"/><div><div></div></div></label>-->
-                </div>
+                <div class="checkbox_view" onclick="cambiarTotal()">
+                    <input type="checkbox" name="check_sales" id="check_sales"><label name="txtchksales" id="txtchksales" class="text-checkbox">Sales ↑</label>
+                </div> 
+                <div class="checkbox_view" onclick="cambiarMetas()">
+                    <input type="checkbox" name="check_goals" id="check_goals"><label name="txtchkgoals" id="txtchkgoals" class="text-checkbox">Goals ↑</label>
+                </div> 
             </div>
         </div>        
     </div>   

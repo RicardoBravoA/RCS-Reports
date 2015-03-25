@@ -1141,11 +1141,11 @@ function getPreferences(){
 
             //alert("total: "+total);
             if(total=="1.0" || total=="1"){
-               $("#mostrarTotalDA").attr("checked",'');
+               $("#check_sales").attr("checked",'');
             }
 
             if(sales=="1.0" || sales=="1"){
-                $("#mostrarMetasDA").attr("checked", '');
+                $("#check_goals").attr("checked", '');
             }
             
             cambiarTotalNoLoad();

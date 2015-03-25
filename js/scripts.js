@@ -215,67 +215,62 @@ function retornarStores(){
     downloadGoal();    
 }
 
-function cambiarTotal(){
-    var valor = $('#mostrarTotalDA').is(':checked');   
+function cambiarTotalNoLoad(){
 
-    if(valor){
+    if($('#check_sales').is(':checked')){
         var text = "Sales ↓";
-        $('.checkbox_total span').text(text);
-        $("#mostrarTotalDA").attr("checked",'');
-        updateShowSales(1);
+        //$("#check_global").prop("checked", "checked");
+        $("#txtchksales").html(text);
+        //updateShowSales(1);
     }else{
         var text = "Sales ↑";
-        $('.checkbox_total span').text(text); 
-        $("#mostrarTotalDA").removeAttr("checked",'');
-        updateShowSales(0);   
+        $("#txtchksales").html(text);
+        //updateShowSales(1);
     }
-
-    //downloadGoal();
 
 }
 
-function cambiarTotalNoLoad(){
-    var valor = $('#mostrarTotalDA').is(':checked');   
+function cambiarMetasNoLoad(){
 
-    if(valor){
-        var text = "Sales ↓";
-        $('.checkbox_total span').text(text);
-        $("#mostrarTotalDA").attr("checked",'');
+    if($('#check_goals').is(':checked')){
+        var text = "Goals ↓";
+        //$("#check_global").prop("checked", "checked");
+        $("#txtchkgoals").html(text);
+        //updateShowGoal(1);
     }else{
-        var text = "Sales ↑";
-        $('.checkbox_total span').text(text);  
-        $("#mostrarTotalDA").removeAttr("checked",'');
+        var text = "Goals ↑";
+        $("#txtchkgoals").html(text);
+        //updateShowGoal(0); 
     }
 }
 
 function cambiarMetas(){
-    var valor2 = $('#mostrarMetasDA').is(':checked');
-    
-    if(valor2){
-        var text2 = "Goals ↓";
-        $('.checkbox_metas span').text(text2);
-        $("#mostrarMetasDA").attr("checked",'');
+
+    if($('#check_goals').is(':checked')){
+        var text = "Goals ↓";
+        //$("#check_global").prop("checked", "checked");
+        $("#txtchkgoals").html(text);
         updateShowGoal(1);
     }else{
-        var text2 = "Goals ↑";
-        $('.checkbox_metas span').text(text2); 
-        $("#mostrarMetasDA").removeAttr("checked",'');
-        updateShowGoal(0);      
+        var text = "Goals ↑";
+        $("#txtchkgoals").html(text);
+        updateShowGoal(0); 
+    }
+
+}
+
+function cambiarTotal(){
+    
+    if($('#check_sales').is(':checked')){
+        var text = "Sales ↓";
+        //$("#check_global").prop("checked", "checked");
+        $("#txtchksales").html(text);
+        updateShowSales(1);
+    }else{
+        var text = "Sales ↑";
+        $("#txtchksales").html(text);
+        updateShowSales(1);
     }
 
     //downloadGoal();
-}
-
-function cambiarMetasNoLoad(){
-    var valor2 = $('#mostrarMetasDA').is(':checked');
-    
-    if(valor2){
-        var text2 = "Goals ↓";
-        $('.checkbox_metas span').text(text2);
-        $("#mostrarMetasDA").attr("checked",'');
-    }else{
-        var text2 = "Goals ↑";
-        $('.checkbox_metas span').text(text2);  
-        $("#mostrarMetasDA").removeAttr("checked",'');
-    }
 }
