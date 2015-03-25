@@ -313,7 +313,6 @@ function downloadGoalSuccess(tx, results){
                                 percentGlobal = parseFloat(percentGlobal).toFixed();
 
                                 mostrar += "<ul class='col-xs-12' onclick=\"prueba('-"+indice+"')\">";
-//                                 mostrar += "<ul class='col-xs-12'>";
 
                                     mostrar += "<li>";
 
@@ -376,7 +375,7 @@ function downloadGoalSuccess(tx, results){
                                 
 
                                 $("#items").append(mostrar); 
-//                                
+                                
                                 drawGraphic(array_description[0], array_description[1], array_description[2], 
                                     array_total[0], array_total[1], array_total[2], indice);
                                 
@@ -523,7 +522,6 @@ function downloadGoalLoad(regionCode){
                                 percentGlobal = parseFloat(percentGlobal).toFixed();
 
                                 mostrar += "<ul class='col-xs-12' onclick=\"prueba('-"+indice+"')\">";
-//                                mostrar += "<ul class='col-xs-12'>";
 
                                     mostrar += "<li>";
 
@@ -586,7 +584,7 @@ function downloadGoalLoad(regionCode){
                                 
 
                                 $("#items").append(mostrar); 
-//                                
+                                
                                 drawGraphic(array_description[0], array_description[1], array_description[2], 
                                     array_total[0], array_total[1], array_total[2], indice);
                                 
@@ -660,7 +658,7 @@ function updateCheckActual(variable){
                 else{
                     console.log("updateCheckActual realizado:" + results.rowsAffected);
                     //$("#actual").val(variable);
-                    downloadGoal();
+                    //downloadGoal();
                 }
             }, errorHandler);
         });
@@ -682,7 +680,7 @@ function updateCheckGlobal(variable){
                 else{
                     console.log("updateCheckGlobal realizado:" + results.rowsAffected);
                     //$("#global").val(variable);
-                    downloadGoal();
+                    //downloadGoal();
                 }
             }, errorHandler);
         });

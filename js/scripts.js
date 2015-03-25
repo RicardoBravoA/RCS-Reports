@@ -206,11 +206,13 @@ function moveToLeft(){
     $('.container').addClass('ocultar');
     $('.preferences').addClass('move');
 }
-function retornarStores(){    
+
+//AQUI
+function retornarStores(){        
     $('body').removeClass('clean');
     $('.container').removeClass('ocultar');
     $('.preferences').removeClass('move');
-    
+    downloadGoal();    
 }
 
 function cambiarTotal(){
@@ -226,7 +228,7 @@ function cambiarTotal(){
         updateShowSales(0);   
     }
 
-    downloadGoal();
+    //downloadGoal();
 
 }
 
@@ -255,7 +257,7 @@ function cambiarMetas(){
         updateShowGoal(0);      
     }
 
-    downloadGoal();
+    //downloadGoal();
 }
 
 function cambiarMetasNoLoad(){
