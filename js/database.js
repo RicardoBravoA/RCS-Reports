@@ -213,13 +213,13 @@ function downloadGoalSuccess(tx, results){
         global = 0;
     }
 
-    if($('#mostrarTotalDA').is(':checked')){
+    if($('#check_sales').is(':checked')){
         _sales = 1;
     }else{
         _sales = 0;
     }
 
-    if($('#mostrarMetasDA').is(':checked')){
+    if($('#check_goals').is(':checked')){
         _goal = 1;
     }else{
         _goal = 0;
@@ -248,7 +248,7 @@ function downloadGoalSuccess(tx, results){
                         showLoading(); 
                     },        
                     complete: function() { //alert("cmplete");
-                        hideLoading(); 
+                        
                     },            
                     success: function(data){
                         $("#items").empty();
@@ -383,6 +383,7 @@ function downloadGoalSuccess(tx, results){
                                 indice++; 
                               });
                         }
+                        hideLoading(); 
                     },
                     error:function (xhr, ajaxOptions, thrownError){
                         console.log(xhr.status);
@@ -422,13 +423,13 @@ function downloadGoalLoad(regionCode){
         global = 0;
     }
 
-    if($('#mostrarTotalDA').is(':checked')){
+    if($('#check_sales').is(':checked')){
         _sales = 1;
     }else{
         _sales = 0;
     }
 
-    if($('#mostrarMetasDA').is(':checked')){
+    if($('#check_goals').is(':checked')){
         _goal = 1;
     }else{
         _goal = 0;
@@ -457,7 +458,7 @@ function downloadGoalLoad(regionCode){
                         showLoading(); 
                     },        
                     complete: function() { //alert("cmplete");
-                        hideLoading(); 
+                        
                     },                   
                     success: function(data){
                         $("#items").empty();
@@ -592,6 +593,7 @@ function downloadGoalLoad(regionCode){
                                 indice++; 
                               });
                         }
+                        hideLoading(); 
                     }
                 });
 
@@ -917,6 +919,96 @@ function getDataInUse(){
     }  
 }
 
+function validPreferences(){
+    
+    var query = "SELECT "+KEY_ACTUAL+", "+KEY_GLOBAL + "," + KEY_TOTAL+ ", "+KEY_GOALS+" FROM "+ TABLE_PREFERENCES;
+
+    try {
+        localDB.transaction(function(transaction){        
+            transaction.executeSql(query, [], function(transaction, results){   
+
+                for (var i = 0; i < results.rows.length; i++) {
+                
+                    var row = results.rows.item(i);
+                    var actual = row['actual'];   
+                    var global = row['global'];   
+                    var total = row['total'];
+                    var sales = row['sales'];
+                    var variable = 0;
+                    var _actual = "";
+                    var _global = "";
+                    var _sales = "";
+                    var _goal = "";
+
+
+                    if($('#check_actual').is(':checked')){
+                        _actual = 1;
+                    }else{
+                        _actual = 0;
+                    }
+
+                    if($('#check_global').is(':checked')){
+                        _global = 1;
+                    }else{
+                        _global = 0;
+                    }
+
+                    if($('#check_sales').is(':checked')){
+                        _sales = 1;
+                    }else{
+                        _sales = 0;
+                    }
+
+                    if($('#check_goals').is(':checked')){
+                        _goal = 1;
+                    }else{
+                        _goal = 0;
+                    }
+
+                    console.log("actual: "+actual+" - _actual: "+_actual);
+                    console.log("global: "+global+" - _global: "+_global);
+                    console.log("total: "+total+" - _sales: "+_sales);
+                    console.log("sales: "+sales+" - _goal: "+_goal);
+
+
+                    if(parseInt(actual)!=parseInt(_actual)){
+                        variable++;
+                    }
+
+                    if(parseInt(global)!=parseInt(_global)){
+                        variable++;
+                    }
+
+                    if(parseInt(total)!=parseInt(_sales)){
+                        variable++;
+                    }
+
+                    if(parseInt(sales)!=parseInt(_goal)){
+                        variable++;
+                    }
+
+                    updateActual(_actual);
+                    updateGlobal(_global);
+                    updateShowSales(_sales);
+                    updateShowGoal(_goal);
+
+                    if(variable>0){
+                        downloadGoal();
+                    }
+
+
+                }
+                
+            }, function(transaction, error){
+                console.log("Error: " + error.code + "<br>Mensage: " + error.message);
+            });
+        });
+    } 
+    catch (e) {
+        console.log("Error getAllData " + e + ".");
+    }
+}
+
 function getAllData(){
     
     var query = "SELECT "+KEY_ID+", "+KEY_URLBASE + "," + KEY_ALIAS+ " FROM "+ TABLE_URL;
@@ -1148,8 +1240,8 @@ function getPreferences(){
                 $("#check_goals").attr("checked", '');
             }
             
-            cambiarTotalNoLoad();
-            cambiarMetasNoLoad();
+            cambiarTotal();
+            cambiarMetas();
             
             //$("#actual").val(actual);
             //$("#global").val(global);

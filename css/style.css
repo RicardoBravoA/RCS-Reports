@@ -440,13 +440,25 @@ button:focus, button:active {
 
 /* Static Method */
 body{
-    padding-top: 151px;
+/*    padding-top: 151px;*/
+    padding-top: 166px;
 }
 body.ocultarRegion{
-    padding-top: 100px;
+/*    padding-top: 100px;*/
+    padding-top: 115px;
 }
 body.ocultarRegion.mostrarRegion{
-    padding-top: 151px;
+/*    padding-top: 151px;*/
+    padding-top: 166px;
+}
+.fixedbg{
+    position: fixed;
+    z-index: 5;
+/*    top: 0px;*/
+    top: 15px;
+    right: 0;
+    left: 0;
+    width: 100%;
 }
 
 .shinebg{
@@ -458,14 +470,7 @@ body.ocultarRegion.mostrarRegion{
     width: 100%;
     height: 100%;
 }
-.fixedbg{
-    position: fixed;
-    z-index: 5;
-    top: 0px;
-    right: 0;
-    left: 0;
-    width: 100%;
-}
+
 .fixedbgblack{
     width: 100%;
     height: 152px;
@@ -1192,10 +1197,12 @@ body.modal-open .container{
         height: 52px;
     }
     body.ocultarRegion{
-        padding-top: 107px;
+/*        padding-top: 107px;*/
+        padding-top: 122px;
     }
     body.ocultarRegion.mostrarRegion{
-        padding-top: 167px;
+/*        padding-top: 167px;*/
+        padding-top: 182px;
     }
     
     /* Fin Static Method */

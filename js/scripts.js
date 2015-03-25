@@ -208,13 +208,15 @@ function moveToLeft(){
 }
 
 //AQUI
-function retornarStores(){        
+function retornarStores(){   
+    validPreferences();     
     $('body').removeClass('clean');
     $('.container').removeClass('ocultar');
     $('.preferences').removeClass('move');
-    downloadGoal();    
+    
 }
 
+/*
 function cambiarTotalNoLoad(){
 
     if($('#check_sales').is(':checked')){
@@ -243,18 +245,18 @@ function cambiarMetasNoLoad(){
         //updateShowGoal(0); 
     }
 }
-
+*/
 function cambiarMetas(){
 
     if($('#check_goals').is(':checked')){
         var text = "Goals ↓";
         //$("#check_global").prop("checked", "checked");
         $("#txtchkgoals").html(text);
-        updateShowGoal(1);
+        //updateShowGoal(1);
     }else{
         var text = "Goals ↑";
         $("#txtchkgoals").html(text);
-        updateShowGoal(0); 
+        //updateShowGoal(0); 
     }
 
 }
@@ -265,11 +267,11 @@ function cambiarTotal(){
         var text = "Sales ↓";
         //$("#check_global").prop("checked", "checked");
         $("#txtchksales").html(text);
-        updateShowSales(1);
+        //updateShowSales(1);
     }else{
         var text = "Sales ↑";
         $("#txtchksales").html(text);
-        updateShowSales(1);
+        //updateShowSales(1);
     }
 
     //downloadGoal();
