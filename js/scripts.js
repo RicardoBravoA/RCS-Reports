@@ -221,10 +221,12 @@ function cambiarTotal(){
     if(valor){
         var text = "Sales ↓";
         $('.checkbox_total span').text(text);
+        $("#mostrarTotalDA").attr("checked",'');
         updateShowSales(1);
     }else{
         var text = "Sales ↑";
-        $('.checkbox_total span').text(text);      
+        $('.checkbox_total span').text(text); 
+        $("#mostrarTotalDA").removeAttr("checked",'');
         updateShowSales(0);   
     }
 
@@ -238,9 +240,11 @@ function cambiarTotalNoLoad(){
     if(valor){
         var text = "Sales ↓";
         $('.checkbox_total span').text(text);
+        $("#mostrarTotalDA").attr("checked",'');
     }else{
         var text = "Sales ↑";
-        $('.checkbox_total span').text(text);      
+        $('.checkbox_total span').text(text);  
+        $("#mostrarTotalDA").removeAttr("checked",'');
     }
 }
 
@@ -250,10 +254,12 @@ function cambiarMetas(){
     if(valor2){
         var text2 = "Goals ↓";
         $('.checkbox_metas span').text(text2);
+        $("#mostrarMetasDA").attr("checked",'');
         updateShowGoal(1);
     }else{
         var text2 = "Goals ↑";
-        $('.checkbox_metas span').text(text2);  
+        $('.checkbox_metas span').text(text2); 
+        $("#mostrarMetasDA").removeAttr("checked",'');
         updateShowGoal(0);      
     }
 
@@ -266,8 +272,10 @@ function cambiarMetasNoLoad(){
     if(valor2){
         var text2 = "Goals ↓";
         $('.checkbox_metas span').text(text2);
+        $("#mostrarMetasDA").attr("checked",'');
     }else{
         var text2 = "Goals ↑";
         $('.checkbox_metas span').text(text2);  
+        $("#mostrarMetasDA").removeAttr("checked",'');
     }
 }
