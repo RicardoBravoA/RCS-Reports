@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>RCS Reports</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+  <![endif]-->
+
+  <!-- Fav and touch icons -->
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/constant.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="js/database.js"></script>
+    <!-- AmCharts-->
+    <script type="text/javascript" src="js/amcharts.js"></script>
+    <script type="text/javascript" src="js/serial.js"></script>
+
+    <script  type="text/javascript">
+
+        $(window).load(function(){
+            onInit();    
+            loadText();
+            getPreferences();
+            hideCombo();  
+
+            if(checkNetConnection()==true){
+                loadRegions();  
+            }else{
+                mostrarModalGeneral(MSG_CONNECTION_FAILURE());
+            }
+                 
+        });
+
+        $(document).ready(function(){
+        
+             $("#refresh").click(function(){
+                
+                if(checkNetConnection()==true){
+                    getRegionCode(); 
+                    //obtenerPreferencesFunction();
+                }else{
+                    mostrarModalGeneral(MSG_CONNECTION_FAILURE());
+                }
+             });
+
+        });		
+
+        function updateActual(){
+            if($('#check_actual').is(':checked')){
+                updateCheckActual(1);
+            }else{
+                updateCheckActual(0);
+            }
+        }
+
+        function updateGlobal(){
+            if($('#check_global').is(':checked')){
+                updateCheckGlobal(1);
+            }else{
+                updateCheckGlobal(0);
+            }
+        }
+
+        function selectedRegion(){
+            var regionCode = $("ul.select-region li:first-child()").attr("data-value");
+            console.log("region seleccionada "+regionCode);
+            /*
+            var allOptions2 = $("ul.select-region").children('li:not(.init)');
+            allOptions2.removeClass('selected');
+             allOptions2.removeClass('selected');
+            $("ul.select-region li#R003").addClass('selected');
+            $("ul.select-region").children('.init').html($("ul.select-region li#R003").html());
+            */
+        }
+
+        function addID(abc){
+            $("#txtvalue").val(abc);
+        }
+
+        function addIDDelete(id){
+            $("#txtvaluedelete").val(id);
+        }
+
+        function ocultaMiModal(){
+            var id = $("#txtvalue").val();
+            console.log("id presionado: "+id);
+            updateStateURL(id);
+            //$('#btnclose').click();
+            //location.reload();
+        }
+
+        function ocultaMiModalDelete(){
+            var id = $("#txtvaluedelete").val();
+            console.log("id presionado: "+id);
+            deleteServer(id);
+            //$('#btnclose').click();
+            //location.reload();
+        }
+
+        function newInfoServer(){
+            window.location.href = "index.html?variable=1";
+        }
+
+        function closeAPP(){
+            javascript:history.go(-3);
+        }
+
+        function loadText(){
+            MSG_TITLE_STORE();
+            MSG_PREFERENCES_STORE();
+        } 
+
+    </script>
+    
+
+</head>
+
+<body>
+<div class="container">
+    <div class=" fixedbg">
+        <div class=" fixedbgblack">        
+            <div class="row vs">
+                <div class="col-xs-2">
+                    <button id="exit" name="exit" onclick="closeAPP();">
+                        <img src="img/exit.png" >
+                        <span>Salir</span>
+                    </button>
+                </div>
+                <div class="col-xs-8">
+                    <p class="text-center title" name="storetitle" id="storetitle"></p>
+                </div>
+                    <div class="col-xs-2">
+                    <button id="alias" onclick="moveToLeft();"><span name="txtpreferences" id="txtpreferences"></span></button>
+                </div>
+            </div>
+            <div class="row lines">
+                <div class="select-style">
+                    <ul class="select-date">
+                        <li class="init" data-value="1"><p>Today</p></li>
+                        <li data-value="1" class="item"><p>Today</p></li>
+                        <li data-value="2" class="item"><p>Yesterday</p></li>
+                        <li data-value="3" class="item"><p>Week to Date</p></li>
+                        <li data-value="4" class="item"><p>Month to Date</p></li>
+                        <li data-value="5" class="item"><p>Year to Date</p></li>
+                    </ul>                
+                </div>            
+                <button id="refresh" name="refresh"><img src="img/refresh.png" ></button>
+            </div>
+            <div class="row region" id="divRegion">
+                <div class="col-xs-12">
+                    <ul class="select-region" id="selectRegion">
+                        <li class="init" data-value="R-1"><p>Select Region</p></li>
+                        <li class="item" data-value="R-1"><p>Select Region</p></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--    <div class="row fixedbg"></div>-->
+<!--    <script type="text/javascript" src="js/scripts.js"></script>-->
+    <div class="row stores" id="items">
+    <!--
+        <div class="col-xs-12">
+            <div class="panel-group" id="items">
+            
+			</div>            
+		</div>
+    -->
+	</div>
+</div>
+    
+    <!-- Modal -->
+
+    <div class="modal fade" id="show_loading" >
+        <div class="modal-dialog">
+            <div class="modal-content">                
+                <div class="modal-body">               
+                    <div class="text-center loading"><img src="img/load.gif"></div>             
+                    <div class="text-center"><p name="txtloading" id="txtloading"></p></div>
+                    <input type="hidden" id="txtocultaloading" name="txtocultaloading" data-dismiss="modal" aria-hidden="true" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="show_loading2" >
+        <div class="modal-dialog">
+            <div class="modal-content">                
+                <div class="modal-body">       
+                    <div class="text-center loading"><img src="img/load.gif"></div>
+                    <div class="text-center"><p name="txtloading2" id="txtloading2"></p></div>
+                    <input type="hidden" id="txtocultaloading2" name="txtocultaloading2" data-dismiss="modal" aria-hidden="true" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="show_alias" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" name="btnclose" id="btnclose">×</button>
+                    <h4 class="modal-title">
+                        Select your Alias
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-control select-alias" name="divlistado" id="divlistado">
+                    </div>
+                </div>
+                <div class="modal-footer add">
+                    <button type="button" class="btn btn-rcs" id="add_alias" name="add_alias" onclick="newInfoServer()">Add Alias</button>
+                </div>
+                <div class="modal-footer info">
+                    <p class="text-center" id="txtStore" id="txtStore">Dunkenvolk</p>
+                    <p class="text-center" id="txtIP" name="txtIP">IP: 192.168.1.20</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ModalConfirm" >
+    <!--<form name="frmConfirm" id="frmConfirm">-->
+    <input type="hidden" name="txtvalue" id="txtvalue" value="0">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Want to change Server?
+                    </h4>
+                </div>
+                <div class="modal-footer add">
+                    <button type="button" class="btn btn-rcs" id="btnsi" name="btnsi" data-dismiss="modal" aria-hidden="true" onclick="ocultaMiModal()">Si</button>
+                    <button type="button" class="btn btn-rcs" id="btnno" name="btnno" data-dismiss="modal" aria-hidden="true">No</button>
+                </div>
+            </div>
+        </div>
+    <!-- </form>-->
+    </div>
+
+    <div class="modal fade" id="ModalConfirmDelete" >
+    <!--<form name="frmConfirm" id="frmConfirm">-->
+    <input type="hidden" name="txtvaluedelete" id="txtvaluedelete" value="0">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Want to delete server?
+                    </h4>
+                </div>
+                <div class="modal-footer add">
+                    <button type="button" class="btn btn-rcs" id="btnsidelete" name="btnsi" data-dismiss="modal" aria-hidden="true" onclick="ocultaMiModalDelete()">Yes</button>
+                    <button type="button" class="btn btn-rcs" id="btnnodelete" name="btnno" data-dismiss="modal" aria-hidden="true">No</button>
+                </div>
+            </div>
+        </div>
+    <!-- </form>-->
+    </div>
+
+    <!--
+    <div class="modal fade" id="divpreferences" >
+        <form name="frmpreferences" id="frmpreferences">
+            <input type="hidden" name="actual" id="actual">
+            <input type="hidden" name="global" id="global">
+            <input type="hidden" name="total" id="total">
+            <input type="hidden" name="sales" id="sales">
+        </form>
+    </div>
+    -->
+
+    <div class="modal fade" id="ModalMessage" >
+    <!--<form name="frmConfirm" id="frmConfirm">-->
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Can't delete an active server
+                    </h4>
+                </div>
+                <div class="modal-footer add"><button type="button" class="btn btn-rcs" data-dismiss="modal" aria-hidden="true">Ok</button>
+                </div>
+            </div>
+        </div>
+    <!-- </form>-->
+    </div>
+    
+    <div class="preferences" id="preferences">
+        <button id="exit" name="return" onclick="retornarStores();">
+            <img src="img/exit.png" >
+            <span>Back</span>
+        </button>
+        <div class="header title">
+            Preferences
+        </div>
+        <div class="contenido">
+            <div class="changeAlias" onclick="mostrarModal()">
+                <span>Change Alias</span>
+            </div>
+            <div class="changeView">
+                <span>Visualization</span>
+                <div class="checkbox_view" onclick="updateActual()">
+                    <input type="checkbox" name="check_actual" id="check_actual"><label class="text-checkbox">Show Current</label>
+                </div> 
+                <div class="checkbox_view" onclick="updateGlobal()">
+                    <input type="checkbox" name="check_global" id="check_global"><label class="text-checkbox">Show Global</label>
+                </div> 
+            </div>
+            <div class="changeOrden">
+                <span>Order by</span>
+                <div class="checkbox_total">
+                    <label><span>Sales ↑</span><input type="checkbox" name="optionOrden1" onclick="cambiarTotal();" id="mostrarTotalDA" class="ios-switch" /><div><div></div></div></label>
+                </div>
+                <div class="checkbox_metas">
+                    <label><span>Goals ↑</span><input type="checkbox" name="optionOrden2" onclick="cambiarMetas();" id="mostrarMetasDA" class="ios-switch"/><div><div></div></div></label>
+                </div>
+            </div>
+        </div>        
+    </div>   
+    
+    <script type="text/javascript" src="js/scripts.js"></script>
+
+</body>
+
+</html>
