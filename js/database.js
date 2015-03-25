@@ -377,8 +377,8 @@ function downloadGoalSuccess(tx, results){
 
                                 $("#items").append(mostrar); 
 //                                
-//                                drawGraphic(array_description[0], array_description[1], array_description[2], 
-//                                    array_total[0], array_total[1], array_total[2], indice);
+                                drawGraphic(array_description[0], array_description[1], array_description[2], 
+                                    array_total[0], array_total[1], array_total[2], indice);
                                 
                                 mostrar="";
                                 indice++; 
@@ -587,8 +587,8 @@ function downloadGoalLoad(regionCode){
 
                                 $("#items").append(mostrar); 
 //                                
-//                                drawGraphic(array_description[0], array_description[1], array_description[2], 
-//                                    array_total[0], array_total[1], array_total[2], indice);
+                                drawGraphic(array_description[0], array_description[1], array_description[2], 
+                                    array_total[0], array_total[1], array_total[2], indice);
                                 
                                 mostrar="";
                                 indice++; 
