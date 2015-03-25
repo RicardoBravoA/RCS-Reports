@@ -312,8 +312,8 @@ function downloadGoalSuccess(tx, results){
                                 percent = parseFloat(percent).toFixed();
                                 percentGlobal = parseFloat(percentGlobal).toFixed();
 
-//                                mostrar += "<ul class='col-xs-12' onclick=\"prueba('-"+indice+"')\">";
-                                 mostrar += "<ul class='col-xs-12'>";
+                                mostrar += "<ul class='col-xs-12' onclick=\"prueba('-"+indice+"')\">";
+//                                 mostrar += "<ul class='col-xs-12'>";
 
                                     mostrar += "<li>";
 
@@ -345,36 +345,36 @@ function downloadGoalSuccess(tx, results){
 
                                         }
                                 
-//                                var j = 0;
-//                                var array_description = [];
-//                                var array_total = [];
-//                                $(value.info).each(function(index, value){
-//                                    var info = value.info;
-//                                    var total = value.total; 
-//
-//                                    array_description[j] = info;
-//                                    array_total[j] = total;
-//
-//                                    j++;   
-//                                  });  
-//
-//                                    
-//                                    mostrar += "<div id='graph-"+indice+"' class='graphic-"+indice+"'><div id='chartdiv-"+indice+"' class='chartdiv-"+indice+"'></div>";
-//
-//                                        mostrar += "<div class='detalle-"+indice+"'>";
-//
-//                                            mostrar += "<div class='year'>Año</div><div class='quantity'>Cantidad</div>";
-//                                            mostrar += "<span>"+array_description[0]+"</span><span>"+parseFloat(array_total[0]).toFixed()+"</span>";
-//                                            mostrar += "<span>"+array_description[1]+"</span><span>"+parseFloat(array_total[1]).toFixed()+"</span>";
-//                                            mostrar += "<span>"+array_description[2]+"</span><span>"+parseFloat(array_total[2]).toFixed()+"</span>";
-//
-//                                        mostrar += "</div></div>";
-//                                    
+                                var j = 0;
+                                var array_description = [];
+                                var array_total = [];
+                                $(value.info).each(function(index, value){
+                                    var info = value.info;
+                                    var total = value.total; 
+
+                                    array_description[j] = info;
+                                    array_total[j] = total;
+
+                                    j++;   
+                                  });  
+
+                                    
+                                    mostrar += "<div id='graph-"+indice+"' class='graphic-"+indice+"'><div id='chartdiv-"+indice+"' class='chartdiv-"+indice+"'></div>";
+
+                                        mostrar += "<div class='detalle-"+indice+"'>";
+
+                                            mostrar += "<div class='year'>Año</div><div class='quantity'>Cantidad</div>";
+                                            mostrar += "<span>"+array_description[0]+"</span><span>"+parseFloat(array_total[0]).toFixed()+"</span>";
+                                            mostrar += "<span>"+array_description[1]+"</span><span>"+parseFloat(array_total[1]).toFixed()+"</span>";
+                                            mostrar += "<span>"+array_description[2]+"</span><span>"+parseFloat(array_total[2]).toFixed()+"</span>";
+
+                                        mostrar += "</div></div>";
+                                    
                                     mostrar += "</li>";
-//
+
                                 mostrar += "</ul>"; 
-//                                
-//
+                                
+
                                 $("#items").append(mostrar); 
 //                                
 //                                drawGraphic(array_description[0], array_description[1], array_description[2], 
@@ -522,8 +522,8 @@ function downloadGoalLoad(regionCode){
                                 percent = parseFloat(percent).toFixed();
                                 percentGlobal = parseFloat(percentGlobal).toFixed();
 
-//                                mostrar += "<ul class='col-xs-12' onclick=\"prueba('-"+indice+"')\">";
-                                mostrar += "<ul class='col-xs-12'>";
+                                mostrar += "<ul class='col-xs-12' onclick=\"prueba('-"+indice+"')\">";
+//                                mostrar += "<ul class='col-xs-12'>";
 
                                     mostrar += "<li>";
 
@@ -555,36 +555,36 @@ function downloadGoalLoad(regionCode){
 
                                         }
                                 
-//                                var j = 0;
-//                                var array_description = [];
-//                                var array_total = [];
-//                                $(value.info).each(function(index, value){
-//                                    var info = value.info;
-//                                    var total = value.total; 
-//
-//                                    array_description[j] = info;
-//                                    array_total[j] = total;
-//
-//                                    j++;   
-//                                  });  
-//
-//                                    
-//                                    mostrar += "<div id='graph-"+indice+"' class='graphic-"+indice+"'><div id='chartdiv-"+indice+"' class='chartdiv-"+indice+"'></div>";
-//
-//                                        mostrar += "<div class='detalle-"+indice+"'>";
-//
-//                                            mostrar += "<div class='year'>Año</div><div class='quantity'>Cantidad</div>";
-//                                            mostrar += "<span>"+array_description[0]+"</span><span>"+parseFloat(array_total[0]).toFixed()+"</span>";
-//                                            mostrar += "<span>"+array_description[1]+"</span><span>"+parseFloat(array_total[1]).toFixed()+"</span>";
-//                                            mostrar += "<span>"+array_description[2]+"</span><span>"+parseFloat(array_total[2]).toFixed()+"</span>";
-//
-//                                        mostrar += "</div></div>";
-//                                    
+                                var j = 0;
+                                var array_description = [];
+                                var array_total = [];
+                                $(value.info).each(function(index, value){
+                                    var info = value.info;
+                                    var total = value.total; 
+
+                                    array_description[j] = info;
+                                    array_total[j] = total;
+
+                                    j++;   
+                                  });  
+
+                                    
+                                    mostrar += "<div id='graph-"+indice+"' class='graphic-"+indice+"'><div id='chartdiv-"+indice+"' class='chartdiv-"+indice+"'></div>";
+
+                                        mostrar += "<div class='detalle-"+indice+"'>";
+
+                                            mostrar += "<div class='year'>Año</div><div class='quantity'>Cantidad</div>";
+                                            mostrar += "<span>"+array_description[0]+"</span><span>"+parseFloat(array_total[0]).toFixed()+"</span>";
+                                            mostrar += "<span>"+array_description[1]+"</span><span>"+parseFloat(array_total[1]).toFixed()+"</span>";
+                                            mostrar += "<span>"+array_description[2]+"</span><span>"+parseFloat(array_total[2]).toFixed()+"</span>";
+
+                                        mostrar += "</div></div>";
+                                    
                                     mostrar += "</li>";
-//
+
                                 mostrar += "</ul>"; 
-//                                
-//
+                                
+
                                 $("#items").append(mostrar); 
 //                                
 //                                drawGraphic(array_description[0], array_description[1], array_description[2], 
