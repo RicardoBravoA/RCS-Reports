@@ -848,8 +848,10 @@ div[class^="graphic-"]
     height: 0;
     width: 100%;
     overflow-y: scroll;
+/*
     transition: all 0.2s;
     -webkit-transition: all 0.2s;
+*/
 }
 div[class^="chartdiv-"]
 {
@@ -1372,7 +1374,7 @@ body.clean{
     right: 0%;
     width: 100%;
     height: 100%;
-    transition: all 0.1s; /* Como llega */
+/*    transition: all 0.1s;  Como llega */
 }
 .preferences{
     opacity: 0.25;
