@@ -57,11 +57,21 @@
 
          });
 
-          $('html').keyup(function(e){
-            if (event.keyCode == 8 || event.keyCode == 46) {
-              alert("jhsgdushbdijk");
-            }
+          $('html').on('keydown' , function(event) {
 
+            if(! $(event.target).is('input')) {
+                alert(event.which);
+                     //event.preventDefault();
+                     if(event.which == 8  || event.keyCode == 46) {
+                      alert('backspace pressed');
+                      return false;
+
+                    if(event.which == 10){
+                      alert("boton go");
+                      return false;
+                    }
+                }
+            }
           });
 
 
