@@ -772,12 +772,7 @@ h1.store-name{
     border-top-color: #bbb;
     text-transform: uppercase;
 }
-/*
-.front-item p.type,.front-item p.gol-number{
-    position: absolute;
-    bottom: -46px;
-}
-*/
+
 .actual, .global{
     width: 100%;
     height: 35px;
@@ -824,11 +819,35 @@ ul.col-xs-12 {
     -ms-transform: translate(0px, -8px);
 }
 .global .type, .global .gol-number{
-    line-height: 21px;   
+/*    line-height: 21px;   */
+    line-height: 34px;   
 }
 .global .sale-number{
+/*    line-height: 18px;*/
+    line-height: 34px;
+}
+.global .percentage{
+    transform: translate(0px, 0px); */ 
+    -webkit-transform: translate(0px, 0px);
+    -moz-transform: translate(0px, 0px);
+    -o-transform: translate(0px, 0px);
+    -ms-transform: translate(0px, 0px);
+}
+.actual + .global .type, 
+.actual + .global .gol-number{
+    line-height: 18px;   
+}
+.actual + .global .sale-number{
     line-height: 18px;
 }
+.actual + .global .percentage{
+    transform: translate(0px, -8px); */ 
+    -webkit-transform: translate(0px, -8px);
+    -moz-transform: translate(0px, -8px);
+    -o-transform: translate(0px, -8px);
+    -ms-transform: translate(0px, -8px);
+}
+
 div[class^="graphic-"]
 {
     height: 0;
@@ -1069,6 +1088,10 @@ body.modal-open .container{
 
 /* Landscape phones and down */
 @media (max-width: 420px) {
+    .title, #alias span, #exit span , #return span{ font-size: 14px; }
+    h1.store-name {
+        font-size: 21px;
+    }
     .global p{
         margin: 0 0 10px;
     }
@@ -1085,32 +1108,37 @@ body.modal-open .container{
         font-size: 18px;
     }
     .percentage{
-        line-height: 18px;
         font-size: 18px !important;
-        transform: translate(0px, 0px) !important;
-        -webkit-transform: translate(0px, 0px) !important;
-        -moz-transform: translate(0px, 0px) !important;
-        -o-transform: translate(0px, 0px) !important;
-        -ms-transform: translate(0px, 0px) !important;
     }
-/*
-    .front-item p.store-name{
-        font-size: 22px;
+    
+    .global .type, .global .gol-number{
+        line-height: 27px;   
     }
-    .front-item p.type{
-        font-size: 17px;
+    .global .sale-number{
+        line-height: 27px;
     }
-    .front-item p.gol-number{
-        font-size: 17px;
+    .global .percentage{
+        line-height: 24px;
+        transform: translate(0px, 0px); 
+        -webkit-transform: translate(0px, 0px);
+        -moz-transform: translate(0px, 0px);
+        -o-transform: translate(0px, 0px);
+        -ms-transform: translate(0px, 0px);
     }
-    .front-item p.sale-number{
-        font-size: 20px;
+    .actual + .global .type, 
+    .actual + .global .gol-number{
+        line-height: 6px;   
     }
-    .front-item .percentage{
-        width: 75%;
-        font-size: 18px;    
+    .actual + .global .sale-number{
+        line-height: 6px;
     }
-*/
+    .actual + .global .percentage{
+        transform: translate(0px, -8px); */ 
+        -webkit-transform: translate(0px, -8px);
+        -moz-transform: translate(0px, -8px);
+        -o-transform: translate(0px, -8px);
+        -ms-transform: translate(0px, -8px);
+    }
 
 }
 
@@ -1205,14 +1233,6 @@ body.modal-open .container{
     .modal .modal-dialog,.modal.in .modal-dialog{
         width: 50%;
     }
-/*
-    div[class^="chartdiv-"]
-    {
-        position: relative;
-        width: 100%;
-        height: 160px;
-    }
-*/
 
 }
 
