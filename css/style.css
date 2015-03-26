@@ -119,7 +119,7 @@ input[type="email"]:focus{
     transition: all .2s;
 }
 .form-group .checkbox_wrapper input[type="checkbox"] + label{
-    background-image: url('../img/check_on.png');
+    background-image: url('../img/check.png');
     background-size: 24px 24px;
     background-repeat: no-repeat;
     height: 24px;
