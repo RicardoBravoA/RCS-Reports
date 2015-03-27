@@ -17,7 +17,7 @@ Retail Custom Solutions
 		<preference name="webviewbounce" value="true" />
 		<preference name="prerendered-icon" value="true" />
 		<preference name="stay-in-webview" value="true" />
-		<preference name="android-hardwareAccelerated" value="true" />
+		<!-- <preference name="android-hardwareAccelerated" value="true" /> -->
 <!--		<preference name="ios-statusbarstyle" value="white-transparent" />-->
         <preference name="StatusBarOverlaysWebView" value="true" />
         <preference name="StatusBarStyle" value="lightcontent" />
@@ -66,6 +66,7 @@ Retail Custom Solutions
 		<icon src="res/icon/wp/62w.png" gap:platform="winphone" />
 		<icon src="res/icon/wp/173w.png" gap:platform="winphone" gap:role="background" />
 		<icon src="res/icon/64d.png" />
+		<application android:hardwareAccelerated="true"/>
 		<gap:splash src="res/splash/ios/320x480.png" gap:platform="ios" width="320" height="480" />
 		<gap:splash src="res/splash/ios/640x960.png" gap:platform="ios" width="640" height="960" />
 		<gap:splash src="res/splash/ios/640x1136.png" gap:platform="ios" width="640" height="1136" />
