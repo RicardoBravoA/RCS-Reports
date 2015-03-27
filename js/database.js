@@ -269,6 +269,12 @@ function downloadGoalSuccess(tx, results){
                                 var percent = (payTotal * 100)/goalAmount;
                                 var percentGlobal = (payTotalGlobal * 100)/goalAmountGlobal;
 
+                                goalAmount = goalAmount.replace(",",".");
+                                goalAmountGlobal = goalAmountGlobal.replace(",",".");
+                                payTotal = payTotal.replace(",",".");
+                                payTotalGlobal = payTotalGlobal.replace(",",".");
+
+
                                 if(payTotal=="0.00000" || goalAmount=="0.00000"){
                                     percent = "0.00";
                                 }
