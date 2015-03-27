@@ -112,10 +112,6 @@
             window.location.href = "index.html?variable=1";
         }
 
-        function closeAPP(){
-            javascript:history.go(-3);
-        }
-
         function loadText(){
             MSG_TITLE_STORE();
             MSG_PREFERENCES_STORE();
@@ -132,9 +128,8 @@
         <div class=" fixedbgblack">        
             <div class="row vs">
                 <div class="col-xs-2">
-                    <button id="exit" name="exit" onclick="closeAPP();">
-                        <img src="img/exit.png" >
-                        <span>Salir</span>
+                    <button id="exit" name="exit">
+                        <span></span>
                     </button>
                 </div>
                 <div class="col-xs-8">
