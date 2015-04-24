@@ -259,6 +259,12 @@ function downloadGoalSuccess(tx, results){
                             var indice = 0;   
                             
                             $(data.report).each(function(index, value){
+
+                                value.goalAmount = value.goalAmount.replace(",",".");    
+                                value.goalAmountGlobal = value.goalAmountGlobal.replace(",",".");  
+                                value.payTotal = value.payTotal.replace(",",".");  
+                                value.payTotalGlobal = value.payTotalGlobal.replace(",",".");    
+
                                 var goalAmount = value.goalAmount;
                                 var goalAmountGlobal = value.goalAmountGlobal;
                                 var payTotal = value.payTotal;
