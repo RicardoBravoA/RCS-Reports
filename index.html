@@ -24,15 +24,16 @@
 
   <script  type="text/javascript">
 
-    $(window).load(function(){
-      onInit();
-      loadText();
-      var variable = obtenerVariables("variable");
+    $(window).load(function(){/*esta funcion detecta cuando la pagina a cargado*/
+      onInit();//inciializa y crea tablas
+      loadText();//asigna tipo de letra para la interfaz
+      var variable = obtenerVariables("variable");/*obtiene */
       console.log("variable "+variable);
-
-      if(checkNetConnection()==true){       
-        if(variable==-1){
-          existsData();
+      console.log("cargo la pagina");
+      if(checkNetConnection()==true){ /*verifica que este online el navegador sino emitira un message*/   
+        if(variable==-1){/*al inicio cuando empieza todo variable  =  1 , porque en realidad obtiene el valor de las variables*/
+          console.log("no ingresa");
+          existsData();/*contamos la cantidad de URL que tenemos donde use =1 , y verifica la configuracion y alli decide a que pantalla pasar dependiendo si se recordo o no la url */
         }
       }else{
         mostrarModalGeneral(MSG_CONNECTION_FAILURE());
@@ -41,9 +42,9 @@
     });
 
 
-    $(document).ready(function(){
+    $(document).ready(function(){/*esta funcion ocurre despues de que ya cargo toda la pagina*/
 
-      $("#ip_1").keyup(function(event) {
+      $("#ip_1").keyup(function(event) {/*mientras estoy escrbiendo el numero*/
         var variable = $("#ip_1").val();
         if(variable>255){
           $("#ip_1").val("");
@@ -55,13 +56,13 @@
         }        
 
       }).keypress(function(event){
-        if (event.keyCode < 48 || event.keyCode > 57) {
+        if (event.keyCode < 48 || event.keyCode > 57) {/*valores del 0 - 9 segun el tabal ascii*/
         return false;
         }
       });
 
 
-      $("#ip_2").keyup(function(event) {
+      $("#ip_2").keyup(function(event) {/*mientras estoy escrbiendo el numero*/
         var variable = $("#ip_2").val();
         if(variable>255){
           $("#ip_2").val("");
@@ -72,12 +73,12 @@
           }
         }  
       }).keypress(function(event){
-        if (event.keyCode < 48 || event.keyCode > 57) {
+        if (event.keyCode < 48 || event.keyCode > 57) {/*valores del 0 - 9 segun el tabal ascii*/
         return false;
         }
       });
 
-      $("#ip_3").keyup(function(event) {
+      $("#ip_3").keyup(function(event) {/*mientras estoy escrbiendo el numero*/
         var variable = $("#ip_3").val();
         if(variable>255){
           $("#ip_3").val("");
@@ -88,12 +89,12 @@
           }
         } 
       }).keypress(function(event){
-        if (event.keyCode < 48 || event.keyCode > 57) {
+        if (event.keyCode < 48 || event.keyCode > 57) {/*valores del 0 - 9 segun el tabal ascii*/
         return false;
         }
       });
 
-      $("#ip_4").keyup(function(event) {
+      $("#ip_4").keyup(function(event) {/*mientras estoy escrbiendo el numero*/
         var variable = $("#ip_4").val();
         if(variable>255){
           $("#ip_4").val("");
@@ -104,36 +105,36 @@
           }
         } 
       }).keypress(function(event){
-        if (event.keyCode < 48 || event.keyCode > 57) {
+        if (event.keyCode < 48 || event.keyCode > 57) {/*valores del 0 - 9 segun el tabal ascii*/
         return false;
         }
       });
 
       $("#port").keypress(function(event){
-        if (event.keyCode < 48 || event.keyCode > 57) {
+        if (event.keyCode < 48 || event.keyCode > 57) {/*valores del 0 - 9 segun el tabal ascii*/
         return false;
         }
       });
 
-      if(checkNetConnection()==true){
+      if(checkNetConnection()==true){/*verifica si el navegador esta online*/
 
-        $("#btnenter").click(function(){
-          var ip_1 = $("#ip_1").val();
+        $("#btnenter").click(function(){ /*get the value of my fields */
+          var ip_1 = $("#ip_1").val();/*get value of field ip_1 and so one*/ 
           var ip_2 = $("#ip_2").val();
           var ip_3 = $("#ip_3").val();
           var ip_4 = $("#ip_4").val();
           var port = $("#port").val();
-          var alias = $("#aliastext").val();
-          var site = $("#sitetext").val();
+          var alias = $("#aliastext").val();/*get my ALIAS*/
+          var site = $("#sitetext").val();/*get my SITE*/
 
-          if(ip_1.length>0 && ip_2.length>0 && ip_3.length>0 && ip_4.length>0){
+          if(ip_1.length>0 && ip_2.length>0 && ip_3.length>0 && ip_4.length>0){/*verify the IPS are complete*/
             if(port.length>0){
               if(alias.length>0){
                 if(site.length>0){
-                  var ip = ip_1+"."+ip_2+"."+ip_3+"."+ip_4;
-                  var urlBase = "http://"+ip+":"+port+"/"+site;
-                  console.log(urlBase);
-                  validIP(ip, port, urlBase, alias, "1", site);
+                  var ip = ip_1+"."+ip_2+"."+ip_3+"."+ip_4; /*armo la cadena de ip*/
+                  var urlBase = "http://"+ip+":"+port+"/"+site;/*formo mi URLBASE*/
+                  console.log(urlBase);/**/
+                  validIP(ip, port, urlBase, alias, "1", site);/*aqui verifica la url,que todo este correcto añade ala table ypasa a login */
 
                 }else{
                   mostrarModalGeneral(MSG_INSERT_SITE());
@@ -151,7 +152,41 @@
          });
 
       }else{
-        mostrarModalGeneral(MSG_CONNECTION_FAILURE());        
+        mostrarModalGeneral(MSG_CONNECTION_FAILURE());  /*si se va el internet me debe permitir poner mis campos pero logicamente cuando le de enter no podre ingresar*/
+
+
+        $("#btnenter").click(function(){ /*get the value of my fields */
+          var ip_1 = $("#ip_1").val();/*get value of field ip_1 and so one*/ 
+          var ip_2 = $("#ip_2").val();
+          var ip_3 = $("#ip_3").val();
+          var ip_4 = $("#ip_4").val();
+          var port = $("#port").val();
+          var alias = $("#aliastext").val();/*get my ALIAS*/
+          var site = $("#sitetext").val();/*get my SITE*/
+
+          if(ip_1.length>0 && ip_2.length>0 && ip_3.length>0 && ip_4.length>0){/*verify the IPS are complete*/
+            if(port.length>0){
+              if(alias.length>0){
+                if(site.length>0){
+                  var ip = ip_1+"."+ip_2+"."+ip_3+"."+ip_4; /*armo la cadena de ip*/
+                  var urlBase = "http://"+ip+":"+port+"/"+site;/*formo mi URLBASE*/
+                  console.log(urlBase);
+                  validIP(ip, port, urlBase, alias, "1", site);/**/
+
+                }else{
+                  mostrarModalGeneral(MSG_INSERT_SITE());
+                }
+              }else{
+                mostrarModalGeneral(MSG_INSERT_ALIAS());
+              }
+            }else{
+              mostrarModalGeneral(MSG_INSERT_PORT());
+            }
+          }else{
+            mostrarModalGeneral(MSG_INSERT_IP());
+          }
+
+         });      
       }
 
     });  
