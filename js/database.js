@@ -19,14 +19,14 @@ var KEY_GOALS="sales";
 var KEY_REGIONCODE="regionCode";
 var KEY_IDURL="idUrl";
 
-function onInit(){
+function onInit(){ //funcion para inicializar su base de datos
     try {
         if (!window.openDatabase) {
             console.log("No soporta BD");
         }
         else {
-            initDB();
-            createTables();
+            initDB();//abre la la base de datos
+            createTables();//y creamos nuestras tablas
         }
     } 
     catch (e) {
@@ -40,7 +40,7 @@ function onInit(){
     }
 }
 
-function initDB(){
+function initDB(){ // definimos las variables para abrir la base de datos
     var shortName = 'RCS';
     var version = '2.0';
     var displayName = 'RCS Reports';
@@ -48,7 +48,7 @@ function initDB(){
     localDB = window.openDatabase(shortName, version, displayName, maxSize);
 }
 
-function createTables(){
+function createTables(){//creo mis 4 tablas
 
     var tableURL = "CREATE TABLE " + TABLE_URL + " ( "
                 + KEY_ID + " INTEGER PRIMARY KEY, " + KEY_IP + " TEXT, " + KEY_PORT + " TEXT, " +KEY_URLBASE + " TEXT, "
@@ -109,7 +109,7 @@ function createTables(){
     addPreferences();
 }
 
-function addData(ip, port, url, alias, use, site){
+function addData(ip, port, url, alias, use, site){//aqui se hace uin insert
     var query = "INSERT INTO "+TABLE_URL + " ( " + KEY_IP + " , " + KEY_PORT 
                      + " , " + KEY_URLBASE + ", " + KEY_ALIAS + " , "+KEY_USE + ", "+KEY_SITE+") VALUES (?,?,?,?,?,?);";
     try {
@@ -171,7 +171,7 @@ function addPreferences(){
         }
 }
 
-function downloadGoal(){
+function downloadGoal(){ 
     localDB.transaction(downloadGoalConsulta, errorDB);
 }
 
@@ -263,7 +263,7 @@ function downloadGoalSuccess(tx, results){
                                 value.goalAmount = value.goalAmount.replace(",",".");    
                                 value.goalAmountGlobal = value.goalAmountGlobal.replace(",",".");  
                                 value.payTotal = value.payTotal.replace(",",".");  
-                                value.payTotalGlobal = value.payTotalGlobal.replace(",",".");    
+                                value.payTotalGlobal = value.payTotalGlobal.replace(",",".");  
 
                                 var goalAmount = value.goalAmount;
                                 var goalAmountGlobal = value.goalAmountGlobal;
@@ -273,6 +273,7 @@ function downloadGoalSuccess(tx, results){
                                 var color = "";
                                 var colorGlobal = "";
                                 var percent = (payTotal * 100)/goalAmount;
+                                
                                 var percentGlobal = (payTotalGlobal * 100)/goalAmountGlobal;
 
                                 goalAmount = goalAmount.replace(",",".");
@@ -285,40 +286,42 @@ function downloadGoalSuccess(tx, results){
                                     percent = "0.00";
                                 }
 
+                               
+
                                 if(payTotalGlobal=="0.00000" || goalAmountGlobal=="0.00000"){
                                     percentGlobal = "0.00";
                                 }
 
-                                if(percent < 75){
-                                    color = "percentage red";
+                                if(percent < 75.00){
+                                    color = " red";
                                 }
 
-                                if(percent > 74 && percent < 100){
-                                    color = "percentage ambar";
+                                if(percent > 74.00 && percent < 100.00){
+                                    color = " ambar";
                                 }
 
-                                if(percent > 99){
-                                    color = "percentage green";
+                                if(percent > 99.00){
+                                    color = " green";
                                 }
 
                                 if(goalAmount=="0.00000" && payTotal>"0.00000"){
-                                    color = "percentage green";
+                                    color = " green";
                                 }
 
                                 if(percentGlobal < 75){
-                                    colorGlobal = "percentage red";
+                                    colorGlobal = " red";
                                 }
 
                                 if(percentGlobal > 74 && percentGlobal < 100){
-                                    colorGlobal = "percentage ambar";
+                                    colorGlobal = " ambar";
                                 }
 
                                 if(percentGlobal > 99){
-                                    colorGlobal = "percentage green";
+                                    colorGlobal = " green";
                                 }
 
                                 if(goalAmountGlobal=="0.00000" && payTotalGlobal>"0.00000"){
-                                    colorGlobal = "percentage green";
+                                    colorGlobal = " green";
                                 }
 
                                 percent = parseFloat(percent).toFixed();
@@ -330,14 +333,14 @@ function downloadGoalSuccess(tx, results){
 
                                         mostrar += "<h1 class='store-name'>"+storeName+"</h1>";
 
-                                        if(actual==1){
+                                        if(actual==1){ //
 
                                         mostrar += "<div class='actual'>";
 
                                             mostrar += "<p class='type'>A:</p>";
                                             mostrar += "<p class='gol-number'>"+parseFloat(goalAmount).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
                                             mostrar += "<p class='sale-number'>"+parseFloat(payTotal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
-                                            mostrar += "<p class='"+color+"'>"+percent+" %</p>";
+                                            mostrar += "<p class=' percentage "+color+"'> "+percent+" %</p>";
 
                                         mostrar += "</div>";
 
@@ -350,7 +353,7 @@ function downloadGoalSuccess(tx, results){
                                             mostrar += "<p class='type'>G:</p>";
                                             mostrar += "<p class='gol-number'>"+parseFloat(goalAmountGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
                                             mostrar += "<p class='sale-number'>"+parseFloat(payTotalGlobal).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")+"</p>";
-                                            mostrar += "<p class='"+colorGlobal+"'>"+percentGlobal+" %</p>";
+                                            mostrar += "<p class='percentage "+colorGlobal+"'>"+percentGlobal+" %</p>";
 
                                         mostrar += "</div>";
 
@@ -618,16 +621,20 @@ function downloadGoalLoad(regionCode){
     }  
 }
 
-function existsData(){
+function existsData(){/*contamos la cantidad de URL que tenemos solo donde USE(uso ) sea igual a 1 el uso significa que se esta usando*/
     
     var url ="";
     var query = "SELECT COUNT("+KEY_URLBASE+") AS urlBase FROM "+ TABLE_URL + " WHERE " + KEY_USE + " = '1';";
+
+    console.log("query..." + query);
     try {
         localDB.transaction(function(transaction){        
             transaction.executeSql(query, [], function(transaction, results){            
-                url = results.rows.item(0).urlBase; 
-                if(url>0){
-                   getConfiguration(url);      
+                url = results.rows.item(0).urlBase;/*el query devuelve un campo (posicion 0) y me devuelve un entero + si hay datos y 0 si no hay*/
+                
+                console.log("url..." + url);
+                if(url>0){/*si hay url con use = 1*/
+                   getConfiguration(url); /*virifica a que pantalla dirigirse al login o a store*/   
                }                         
             }, function(transaction, error){
                 console.log("Error: " + error.code + "<br>Mensage: " + error.message);
@@ -637,6 +644,33 @@ function existsData(){
     catch (e) {
         console.log("Error existsData " + e + ".");
     }   
+}
+
+
+function getConfiguration(url){/*cuenta si la pagina ha sido recordada anteriormente y decide a donde pasar lo mas defrente a login */
+
+    var config ="";
+    var query = "SELECT COUNT("+KEY_REMEMBER+") AS cantidad FROM "+TABLE_CONFIGURATION;
+    try {
+        localDB.transaction(function(transaction){        
+            transaction.executeSql(query, [], function(transaction, results){            
+                config = results.rows.item(0).cantidad;    
+                if(config>"0"){/*si por ejemplo minimizamos y volvimos a abrir se quedo en stores.hmtl*/
+                    window.location = "stores.html";
+                }else{/*si no se ha recordado pues pasa al login*/
+                    window.location = "login.html";
+                }  
+                
+            }, function(transaction, error){
+                console.log("Error: " + error.code + "<br>Mensage: " + error.message);
+            });
+        });
+    } 
+    catch (e) {
+        console.log("Error getConfiguration " + e + ".");
+    }
+   
+   return config;
 }
 
 function updateState(){
@@ -881,31 +915,7 @@ function addConfiguration(remember){
     }
 }
 
-function getConfiguration(url){
 
-    var config ="";
-    var query = "SELECT COUNT("+KEY_REMEMBER+") AS cantidad FROM "+TABLE_CONFIGURATION;
-    try {
-        localDB.transaction(function(transaction){        
-            transaction.executeSql(query, [], function(transaction, results){            
-                config = results.rows.item(0).cantidad;    
-                if(config>"0"){
-                    window.location = "stores.html";
-                }else{
-                    window.location = "login.html";
-                }  
-                
-            }, function(transaction, error){
-                console.log("Error: " + error.code + "<br>Mensage: " + error.message);
-            });
-        });
-    } 
-    catch (e) {
-        console.log("Error getConfiguration " + e + ".");
-    }
-   
-   return config;
-}
 
 function getDataInUse(){
     
@@ -1375,21 +1385,23 @@ errorHandler = function(transaction, error){
 nullDataHandler = function(transaction, results){
 }
 
-function obtenerVariables(name){
-    var regexS = "[\\?&]"+name+"=([^&#]*)";
+function obtenerVariables(name){/*esta funcion obtiene los valores de las variables que aparecen en la url*/
+    var regexS = "[\\?&]"+name+"=([^&#]*)"; /*expresion generica captura de toda la url la parte de la variable ?=variable=1 o quizas &=variable =1*/
     var regex = new RegExp ( regexS );
-    var tmpURL = window.location.href;
+    var tmpURL = window.location.href;/*te indica la ubicacion actual URL del navegador*/
+    console.log("tempURL..." + tmpURL);
     var results = regex.exec( tmpURL );
-    
+    console.log("results..." + results);
+    //console.log("results..." + results[1]);
     if(results == null){
         return "-1";
     }else{
-        return results[1];
+        return results[1];/*de mi valor capturado que puede ser variable=1 , obtengo 1 si hay conincidencia entre la cadena y la url en este caso  devuelve 1*/
     }
 }
 
-function checkNetConnection(){
-    var status = navigator.onLine;
+function checkNetConnection(){/*metodo simple pero importante true o false si */
+    var status = navigator.onLine;/*checkea si el navegador esta online*/
     if(status){
         return true;
     }else{
@@ -1397,9 +1409,12 @@ function checkNetConnection(){
     }
 }
 
-function validIP(ip, port, _url, alias, use, site){
+function validIP(ip, port, _url, alias, use, site){/*esta funcion es muy importante para no tener problemas de no poder ingresar a datos de servidores*/
+    console.log("validando ip");
     var xurl = _url+'/region/';
+    console.log("xurl...." + xurl);
     var valor = obtenerVariables('variable');
+    console.log("valor...." + valor);
     $.ajax({
         type: 'get',
         timeout: 15000,
@@ -1501,7 +1516,7 @@ function loadRegionsSuccess(tx, results){
                             var regionName = value.regionName;
 
                             $('#selectRegion')
-                                .append($("<li class='item' id= "+regionCode+"><p>"+regionName+"</p></li>")
+                            .append($("<li class='item' id= "+regionCode+"><p>"+regionName+"</p></li>")
                                 .attr("data-value",regionCode)
                                 .text(regionName));                      
 

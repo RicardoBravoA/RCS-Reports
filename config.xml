@@ -5,10 +5,9 @@
 		versionCode="1"
 		version   = "1.0.0">
 		<name>RCS Reports</name>
-		<description>
-RCS Reports		</description>
+		<description>RCS Reports</description>
 		<author href="http://retailcs.com/" email="devmobile@realcs.com">
-Retail Custom Solutions
+		Retail Custom Solutions
 		</author>
 		<preference name="phonegap-version" value="3.6.3" />
 		<preference name="orientation" value="portrait" />
